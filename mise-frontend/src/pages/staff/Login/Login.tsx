@@ -59,7 +59,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
                 required
-                className="w-full px-4 py-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-600 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+                className="w-full px-4 py-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-600 text-base font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
               />
             </div>
             <div>
@@ -72,7 +72,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-600 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+                className="w-full px-4 py-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-600 text-base font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
               />
             </div>
             <button

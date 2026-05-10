@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Trash2, Pencil, Check, X, QrCode } from 'lucide-react'
+import { Plus, Trash2, Pencil, Check, X, QrCode, Download } from 'lucide-react'
 import QRCode from 'qrcode'
 import { toast } from 'sonner'
 import { getTables, createTable, updateTable, deleteTable } from '../../services/api/admin.api'
@@ -14,7 +14,11 @@ function QRCanvas({ value }: { value: string }) {
 
   useEffect(() => {
     if (canvasRef.current) {
-      QRCode.toCanvas(canvasRef.current, value, { width: 140, margin: 1, color: { dark: '#111827', light: '#fff' } })
+      QRCode.toCanvas(canvasRef.current, value, {
+        width: 160,
+        margin: 2,
+        color: { dark: '#1c1917', light: '#ffffff' },
+      })
     }
   }, [value])
 
@@ -29,10 +33,15 @@ export default function TableManager() {
   const [editId, setEditId] = useState<string | null>(null)
   const [editLabel, setEditLabel] = useState('')
   const [loading, setLoading] = useState(false)
+  const [pageLoading, setPageLoading] = useState(true)
 
   async function load() {
     if (!accessToken) return
-    setTables(await getTables(accessToken))
+    try {
+      setTables(await getTables(accessToken))
+    } finally {
+      setPageLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -77,45 +86,61 @@ export default function TableManager() {
     } catch { toast.error('Silinemedi') }
   }
 
+  async function downloadQR(t: Table) {
+    const url = qrUrl(t.qrToken)
+    const canvas = document.createElement('canvas')
+    await QRCode.toCanvas(canvas, url, { width: 400, margin: 3, color: { dark: '#1c1917', light: '#ffffff' } })
+    const link = document.createElement('a')
+    link.download = `qr-${t.label.replace(/\s+/g, '-')}.png`
+    link.href = canvas.toDataURL()
+    link.click()
+  }
+
   const qrUrl = (token: string) => `${FRONTEND_URL}/?qr=${token}`
 
+  if (pageLoading) {
+    return (
+      <div className="p-8 flex items-center gap-3 text-stone-400">
+        <div className="w-5 h-5 border-2 border-stone-200 border-t-amber-500 rounded-full animate-spin" />
+        <span className="text-sm font-medium">Yükleniyor...</span>
+      </div>
+    )
+  }
+
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Masa Yönetimi</h1>
-        <p className="text-gray-500 text-sm mt-1">QR kod oluştur ve masaları yönet</p>
+        <h1 className="text-2xl font-black text-stone-900">Masa Yönetimi</h1>
+        <p className="text-stone-400 text-sm mt-1 font-medium">QR kod oluştur ve masaları yönet</p>
       </div>
 
-      {/* Add table */}
-      <div className="flex gap-3 mb-8">
+      <div className="flex flex-col sm:flex-row gap-2 mb-8">
         <input
           placeholder="Masa adı (ör. Masa 4, Teras 2)"
           value={newLabel}
           onChange={(e) => setNewLabel(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && add()}
-          className="flex-1 max-w-xs px-3 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+          className="flex-1 px-4 py-3 rounded-xl border border-stone-200 text-base bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
         />
         <button
           onClick={add}
           disabled={loading || !newLabel.trim()}
-          className="flex items-center gap-1.5 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-semibold hover:bg-gray-700 disabled:opacity-40 transition"
+          className="flex items-center justify-center gap-1.5 px-5 py-3 bg-amber-500 text-white rounded-xl text-sm font-bold hover:bg-amber-600 disabled:opacity-40 transition shadow-md shadow-amber-200 whitespace-nowrap"
         >
-          <Plus className="w-3.5 h-3.5" /> Masa Ekle
+          <Plus className="w-4 h-4" /> Masa Ekle
         </button>
       </div>
 
-      {/* Tables grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {tables.map((t) => (
           <div
             key={t.id}
             className={`bg-white rounded-2xl p-5 shadow-sm border transition ${
-              t.isActive ? 'border-gray-100' : 'border-dashed border-gray-200 opacity-60'
+              t.isActive ? 'border-stone-100' : 'border-dashed border-stone-200 opacity-60'
             }`}
           >
-            {/* Label */}
             {editId === t.id ? (
-              <div className="flex gap-2 mb-3">
+              <div className="flex gap-2 mb-4">
                 <input
                   autoFocus
                   value={editLabel}
@@ -124,47 +149,54 @@ export default function TableManager() {
                     if (e.key === 'Enter') saveEdit(t.id)
                     if (e.key === 'Escape') setEditId(null)
                   }}
-                  className="flex-1 px-2 py-1 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+                  className="flex-1 px-3 py-2 rounded-xl border border-stone-200 text-base focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
                 />
-                <button onClick={() => saveEdit(t.id)} className="text-emerald-600 hover:text-emerald-700">
-                  <Check className="w-4 h-4" />
+                <button onClick={() => saveEdit(t.id)} className="text-emerald-500 hover:text-emerald-600 transition">
+                  <Check className="w-5 h-5" />
                 </button>
-                <button onClick={() => setEditId(null)} className="text-gray-400 hover:text-gray-600">
-                  <X className="w-4 h-4" />
+                <button onClick={() => setEditId(null)} className="text-stone-400 hover:text-stone-600 transition">
+                  <X className="w-5 h-5" />
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-2 mb-3">
-                <span className="font-bold text-gray-900 flex-1">{t.label}</span>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="font-black text-stone-900 flex-1 text-lg">{t.label}</span>
                 {!t.isActive && (
-                  <span className="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-full font-medium">Pasif</span>
+                  <span className="text-[10px] bg-stone-100 text-stone-500 px-1.5 py-0.5 rounded-full font-semibold">Pasif</span>
                 )}
               </div>
             )}
 
-            {/* QR code */}
-            <div className="mb-3">
+            <div className="mb-3 bg-stone-50 rounded-xl p-3">
               <QRCanvas value={qrUrl(t.qrToken)} />
             </div>
 
-            <div className="flex items-center gap-1 mb-3">
-              <QrCode className="w-3 h-3 text-gray-400 flex-shrink-0" />
-              <span className="text-[10px] text-gray-400 font-mono truncate">{t.qrToken}</span>
+            <div className="flex items-center gap-1 mb-4">
+              <QrCode className="w-3 h-3 text-stone-400 flex-shrink-0" />
+              <span className="text-[10px] text-stone-400 font-mono truncate">{t.qrToken}</span>
             </div>
 
-            {/* Actions */}
             <div className="flex gap-2">
               <button
                 onClick={() => { setEditId(t.id); setEditLabel(t.label) }}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-medium transition"
+                className="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-stone-100 text-stone-600 hover:bg-stone-200 text-xs font-semibold transition"
               >
-                <Pencil className="w-3 h-3" /> Düzenle
+                <Pencil className="w-3 h-3" />
+                <span className="hidden sm:inline">Düzenle</span>
+              </button>
+              <button
+                onClick={() => downloadQR(t)}
+                className="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-stone-100 text-stone-600 hover:bg-stone-200 text-xs font-semibold transition"
+                title="QR İndir"
+              >
+                <Download className="w-3 h-3" />
+                <span className="hidden sm:inline">İndir</span>
               </button>
               <button
                 onClick={() => toggleActive(t)}
-                className={`flex-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition ${
+                className={`flex-1 px-2.5 py-2 rounded-xl text-xs font-bold transition ${
                   t.isActive
-                    ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                     : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'
                 }`}
               >
@@ -172,7 +204,7 @@ export default function TableManager() {
               </button>
               <button
                 onClick={() => remove(t.id)}
-                className="flex items-center justify-center w-8 h-8 rounded-lg text-gray-300 hover:bg-red-50 hover:text-red-500 transition"
+                className="flex items-center justify-center w-9 h-9 rounded-xl text-stone-300 hover:bg-red-50 hover:text-red-500 transition"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </button>
@@ -182,9 +214,10 @@ export default function TableManager() {
       </div>
 
       {tables.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-16 gap-3 text-gray-400">
+        <div className="flex flex-col items-center justify-center py-16 gap-3 text-stone-400">
           <QrCode className="w-12 h-12" />
-          <p className="font-medium">Henüz masa eklenmemiş</p>
+          <p className="font-semibold">Henüz masa eklenmemiş</p>
+          <p className="text-sm">Yukarıdan masa ekleyerek başlayın</p>
         </div>
       )}
     </div>
