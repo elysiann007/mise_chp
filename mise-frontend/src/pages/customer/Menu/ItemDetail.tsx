@@ -28,6 +28,9 @@ export default function ItemDetail({ item, onClose }: Props) {
           for (const k of next.keys()) {
             if (k.startsWith(`${groupId}-`)) next.delete(k)
           }
+        } else {
+          const currentCount = [...next.keys()].filter((k) => k.startsWith(`${groupId}-`)).length
+          if (currentCount >= maxSelect) return prev
         }
         next.set(key, modifier)
       }

@@ -15,6 +15,6 @@ export const ordersApi = {
   place: (sessionToken: string, payload: PlaceOrderPayload) =>
     client.post<Order>(`/api/v1/sessions/${sessionToken}/orders`, payload).then((r) => r.data),
 
-  get: (orderId: string) =>
-    client.get<Order>(`/api/v1/orders/${orderId}`).then((r) => r.data),
+  get: (sessionToken: string, orderId: string) =>
+    client.get<Order>(`/api/v1/orders/${orderId}`, { params: { sessionToken } }).then((r) => r.data),
 };

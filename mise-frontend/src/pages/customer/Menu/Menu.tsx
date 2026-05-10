@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { ShoppingBag, ChevronRight } from 'lucide-react'
 import { useSessionStore } from '../../../store/sessionStore'
 import { useCartStore } from '../../../store/cartStore'
@@ -14,10 +14,7 @@ export default function Menu() {
   const [activeCategory, setActiveCategory] = useState<string>(menu[0]?.id ?? '')
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
 
-  if (!menu.length) {
-    navigate('/')
-    return null
-  }
+  if (!menu.length) return <Navigate to="/" replace />
 
   const activeMenu = menu.find((c) => c.id === activeCategory)
   const cartCount = totalItems()

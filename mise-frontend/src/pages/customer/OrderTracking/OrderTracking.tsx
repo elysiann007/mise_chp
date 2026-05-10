@@ -52,11 +52,11 @@ export default function OrderTracking() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!orderId) return
-    ordersApi.get(orderId)
+    if (!orderId || !sessionToken) return
+    ordersApi.get(sessionToken, orderId)
       .then(setOrder)
       .finally(() => setLoading(false))
-  }, [orderId])
+  }, [orderId, sessionToken])
 
   const handleOrderUpdate = useCallback((updated: Order) => {
     if (updated.id === orderId) setOrder(updated)

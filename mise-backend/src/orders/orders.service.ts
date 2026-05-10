@@ -6,6 +6,7 @@ import { OrderItem } from '../database/entities/order-item.entity';
 import { OrderItemModifier } from '../database/entities/order-item-modifier.entity';
 import { OrderEvent } from '../database/entities/order-event.entity';
 import { MenuItem } from '../database/entities/menu-item.entity';
+import { ModifierGroup } from '../database/entities/modifier-group.entity';
 import { Modifier } from '../database/entities/modifier.entity';
 import { SessionsService } from '../sessions/sessions.service';
 import { BusinessException } from '../common/exceptions/business.exception';
@@ -39,6 +40,7 @@ export class OrdersService {
     const menuItemIds = dto.items.map((i) => i.menuItemId);
     const menuItems = await this.menuItemRepo.find({
       where: { id: In(menuItemIds), restaurantId: session.table.restaurantId },
+      relations: ['modifierGroups', 'modifierGroups.modifiers'],
     });
     const menuItemMap = new Map(menuItems.map((m) => [m.id, m]));
 
@@ -53,6 +55,7 @@ export class OrdersService {
     }
 
     this.checkAlcoholRestriction(menuItemMap, dto);
+    this.validateModifiers(menuItemMap, dto);
 
     const orderCount = await this.orderRepo.count({ where: { sessionId: session.id } });
 
@@ -88,6 +91,7 @@ export class OrdersService {
         otvRateSnapshot: Number(menuItem.otvRate),
         nameSnapshot: menuItem.name,
         prepStation: menuItem.prepStation,
+        itemNote: itemDto.itemNote,
       });
     });
 
@@ -118,13 +122,17 @@ export class OrdersService {
     return fullOrder;
   }
 
-  async getById(orderId: string) {
+  async getById(orderId: string, sessionToken?: string) {
     const order = await this.orderRepo.findOne({
       where: { id: orderId },
       relations: ['items', 'items.modifiers', 'session', 'session.table'],
     });
 
     if (!order) {
+      throw new BusinessException('ORDER_NOT_FOUND', HttpStatus.NOT_FOUND);
+    }
+
+    if (sessionToken !== undefined && order.session.sessionToken !== sessionToken) {
       throw new BusinessException('ORDER_NOT_FOUND', HttpStatus.NOT_FOUND);
     }
 
@@ -139,6 +147,45 @@ export class OrdersService {
       relations: ['items', 'items.modifiers'],
       order: { placedAt: 'ASC' },
     });
+  }
+
+  private validateModifiers(menuItemMap: Map<string, MenuItem>, dto: PlaceOrderDto) {
+    for (const itemDto of dto.items) {
+      const menuItem = menuItemMap.get(itemDto.menuItemId)!;
+      const submittedModIds = itemDto.modifiers?.map((m) => m.modifierId) ?? [];
+
+      const groupByModId = new Map<string, ModifierGroup>();
+      for (const group of menuItem.modifierGroups) {
+        for (const mod of group.modifiers) {
+          groupByModId.set(mod.id, group);
+        }
+      }
+
+      for (const modId of submittedModIds) {
+        if (!groupByModId.has(modId)) {
+          throw new BusinessException('MODIFIER_NOT_FOUND', HttpStatus.UNPROCESSABLE_ENTITY, 'Geçersiz seçenek.');
+        }
+      }
+
+      const countsByGroup = new Map<string, number>();
+      for (const modId of submittedModIds) {
+        const group = groupByModId.get(modId)!;
+        countsByGroup.set(group.id, (countsByGroup.get(group.id) ?? 0) + 1);
+      }
+
+      for (const group of menuItem.modifierGroups) {
+        const count = countsByGroup.get(group.id) ?? 0;
+        if (group.isRequired && count === 0) {
+          throw new BusinessException('MODIFIER_REQUIRED', HttpStatus.UNPROCESSABLE_ENTITY, `"${group.name}" seçimi zorunludur.`);
+        }
+        if (count < group.minSelect) {
+          throw new BusinessException('MODIFIER_MIN_SELECT', HttpStatus.UNPROCESSABLE_ENTITY, `"${group.name}" için en az ${group.minSelect} seçim gereklidir.`);
+        }
+        if (count > group.maxSelect) {
+          throw new BusinessException('MODIFIER_MAX_SELECT', HttpStatus.UNPROCESSABLE_ENTITY, `"${group.name}" için en fazla ${group.maxSelect} seçim yapılabilir.`);
+        }
+      }
+    }
   }
 
   private checkAlcoholRestriction(menuItemMap: Map<string, MenuItem>, dto: PlaceOrderDto) {

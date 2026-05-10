@@ -11,7 +11,7 @@ export default function ProtectedRoute({ roles, children }: Props) {
   const { accessToken, role } = useAuthStore()
 
   if (!accessToken) return <Navigate to="/login" replace />
-  if (roles && role && !roles.includes(role)) return <Navigate to="/login" replace />
+  if (roles && (!role || !roles.includes(role))) return <Navigate to="/login" replace />
 
   return <>{children}</>
 }
