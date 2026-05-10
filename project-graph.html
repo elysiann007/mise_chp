@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MISE — Project Graph</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --accent: #f0883e;
+    --accent2: #58a6ff;
+    --accent3: #3fb950;
+    --accent4: #bc8cff;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --red: #ff7b72;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex; align-items: center; gap: 16px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo {
+    font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--text-muted); font-size: 13px; }
+  .badges { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+    border: 1px solid var(--border);
+  }
+  .badge.nest { background: #e0234e22; color: #e0234e; border-color: #e0234e44; }
+  .badge.react { background: #61dafb22; color: #61dafb; border-color: #61dafb44; }
+  .badge.pg { background: #336791aa; color: #aed8f0; border-color: #33679166; }
+  .badge.ts { background: #3178c622; color: #68b0ef; border-color: #3178c644; }
+
+  /* TABS */
+  .tabs {
+    display: flex; gap: 2px; padding: 16px 32px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 20px; border-radius: 8px 8px 0 0; cursor: pointer;
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+    border: 1px solid transparent; border-bottom: none;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .tab:hover { color: var(--text); background: var(--surface2); }
+  .tab.active {
+    color: var(--text); background: var(--bg);
+    border-color: var(--border); border-bottom-color: var(--bg);
+  }
+  .tab .icon { margin-right: 6px; }
+
+  /* CONTENT */
+  .content { padding: 32px; max-width: 1400px; margin: 0 auto; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 700; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-desc { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* STAT BOXES */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; text-align: center;
+  }
+  .stat-num { font-size: 28px; font-weight: 800; }
+  .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .stat.o { border-top: 3px solid var(--accent); }
+  .stat.b { border-top: 3px solid var(--accent2); }
+  .stat.g { border-top: 3px solid var(--accent3); }
+  .stat.p { border-top: 3px solid var(--accent4); }
+  .stat.r { border-top: 3px solid var(--red); }
+
+  /* MERMAID */
+  .mermaid-wrap {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+  .mermaid { min-width: 100%; }
+
+  /* ROUTE TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--surface2); color: var(--text-muted); text-align: left; padding: 10px 14px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+  .method { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
+  .m-get    { background: #238636aa; color: #3fb950; }
+  .m-post   { background: #1f6feb44; color: #58a6ff; }
+  .m-patch  { background: #9e6a0344; color: #d29922; }
+  .m-delete { background: #da363344; color: #ff7b72; }
+  .route-path { font-family: 'Consolas', monospace; font-size: 12px; color: var(--accent2); }
+  .guard-badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; margin-left: 6px; font-weight: 600; }
+  .g-pub  { background: #23863644; color: #3fb950; }
+  .g-jwt  { background: #388bfd22; color: #58a6ff; }
+  .g-adm  { background: #bc8cff22; color: #bc8cff; }
+
+  /* ENTITY PILLS */
+  .entity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .entity-card {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .entity-header {
+    padding: 10px 14px; font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .entity-header .tag { font-size: 10px; font-weight: 500; color: var(--text-muted); font-family: monospace; }
+  .entity-fields { padding: 8px 14px; }
+  .field { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-size: 12px; }
+  .field-name { color: var(--text); font-family: monospace; }
+  .field-type { color: var(--text-muted); font-size: 11px; }
+  .pk { color: var(--accent); font-size: 10px; font-weight: 700; }
+  .fk { color: var(--accent2); font-size: 10px; font-weight: 700; }
+
+  /* ISSUES */
+  .issue-list { display: flex; flex-direction: column; gap: 10px; }
+  .issue {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+  }
+  .issue-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .issue-title { font-weight: 600; font-size: 13px; margin-bottom: 3px; }
+  .issue-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .sev { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; margin-left: 8px; }
+  .sev-high   { background: #da363344; color: var(--red); }
+  .sev-med    { background: #9e6a0344; color: #d29922; }
+  .sev-low    { background: #23863644; color: #3fb950; }
+
+  /* FILE TREE */
+  .tree { font-family: 'Consolas', monospace; font-size: 12px; line-height: 1.8; }
+  .tree-dir  { color: var(--accent2); }
+  .tree-file { color: var(--text); }
+  .tree-empty { color: #444; font-style: italic; }
+  .tree-done  { color: var(--accent3); }
+  .tree-todo  { color: #444; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">MISE</div>
+    <div class="subtitle">Restaurant Management System — Project Graph</div>
+  </div>
+  <div class="badges">
+    <span class="badge nest">NestJS 11</span>
+    <span class="badge react">React 19</span>
+    <span class="badge pg">PostgreSQL 18</span>
+    <span class="badge ts">TypeScript</span>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="show('overview')"><span class="icon">🏗️</span> Architecture</div>
+  <div class="tab" onclick="show('erd')"><span class="icon">🗄️</span> Database ERD</div>
+  <div class="tab" onclick="show('api')"><span class="icon">🔌</span> API Routes</div>
+  <div class="tab" onclick="show('frontend')"><span class="icon">⚛️</span> Frontend</div>
+  <div class="tab" onclick="show('flow')"><span class="icon">🔄</span> Data Flow</div>
+  <div class="tab" onclick="show('issues')"><span class="icon">⚠️</span> Structure Issues</div>
+  <div class="tab" onclick="show('filetree')"><span class="icon">📁</span> File Tree</div>
+</div>
+
+<div class="content">
+
+  <!-- ══════════════════════════════════════════════════ OVERVIEW -->
+  <div id="overview" class="section active">
+    <div class="stats">
+      <div class="stat o"><div class="stat-num">8</div><div class="stat-label">NestJS Modules</div></div>
+      <div class="stat b"><div class="stat-num">12</div><div class="stat-label">DB Entities</div></div>
+      <div class="stat g"><div class="stat-num">18</div><div class="stat-label">API Endpoints</div></div>
+      <div class="stat p"><div class="stat-num">9</div><div class="stat-label">Frontend Pages</div></div>
+      <div class="stat r"><div class="stat-num">3</div><div class="stat-label">Zustand Stores</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏗️ Backend Module Graph</div>
+      <div class="card-desc">NestJS module dependency tree — arrows show imports/injections between modules</div>
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+graph TB
+  subgraph Core["⚙️ Core"]
+    App[AppModule]
+    Config[ConfigModule\nforRoot global]
+    DB[DatabaseModule\nTypeORM + PG]
+  end
+  subgraph Features["🚀 Feature Modules"]
+    Auth[AuthModule\nJWT + Passport]
+    Sessions[SessionsModule\nQR → Session]
+    Orders[OrdersModule\nPlace Orders]
+    Kitchen[KitchenModule\nKDS Display]
+    Admin[AdminModule\nCRUD Panel]
+    WS[WebsocketModule\nSocket.io]
+  end
+  subgraph Shared["📦 Shared"]
+    Common[common/\nguards · decorators\nexceptions · utils]
+    SharedDir[shared/\nenums · constants]
+  end
+
+  App --> Config
+  App --> DB
+  App --> Auth
+  App --> Sessions
+  App --> Orders
+  App --> Kitchen
+  App --> Admin
+  App --> WS
+
+  Auth --> DB
+  Sessions --> DB
+  Orders --> DB
+  Orders --> WS
+  Kitchen --> DB
+  Kitchen --> WS
+  Admin --> DB
+
+  Auth -.-> Common
+  Orders -.-> Common
+  Kitchen -.-> Common
+  Admin -.-> Common
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔐 Auth Flow</div>
+        <div class="card-desc">JWT strategy + role-based guards</div>
+        <div class="mermaid-wrap">
+          <div class="mermaid">
+graph TD
+  Login["POST /auth/login\n{email, password}"] --> AuthService
+  AuthService --> bcrypt["bcrypt.compare()"]
+  bcrypt --> JWT["sign JWT\n{sub, restaurantId, role, email}"]
+  JWT --> Cookie["HttpOnly Cookie\n24h expiry"]
+  Cookie --> Guard["JwtAuthGuard\nPassport JWT Strategy"]
+  Guard --> Roles["RolesGuard\n@Roles decorator check"]
+  Roles --> Controller["Protected Controller\n@CurrentUser() injects payload"]
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">⚡ WebSocket Gateway</div>
+        <div class="card-desc">Socket.io namespace /orders — real-time kitchen + customer updates</div>
+        <div class="mermaid-wrap">
+          <div class="mermaid">
+graph TD
+  WS["/orders namespace\nOrdersGateway"]
+  WS --> R1["Room: kitchen:{restaurantId}\n👨‍🍳 Kitchen Staff"]
+  WS --> R2["Room: session:{token}\n👤 Customer"]
+  Events["Events Emitted"]
+  Events --> E1["order:placed\n→ kitchen room"]
+  Events --> E2["order:status-changed\n→ both rooms"]
+  Events --> E3["order:ready\n→ session room"]
+  OrdersService --> WS
+  KitchenService --> WS
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ ERD -->
+  <div id="erd" class="section">
+    <div class="card">
+      <div class="card-title">🗄️ Entity Relationship Diagram</div>
+      <div class="card-desc">All 12 PostgreSQL tables with relationships. Price/tax columns use numeric(10,2). Snapshot columns written once at order time — never updated.</div>
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+erDiagram
+  restaurants {
+    uuid id PK
+    string name
+    string slug
+    string vkn
+    string taxOffice
+    string currency
+    string locale
+  }
+  users {
+    uuid id PK
+    uuid restaurant_id FK
+    string email
+    string passwordHash
+    string role
+    bool isActive
+  }
+  tables {
+    uuid id PK
+    uuid restaurant_id FK
+    string name
+    string qrToken
+    bool isActive
+  }
+  table_sessions {
+    uuid id PK
+    uuid table_id FK
+    string status
+    timestamp openedAt
+    timestamp closedAt
+    timestamp expiresAt
+  }
+  menu_categories {
+    uuid id PK
+    uuid restaurant_id FK
+    string name
+    int sortOrder
+    bool isActive
+  }
+  menu_items {
+    uuid id PK
+    uuid category_id FK
+    string name
+    numeric basePrice
+    numeric kdzRate
+    numeric otvRate
+    string prepStation
+    bool isAlcohol
+    bool isActive
+  }
+  modifier_groups {
+    uuid id PK
+    uuid menu_item_id FK
+    string name
+    int minSelect
+    int maxSelect
+    bool isRequired
+  }
+  modifiers {
+    uuid id PK
+    uuid group_id FK
+    string name
+    numeric priceDelta
+    bool isActive
+  }
+  orders {
+    uuid id PK
+    uuid session_id FK
+    string status
+    timestamp placedAt
+    timestamp updatedAt
+  }
+  order_items {
+    uuid id PK
+    uuid order_id FK
+    uuid menu_item_id FK
+    string nameSnapshot
+    numeric unitPriceSnapshot
+    numeric kdzRateSnapshot
+    numeric otvRateSnapshot
+    string prepStationSnapshot
+    int quantity
+    string status
+  }
+  order_item_modifiers {
+    uuid id PK
+    uuid order_item_id FK
+    uuid modifier_id FK
+    string nameSnapshot
+    numeric priceDeltaSnapshot
+  }
+  order_events {
+    uuid id PK
+    uuid order_id FK
+    string eventType
+    jsonb payload
+    timestamp createdAt
+  }
+
+  restaurants ||--o{ users : "staff"
+  restaurants ||--o{ tables : "owns"
+  restaurants ||--o{ menu_categories : "has"
+  tables ||--o{ table_sessions : "opens"
+  table_sessions ||--o{ orders : "contains"
+  menu_categories ||--o{ menu_items : "lists"
+  menu_items ||--o{ modifier_groups : "has"
+  modifier_groups ||--o{ modifiers : "contains"
+  orders ||--o{ order_items : "line items"
+  orders ||--o{ order_events : "audit log"
+  order_items ||--o{ order_item_modifiers : "customised by"
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 Entity Cards</div>
+      <div class="card-desc">Key columns per entity</div>
+      <div class="entity-grid">
+        <div class="entity-card">
+          <div class="entity-header" style="border-top:3px solid #f0883e">restaurants <span class="tag">tenant root</span></div>
+          <div class="entity-fields">
+            <div class="field"><span class="pk">PK</span><span class="field-name">id</span><span class="field-type">uuid</span></div>
+            <div class="field"><span class="field-name">name, slug, vkn</span><span class="field-type">varchar</span></div>
+            <div class="field"><span class="field-name">taxOffice</span><span class="field-type">varchar</span></div>
+            <div class="field"><span class="field-name">currency</span><span class="field-type">TRY</span></div>
+            <div class="field"><span class="field-name">locale</span><span class="field-type">tr-TR</span></div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-header" style="border-top:3px solid #58a6ff">orders <span class="tag">core transaction</span></div>
+          <div class="entity-fields">
+            <div class="field"><span class="pk">PK</span><span class="field-name">id</span><span class="field-type">uuid</span></div>
+            <div class="field"><span class="fk">FK</span><span class="field-name">session_id</span><span class="field-type">→ table_sessions</span></div>
+            <div class="field"><span class="field-name">status</span><span class="field-type">placed|preparing|ready|served|cancelled</span></div>
+            <div class="field"><span class="field-name">placedAt</span><span class="field-type">timestamp</span></div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-header" style="border-top:3px solid #3fb950">order_items <span class="tag">price snapshot</span></div>
+          <div class="entity-fields">
+            <div class="field"><span class="pk">PK</span><span class="field-name">id</span><span class="field-type">uuid</span></div>
+            <div class="field"><span class="fk">FK</span><span class="field-name">order_id, menu_item_id</span></div>
+            <div class="field"><span class="field-name">nameSnapshot</span><span class="field-type">frozen at order time</span></div>
+            <div class="field"><span class="field-name">unitPriceSnapshot</span><span class="field-type">numeric(10,2)</span></div>
+            <div class="field"><span class="field-name">kdzRateSnapshot</span><span class="field-type">0.10 or 0.20</span></div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-header" style="border-top:3px solid #bc8cff">table_sessions <span class="tag">4hr TTL</span></div>
+          <div class="entity-fields">
+            <div class="field"><span class="pk">PK</span><span class="field-name">id</span><span class="field-type">uuid</span></div>
+            <div class="field"><span class="fk">FK</span><span class="field-name">table_id</span><span class="field-type">→ tables</span></div>
+            <div class="field"><span class="field-name">status</span><span class="field-type">active|awaiting_payment|closed|abandoned</span></div>
+            <div class="field"><span class="field-name">expiresAt</span><span class="field-type">openedAt + 4h</span></div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-header" style="border-top:3px solid #ff7b72">menu_items <span class="tag">Turkish tax</span></div>
+          <div class="entity-fields">
+            <div class="field"><span class="pk">PK</span><span class="field-name">id</span><span class="field-type">uuid</span></div>
+            <div class="field"><span class="fk">FK</span><span class="field-name">category_id</span></div>
+            <div class="field"><span class="field-name">basePrice</span><span class="field-type">numeric(10,2) KDV dahil</span></div>
+            <div class="field"><span class="field-name">kdzRate</span><span class="field-type">0.10 food / 0.20 alcohol</span></div>
+            <div class="field"><span class="field-name">isAlcohol</span><span class="field-type">bool → block 22:00-06:00</span></div>
+            <div class="field"><span class="field-name">prepStation</span><span class="field-type">kitchen | bar</span></div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-header" style="border-top:3px solid #d29922">users <span class="tag">staff accounts</span></div>
+          <div class="entity-fields">
+            <div class="field"><span class="pk">PK</span><span class="field-name">id</span><span class="field-type">uuid</span></div>
+            <div class="field"><span class="fk">FK</span><span class="field-name">restaurant_id</span></div>
+            <div class="field"><span class="field-name">role</span><span class="field-type">admin|manager|kitchen|bar|waiter</span></div>
+            <div class="field"><span class="field-name">passwordHash</span><span class="field-type">bcrypt</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ API -->
+  <div id="api" class="section">
+    <div class="card">
+      <div class="card-title">🌐 Public Routes — No Auth</div>
+      <div class="card-desc">Customer-facing endpoints. No JWT required — scoped by session token.</div>
+      <table>
+        <thead><tr><th>Method</th><th>Path</th><th>Controller</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method m-post">POST</span></td><td class="route-path">/api/v1/sessions</td><td>SessionsController</td><td>Open a table session from QR token</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/sessions/:token</td><td>SessionsController</td><td>Get session status + full menu</td></tr>
+          <tr><td><span class="method m-post">POST</span></td><td class="route-path">/api/v1/sessions/:token/orders</td><td>OrdersController</td><td>Place an order (price snapshot applied)</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/sessions/:token/orders</td><td>OrdersController</td><td>List all orders in session</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/orders/:id</td><td>OrdersController</td><td>Get single order detail + items</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔐 Auth Routes</div>
+      <table>
+        <thead><tr><th>Method</th><th>Path</th><th>Guard</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method m-post">POST</span></td><td class="route-path">/api/v1/auth/login</td><td><span class="guard-badge g-pub">Public</span></td><td>Email + password → JWT cookie</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">👨‍🍳 Kitchen Routes — JWT Required</div>
+      <div class="card-desc">Staff endpoints. Roles: kitchen, bar, admin.</div>
+      <table>
+        <thead><tr><th>Method</th><th>Path</th><th>Guard</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/kitchen/orders</td><td><span class="guard-badge g-jwt">JWT + kitchen|bar|admin</span></td><td>Active orders filtered by ?station=kitchen|bar</td></tr>
+          <tr><td><span class="method m-patch">PATCH</span></td><td class="route-path">/api/v1/kitchen/items/:id/status</td><td><span class="guard-badge g-jwt">JWT + kitchen|bar|admin</span></td><td>Advance item status → emits WS event</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">👑 Admin Routes — JWT + admin role</div>
+      <table>
+        <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/admin/dashboard</td><td>Active sessions count + today's order stats</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/admin/categories</td><td>List all menu categories for restaurant</td></tr>
+          <tr><td><span class="method m-post">POST</span></td><td class="route-path">/api/v1/admin/categories</td><td>Create category</td></tr>
+          <tr><td><span class="method m-patch">PATCH</span></td><td class="route-path">/api/v1/admin/categories/:id</td><td>Update category</td></tr>
+          <tr><td><span class="method m-delete">DELETE</span></td><td class="route-path">/api/v1/admin/categories/:id</td><td>Delete category</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/admin/categories/:id/items</td><td>List items in category</td></tr>
+          <tr><td><span class="method m-post">POST</span></td><td class="route-path">/api/v1/admin/categories/:id/items</td><td>Create menu item</td></tr>
+          <tr><td><span class="method m-patch">PATCH</span></td><td class="route-path">/api/v1/admin/items/:id</td><td>Update menu item</td></tr>
+          <tr><td><span class="method m-delete">DELETE</span></td><td class="route-path">/api/v1/admin/items/:id</td><td>Delete menu item</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="route-path">/api/v1/admin/tables</td><td>List all tables with QR tokens</td></tr>
+          <tr><td><span class="method m-post">POST</span></td><td class="route-path">/api/v1/admin/tables</td><td>Create table → auto-generate qrToken</td></tr>
+          <tr><td><span class="method m-patch">PATCH</span></td><td class="route-path">/api/v1/admin/tables/:id</td><td>Update table name/active</td></tr>
+          <tr><td><span class="method m-delete">DELETE</span></td><td class="route-path">/api/v1/admin/tables/:id</td><td>Delete table</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚡ WebSocket Events — /orders namespace</div>
+      <table>
+        <thead><tr><th>Event</th><th>Direction</th><th>Room</th><th>Payload</th></tr></thead>
+        <tbody>
+          <tr><td><code>order:placed</code></td><td>Server → Client</td><td>kitchen:{restaurantId}</td><td>Full order with items</td></tr>
+          <tr><td><code>order:status-changed</code></td><td>Server → Client</td><td>kitchen:{restaurantId} + session:{token}</td><td>{orderId, itemId, status}</td></tr>
+          <tr><td><code>order:ready</code></td><td>Server → Client</td><td>session:{token}</td><td>{orderId}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ FRONTEND -->
+  <div id="frontend" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">⚛️ Route Tree</div>
+        <div class="card-desc">React Router v7 routes + access control</div>
+        <div class="mermaid-wrap">
+          <div class="mermaid">
+graph TD
+  App[App.tsx\nBrowserRouter + Toaster]
+  App --> R1["/ → QRScanner\n📷 scan QR code"]
+  App --> R2["/menu → Menu\n🍽️ browse items"]
+  App --> R3["/cart → Cart\n🛒 review order"]
+  App --> R4["/order/:id → OrderTracking\n📍 live status"]
+  App --> R5["/login → Login\n🔑 staff auth"]
+  App --> R6["/kitchen → Kitchen\n🔐 kitchen|bar|admin"]
+  App --> R7["/admin → AdminLayout\n🔐 admin only"]
+  R7 --> R7a["/admin/dashboard"]
+  R7 --> R7b["/admin/menu"]
+  R7 --> R7c["/admin/tables"]
+  R1 --> |"QR scanned\n→ sessionStore"| R2
+  R2 --> |"add to cart\n→ cartStore"| R3
+  R3 --> |"POST /orders"| R4
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🗂️ State Management</div>
+        <div class="card-desc">Three Zustand stores with persistence</div>
+        <div class="mermaid-wrap">
+          <div class="mermaid">
+graph TD
+  subgraph sessionStore["sessionStore (persist)"]
+    SS1["sessionToken: string"]
+    SS2["restaurantId: string"]
+    SS3["tableId: string"]
+    SS4["menu: MenuCategory[]"]
+  end
+  subgraph cartStore["cartStore (persist)"]
+    CS1["items: CartItem[]"]
+    CS2["totalPrice(): number"]
+    CS3["addItem / removeItem\nclearCart"]
+  end
+  subgraph authStore["authStore (persist)"]
+    AS1["token: string"]
+    AS2["user: JwtPayload"]
+    AS3["restaurantId: string"]
+    AS4["login / logout"]
+  end
+  QRScanner --> sessionStore
+  Menu --> sessionStore
+  Menu --> cartStore
+  Cart --> cartStore
+  Login --> authStore
+  Kitchen --> authStore
+  AdminLayout --> authStore
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🌐 API Service Layer</div>
+      <div class="card-desc">Axios-based clients in services/api/ — never call axios directly from components</div>
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+graph LR
+  Client["client.ts\nAxios instance\nbaseURL: VITE_API_URL\nwithCredentials: true"] --> sessions.api
+  Client --> orders.api
+  Client --> auth.api
+  Client --> kitchen.api
+  Client --> admin.api
+  sessions.api --> |"openSession\ngetSession"| Sessions
+  orders.api --> |"placeOrder\ngetOrder\ngetSessionOrders"| Orders
+  auth.api --> |"login"| Auth
+  kitchen.api --> |"getKitchenOrders\nupdateItemStatus"| Kitchen
+  admin.api --> |"getDashboard\ncategoryOps\nitemOps\ntableOps"| Admin
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔌 WebSocket Hook</div>
+      <div class="card-desc">useWebSocket.ts — connects to /orders namespace, joins rooms based on context</div>
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+graph LR
+  Hook["useWebSocket(opts)"] --> Connect["io(VITE_WEBSOCKET_URL\n/orders)"]
+  Connect --> R1["join kitchen:{restaurantId}\nif restaurantId provided"]
+  Connect --> R2["join session:{token}\nif sessionToken provided"]
+  R1 --> E1["on order:placed\n→ onOrderPlaced cb"]
+  R1 --> E2["on order:status-changed\n→ onOrderStatusChanged cb"]
+  R2 --> E2
+  R2 --> E3["on order:ready\n→ onOrderReady cb"]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ FLOW -->
+  <div id="flow" class="section">
+    <div class="card">
+      <div class="card-title">🧑‍💻 Customer Order Flow</div>
+      <div class="card-desc">End-to-end: QR scan → order placement → real-time tracking</div>
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+sequenceDiagram
+  actor C as 👤 Customer
+  participant FE as React Frontend
+  participant BE as NestJS Backend
+  participant DB as PostgreSQL
+  participant WS as Socket.io
+  actor KS as 👨‍🍳 Kitchen
+
+  C->>FE: Scan QR Code (/?qr=QR-TABLE-01)
+  FE->>BE: POST /api/v1/sessions {qrToken}
+  BE->>DB: Find table → check no active session
+  DB-->>BE: Table row
+  BE->>DB: INSERT table_sessions (status=active, expiresAt=+4h)
+  BE->>DB: SELECT menu (active categories + items)
+  BE-->>FE: {sessionToken, menu}
+  FE->>FE: sessionStore.set(token, menu)
+
+  C->>FE: Browse menu + add items
+  FE->>FE: cartStore.addItem(...)
+
+  C->>FE: Tap "Place Order"
+  FE->>BE: POST /api/v1/sessions/:token/orders {items[]}
+  BE->>DB: validateSession → check TTL + status
+  BE->>DB: Load MenuItems + check alcohol hours
+  BE->>DB: Snapshot prices → INSERT order + order_items
+  BE->>WS: emit order:placed → room kitchen:{restaurantId}
+  WS-->>KS: order:placed {order}
+  BE-->>FE: {orderId, status: placed}
+  FE->>FE: cartStore.clear()
+  FE->>FE: navigate /order/{id}
+
+  KS->>BE: PATCH /api/v1/kitchen/items/:id/status
+  BE->>DB: UPDATE order_items.status
+  BE->>WS: emit order:status-changed
+  WS-->>FE: order:status-changed {itemId, status}
+  FE-->>C: Live status update shown
+
+  Note over KS,BE: When all items = ready
+  BE->>WS: emit order:ready → session:{token}
+  WS-->>FE: order:ready
+  FE-->>C: "Your order is ready!" notification
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">👑 Admin Menu Management Flow</div>
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+sequenceDiagram
+  actor A as 👑 Admin
+  participant FE as React Frontend
+  participant BE as NestJS Backend
+  participant DB as PostgreSQL
+
+  A->>FE: Login at /login
+  FE->>BE: POST /api/v1/auth/login
+  BE-->>FE: JWT in HttpOnly cookie
+  FE->>FE: authStore.login(user)
+
+  A->>FE: Navigate /admin/menu
+  FE->>BE: GET /api/v1/admin/categories (JWT)
+  BE->>DB: SELECT categories WHERE restaurant_id = jwt.restaurantId
+  BE-->>FE: categories[] with items
+
+  A->>FE: Create new menu item
+  FE->>BE: POST /api/v1/admin/categories/:id/items
+  BE->>BE: AdminService.assertOwned(category, restaurantId)
+  BE->>DB: INSERT menu_items
+  BE-->>FE: created item
+  FE->>FE: Update UI optimistically
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ ISSUES -->
+  <div id="issues" class="section">
+    <div class="card">
+      <div class="card-title">⚠️ Structure Issues Found</div>
+      <div class="card-desc">Problems in the current codebase that need to be cleaned up before scaling</div>
+
+      <div class="issue-list">
+
+        <div class="issue">
+          <div class="issue-icon">🗑️</div>
+          <div>
+            <div class="issue-title">Backend: Boilerplate files never removed <span class="sev sev-med">MEDIUM</span></div>
+            <div class="issue-desc"><code>app.controller.ts</code>, <code>app.service.ts</code>, <code>app.controller.spec.ts</code> are the NestJS "hello world" scaffold. They add noise and are not wired to anything meaningful. Should be deleted.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">👻</div>
+          <div>
+            <div class="issue-title">Backend: 6 ghost modules — exist on disk, not in AppModule <span class="sev sev-high">HIGH</span></div>
+            <div class="issue-desc"><code>bills/</code>, <code>fiscal/</code>, <code>payments/</code>, <code>restaurants/</code>, <code>menu/</code>, <code>notifications/</code> — folders exist with subdirectory structure but contain no implementation files and are NOT imported in <code>AppModule</code>. Either implement them or remove the folders. Right now they create confusion about what is and isn't built.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">📂</div>
+          <div>
+            <div class="issue-title">Backend: Empty subdirectory pollution inside auth/ <span class="sev sev-low">LOW</span></div>
+            <div class="issue-desc"><code>auth/decorators/</code> and <code>auth/guards/</code> are empty — the actual implementations live in <code>common/decorators/</code> and <code>common/guards/</code> (correct place). Delete the empty auth subdirs to avoid confusion.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">⚛️</div>
+          <div>
+            <div class="issue-title">Frontend: Admin pages have both flat files AND sub-directories <span class="sev sev-high">HIGH</span></div>
+            <div class="issue-desc">e.g. <code>pages/admin/Dashboard.tsx</code> exists AND <code>pages/admin/Dashboard/</code> folder exists (empty). Same for MenuManager, TableManager. The empty subdirs suggest a planned refactor to co-located components that was never completed. Remove empty dirs or complete the refactor — pick one pattern.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">🔀</div>
+          <div>
+            <div class="issue-title">Frontend: Inconsistent staff page location <span class="sev sev-med">MEDIUM</span></div>
+            <div class="issue-desc">Kitchen is at <code>pages/staff/Kitchen/Kitchen.tsx</code> but there's also a reference to <code>pages/kitchen/KitchenDisplay/</code>. One is real, one is an empty ghost. Clean up the <code>pages/kitchen/</code> ghost dir.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">📦</div>
+          <div>
+            <div class="issue-title">Frontend: shadcn/ui dependency without shadcn components <span class="sev sev-low">LOW</span></div>
+            <div class="issue-desc"><code>lib/utils.ts</code> exports the <code>cn()</code> helper (clsx + tailwind-merge) — this is the shadcn pattern. But no shadcn components are installed. Either install shadcn components to leverage this properly, or it just means Tailwind class merging is already available.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">🌍</div>
+          <div>
+            <div class="issue-title">Frontend: i18next installed but i18n/ folder is empty <span class="sev sev-med">MEDIUM</span></div>
+            <div class="issue-desc">Both <code>i18next</code> and <code>react-i18next</code> are in package.json, but <code>src/i18n/</code> has no translation files and no initialisation. Either wire it up (important for tr-TR support) or remove the dependency.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">🖼️</div>
+          <div>
+            <div class="issue-title">Frontend: Vite/React boilerplate assets never cleaned <span class="sev sev-low">LOW</span></div>
+            <div class="issue-desc"><code>assets/react.svg</code>, <code>assets/vite.svg</code>, <code>App.css</code> (Vite starter CSS), and <code>assets/hero.png</code> are leftovers from project initialization. Should be deleted.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">📁</div>
+          <div>
+            <div class="issue-title">Frontend: 5 empty component/config folders <span class="sev sev-low">LOW</span></div>
+            <div class="issue-desc"><code>components/common/</code>, <code>components/forms/</code>, <code>components/layout/</code>, <code>components/shared/</code>, <code>styles/</code>, <code>config/</code>, <code>constants/</code> — all empty. These are placeholders. Remove until actually needed.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">💰</div>
+          <div>
+            <div class="issue-title">MVP Gap: Bills & Payments not started <span class="sev sev-high">NEXT UP</span></div>
+            <div class="issue-desc">No <code>BillsModule</code>, no <code>PaymentsModule</code> — iyzico 3DS Hosted Form integration is the critical next feature. The folder skeletons exist but have zero implementation.</div>
+          </div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">📄</div>
+          <div>
+            <div class="issue-title">MVP Gap: Fiscal documents (Paraşüt e-Arşiv) not started <span class="sev sev-high">NEXT UP</span></div>
+            <div class="issue-desc">No Paraşüt integration, no GİB XML builder, no <code>FiscalModule</code>. Folder skeleton exists in <code>fiscal/providers/parasut/</code> but empty.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ FILE TREE -->
+  <div id="filetree" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">📁 mise-backend/src/</div>
+        <div class="tree">
+<span class="tree-dir">├── app.module.ts</span> ✅<br>
+<span class="tree-dir">├── main.ts</span> ✅<br>
+<span class="tree-empty">├── app.controller.ts</span> ⚠️ delete<br>
+<span class="tree-empty">├── app.service.ts</span> ⚠️ delete<br>
+<br>
+<span class="tree-dir">├── auth/</span> ✅ done<br>
+<span class="tree-file">&nbsp;&nbsp;├── auth.module.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── auth.service.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── auth.controller.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── dto/login.dto.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── strategies/jwt.strategy.ts</span><br>
+<span class="tree-empty">&nbsp;&nbsp;├── decorators/</span> empty, delete<br>
+<span class="tree-empty">&nbsp;&nbsp;└── guards/</span> empty, delete<br>
+<br>
+<span class="tree-dir">├── sessions/</span> ✅ done<br>
+<span class="tree-file">&nbsp;&nbsp;├── sessions.module.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── sessions.service.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── sessions.controller.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── dto/open-session.dto.ts</span><br>
+<br>
+<span class="tree-dir">├── orders/</span> ✅ done<br>
+<span class="tree-file">&nbsp;&nbsp;├── orders.module.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── orders.service.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── orders.controller.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── dto/place-order.dto.ts</span><br>
+<br>
+<span class="tree-dir">├── kitchen/</span> ✅ done<br>
+<span class="tree-file">&nbsp;&nbsp;├── kitchen.module.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── kitchen.service.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── kitchen.controller.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── dto/update-item-status.dto.ts</span><br>
+<br>
+<span class="tree-dir">├── admin/</span> ✅ done<br>
+<span class="tree-file">&nbsp;&nbsp;├── admin.module.ts / service / controller</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── dto/ category, menu-item, modifier, table</span><br>
+<br>
+<span class="tree-dir">├── websocket/</span> ✅ done<br>
+<span class="tree-file">&nbsp;&nbsp;├── orders.gateway.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── websocket.module.ts</span><br>
+<br>
+<span class="tree-empty">├── bills/</span> 🔲 not built<br>
+<span class="tree-empty">├── payments/</span> 🔲 not built<br>
+<span class="tree-empty">├── fiscal/</span> 🔲 not built<br>
+<span class="tree-empty">├── restaurants/</span> 🔲 not built<br>
+<span class="tree-empty">├── menu/</span> 🔲 not built<br>
+<span class="tree-empty">├── notifications/</span> 🔲 not built<br>
+<br>
+<span class="tree-dir">├── database/</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── database.module.ts</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── entities/ (12 entities)</span><br>
+<br>
+<span class="tree-dir">├── common/</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── guards/ JwtAuthGuard, RolesGuard</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── decorators/ @CurrentUser, @Roles</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── exceptions/ BusinessException</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── filters/ GlobalExceptionFilter</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── utils/ calculate-kdv, format-money-tr</span><br>
+<br>
+<span class="tree-dir">└── shared/</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── enums/ OrderStatus, SessionStatus, UserRole, PrepStation</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── constants/ tax-rates.constant.ts</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📁 mise-frontend/src/</div>
+        <div class="tree">
+<span class="tree-empty">├── App.css</span> ⚠️ delete (Vite boilerplate)<br>
+<span class="tree-file">├── App.tsx</span> ✅<br>
+<span class="tree-file">├── index.css</span> ✅<br>
+<span class="tree-file">└── main.tsx</span> ✅<br>
+<br>
+<span class="tree-empty">├── assets/</span> ⚠️ clean up<br>
+<span class="tree-empty">&nbsp;&nbsp;├── react.svg</span> delete<br>
+<span class="tree-empty">&nbsp;&nbsp;└── vite.svg</span> delete<br>
+<br>
+<span class="tree-dir">├── components/</span><br>
+<span class="tree-file">&nbsp;&nbsp;├── ProtectedRoute.tsx</span> ✅<br>
+<span class="tree-empty">&nbsp;&nbsp;├── common/</span> empty, delete<br>
+<span class="tree-empty">&nbsp;&nbsp;├── forms/</span> empty, delete<br>
+<span class="tree-empty">&nbsp;&nbsp;└── layout/</span> empty, delete<br>
+<br>
+<span class="tree-dir">├── hooks/</span><br>
+<span class="tree-file">&nbsp;&nbsp;└── useWebSocket.ts</span> ✅<br>
+<br>
+<span class="tree-file">├── lib/utils.ts</span> ✅ cn() helper<br>
+<br>
+<span class="tree-dir">├── pages/</span><br>
+<span class="tree-dir">&nbsp;&nbsp;├── customer/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── QRScanner/QRScanner.tsx</span><br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── Menu/Menu.tsx + ItemDetail.tsx</span><br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── Cart/Cart.tsx</span><br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;└── OrderTracking/OrderTracking.tsx</span><br>
+<span class="tree-empty">&nbsp;&nbsp;&nbsp;&nbsp;(Checkout/, Receipt/ empty)</span><br>
+<br>
+<span class="tree-dir">&nbsp;&nbsp;├── staff/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── Login/Login.tsx</span><br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;└── Kitchen/Kitchen.tsx</span><br>
+<br>
+<span class="tree-dir">&nbsp;&nbsp;└── admin/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── AdminLayout.tsx</span><br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── Dashboard.tsx</span> ⚠️ + empty Dashboard/ dir<br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;├── MenuManager.tsx</span> ⚠️ + empty MenuManager/ dir<br>
+<span class="tree-file">&nbsp;&nbsp;&nbsp;&nbsp;└── TableManager.tsx</span> ⚠️ + empty TableManager/ dir<br>
+<br>
+<span class="tree-empty">├── i18n/</span> 🔲 empty — wire up or remove<br>
+<span class="tree-empty">├── config/</span> empty, delete<br>
+<span class="tree-empty">├── constants/</span> empty, delete<br>
+<span class="tree-empty">├── styles/</span> empty, delete<br>
+<br>
+<span class="tree-dir">├── services/api/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;client, sessions, orders, auth, kitchen, admin</span><br>
+<br>
+<span class="tree-dir">├── store/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;authStore, cartStore, sessionStore</span><br>
+<br>
+<span class="tree-dir">├── types/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;entity.types.ts</span><br>
+<br>
+<span class="tree-dir">└── utils/</span> ✅<br>
+<span class="tree-file">&nbsp;&nbsp;formatCurrency.ts (formatTRY)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      background: '#0d1117',
+      primaryColor: '#161b22',
+      primaryTextColor: '#e6edf3',
+      primaryBorderColor: '#30363d',
+      lineColor: '#8b949e',
+      secondaryColor: '#21262d',
+      tertiaryColor: '#161b22',
+      nodeBorder: '#30363d',
+      clusterBkg: '#161b22',
+      titleColor: '#e6edf3',
+      edgeLabelBackground: '#0d1117',
+      actorBkg: '#161b22',
+      actorBorder: '#30363d',
+      actorTextColor: '#e6edf3',
+      actorLineColor: '#58a6ff',
+      signalColor: '#8b949e',
+      signalTextColor: '#e6edf3',
+      labelBoxBkgColor: '#21262d',
+      labelBoxBorderColor: '#30363d',
+      labelTextColor: '#e6edf3',
+      loopTextColor: '#e6edf3',
+      noteBorderColor: '#30363d',
+      noteBkgColor: '#21262d',
+      noteTextColor: '#e6edf3',
+      activationBorderColor: '#f0883e',
+      activationBkgColor: '#f0883e22',
+    },
+    flowchart: { curve: 'basis', useMaxWidth: true },
+    sequence: { useMaxWidth: true, wrap: true },
+    er: { useMaxWidth: true }
+  });
+
+  function show(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.closest('.tab').classList.add('active');
+  }
+</script>
+</body>
+</html>

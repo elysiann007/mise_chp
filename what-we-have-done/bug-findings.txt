@@ -1,0 +1,65 @@
+MISE bug findings
+
+1. Unprotected order detail endpoint leaks arbitrary orders
+Severity: High
+Files:
+- mise-backend/src/orders/orders.controller.ts:19
+- mise-backend/src/orders/orders.service.ts:121
+- mise-frontend/src/services/api/orders.api.ts:18
+
+The backend exposes GET /api/v1/orders/:id without any auth or session-token check. If someone learns or guesses an order UUID, they can fetch full order data directly. The frontend relies on this public endpoint for customer order tracking, but the backend never verifies that the caller belongs to the session that placed the order.
+
+2. ProtectedRoute allows access when token exists but role is missing/invalid
+Severity: High
+File:
+- mise-frontend/src/components/ProtectedRoute.tsx:13
+
+The guard only rejects when roles exists AND role exists AND role is not allowed. If accessToken is present but role is null or corrupted in persisted storage, the protected page is rendered anyway. That means a malformed local auth state can bypass route-level role checks.
+
+3. Server silently accepts invalid modifier selections and does not enforce modifier rules
+Severity: High
+Files:
+- mise-backend/src/orders/orders.service.ts:68
+- mise-backend/src/orders/dto/place-order.dto.ts:17
+- mise-backend/src/database/entities/modifier-group.entity.ts:20
+
+placeOrder() loads modifiers that belong to the restaurant, but any requested modifier IDs that are missing are simply ignored instead of rejected. The backend also does not enforce minSelect, maxSelect, or isRequired rules from modifier groups. A client can therefore submit incomplete or over-selected modifier combinations and still get an accepted order as long as item IDs are valid.
+
+4. Item-level notes are collected in the UI but never persisted
+Severity: Medium
+Files:
+- mise-frontend/src/pages/customer/Cart/Cart.tsx:39
+- mise-backend/src/orders/dto/place-order.dto.ts:23
+- mise-backend/src/orders/orders.service.ts:80
+- mise-backend/src/database/entities/order-item.entity.ts:49
+
+The frontend sends itemNote for each line item. The DTO accepts itemNote. The entity has an itemNote column. But placeOrder() never maps itemDto.itemNote into the created OrderItem records, so those notes are lost on every order.
+
+5. Modifier maxSelect is not enforced in the customer UI for multi-select groups
+Severity: Medium
+File:
+- mise-frontend/src/pages/customer/Menu/ItemDetail.tsx:20
+
+toggleModifier() only handles the special case where maxSelect === 1. For any group where maxSelect is 2 or more, the customer can keep selecting unlimited modifiers. Even if the backend were fixed later, the current UI would still allow invalid selections.
+
+6. Menu component navigates during render
+Severity: Medium
+File:
+- mise-frontend/src/pages/customer/Menu/Menu.tsx:17
+
+When menu.length is 0, the component calls navigate('/') directly inside render. In React this is a side effect and can cause warnings or unstable behavior. Redirects like this should happen through rendering <Navigate /> or inside an effect.
+
+7. Multiple customer-facing strings show broken text encoding
+Severity: Low
+Files:
+- mise-frontend/src/pages/staff/Login/Login.tsx:28
+- mise-frontend/src/pages/customer/QRScanner/QRScanner.tsx:23
+- mise-frontend/src/pages/customer/Menu/Menu.tsx:82
+- mise-backend/src/orders/orders.service.ts:48
+
+Several Turkish strings are mojibake (examples: "GiriÅŸ", "geÃ§ersiz", "seÃ§enekler"). This will show broken text in the UI and error responses. The project likely has a UTF-8 vs Windows encoding mismatch in some files.
+
+Notes
+
+- I did not run the full app or test suite yet; these findings come from source inspection.
+- The highest-value fixes are the order-detail authorization gap and the missing server-side modifier validation.
