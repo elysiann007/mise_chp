@@ -15,23 +15,30 @@ export default function AdminLayout() {
   function logout() { clearAuth(); navigate('/login') }
 
   return (
-    <div className="flex min-h-svh bg-gray-50">
-      {/* Sidebar */}
-      <aside className="w-56 bg-slate-900 flex flex-col flex-shrink-0">
-        <div className="px-6 py-5 border-b border-slate-700">
-          <span className="text-xl font-black tracking-widest text-white">MISE</span>
-          <p className="text-xs text-slate-500 mt-0.5">Admin Paneli</p>
+    <div className="flex min-h-svh bg-stone-50">
+      <aside className="w-60 bg-stone-900 flex flex-col flex-shrink-0 border-r border-stone-800">
+        <div className="px-5 py-5 border-b border-stone-800">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center flex-shrink-0">
+              <span className="text-sm">🍽</span>
+            </div>
+            <div>
+              <span className="text-base font-black tracking-widest text-white">MISE</span>
+              <p className="text-[10px] text-stone-500 font-medium uppercase tracking-wider">Admin</p>
+            </div>
+          </div>
         </div>
-        <nav className="flex-1 py-4 flex flex-col gap-0.5 px-3">
+
+        <nav className="flex-1 py-4 flex flex-col gap-1 px-3">
           {NAV.map(({ to, label, icon: Icon }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition ${
+                `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-white/10 text-white'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
+                    : 'text-stone-400 hover:text-stone-100 hover:bg-stone-800'
                 }`
               }
             >
@@ -40,10 +47,11 @@ export default function AdminLayout() {
             </NavLink>
           ))}
         </nav>
-        <div className="px-3 pb-4">
+
+        <div className="px-3 pb-5 border-t border-stone-800 pt-3">
           <button
             onClick={logout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-stone-500 hover:text-stone-200 hover:bg-stone-800 transition"
           >
             <LogOut className="w-4 h-4" />
             Çıkış Yap
@@ -51,7 +59,6 @@ export default function AdminLayout() {
         </div>
       </aside>
 
-      {/* Main */}
       <main className="flex-1 overflow-auto">
         <Outlet />
       </main>

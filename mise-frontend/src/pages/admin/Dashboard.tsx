@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Users, ShoppingBag, TrendingUp } from 'lucide-react'
+import { Users, ShoppingBag, Activity } from 'lucide-react'
 import { getDashboard } from '../../services/api/admin.api'
 import { useAuthStore } from '../../store/authStore'
 import type { DashboardStats } from '../../services/api/admin.api'
@@ -10,15 +10,17 @@ const STAT_CARDS = [
     key: 'activeSessions' as const,
     label: 'Aktif Oturum',
     icon: Users,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
+    iconBg: 'bg-blue-500/10',
+    iconColor: 'text-blue-500',
+    valueSuffix: '',
   },
   {
     key: 'ordersToday' as const,
     label: 'Bugünkü Sipariş',
     icon: ShoppingBag,
-    color: 'text-emerald-600',
-    bg: 'bg-emerald-50',
+    iconBg: 'bg-emerald-500/10',
+    iconColor: 'text-emerald-500',
+    valueSuffix: '',
   },
 ]
 
@@ -38,9 +40,9 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center gap-2 text-gray-400">
-        <div className="w-5 h-5 border-2 border-gray-200 border-t-gray-500 rounded-full animate-spin" />
-        Yükleniyor...
+      <div className="p-8 flex items-center gap-3 text-stone-400">
+        <div className="w-5 h-5 border-2 border-stone-200 border-t-amber-500 rounded-full animate-spin" />
+        <span className="text-sm font-medium">Yükleniyor...</span>
       </div>
     )
   }
@@ -48,34 +50,45 @@ export default function Dashboard() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-black text-stone-900">
           {stats?.restaurant?.name ?? 'Dashboard'}
         </h1>
-        <p className="text-gray-500 text-sm mt-1">Genel bakış</p>
+        <p className="text-stone-400 text-sm mt-1 font-medium">
+          {new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {STAT_CARDS.map(({ key, label, icon: Icon, color, bg }) => (
-          <div key={key} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        {STAT_CARDS.map(({ key, label, icon: Icon, iconBg, iconColor }) => (
+          <div
+            key={key}
+            className="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm shadow-stone-200/50 hover:shadow-md hover:shadow-stone-200/50 transition-shadow"
+          >
             <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-medium text-gray-500">{label}</span>
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${bg}`}>
-                <Icon className={`w-5 h-5 ${color}`} />
+              <span className="text-sm font-semibold text-stone-500">{label}</span>
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg}`}>
+                <Icon className={`w-5 h-5 ${iconColor}`} />
               </div>
             </div>
-            <p className="text-4xl font-black text-gray-900">
+            <p className="text-4xl font-black text-stone-900">
               {stats?.[key] ?? '—'}
             </p>
           </div>
         ))}
 
-        <div className="bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl p-6 shadow-sm text-white">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm font-medium text-slate-300">Durum</span>
-            <TrendingUp className="w-5 h-5 text-amber-400" />
+        <div className="bg-stone-900 rounded-2xl p-6 border border-stone-800 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="relative">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm font-semibold text-stone-400">Sistem Durumu</span>
+              <Activity className="w-5 h-5 text-amber-400" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              <p className="text-base font-bold text-white">Tüm servisler aktif</p>
+            </div>
+            <p className="text-stone-600 text-xs mt-1.5 font-medium">Gerçek zamanlı sipariş takibi çalışıyor</p>
           </div>
-          <p className="text-lg font-semibold">Sistem aktif</p>
-          <p className="text-slate-400 text-xs mt-1">Tüm servisler çalışıyor</p>
         </div>
       </div>
     </div>
