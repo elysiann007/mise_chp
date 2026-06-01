@@ -116,7 +116,7 @@ export class OrdersService {
       this.orderEventRepo.create({ orderId: order.id, eventType: 'placed' }),
     );
 
-    const fullOrder = await this.getById(order.id);
+    const fullOrder = await this.getById(order.id, sessionToken);
     this.ordersGateway.notifyOrderPlaced(session.table.restaurantId, fullOrder);
 
     return fullOrder;
@@ -132,7 +132,7 @@ export class OrdersService {
       throw new BusinessException('ORDER_NOT_FOUND', HttpStatus.NOT_FOUND);
     }
 
-    if (sessionToken !== undefined && order.session.sessionToken !== sessionToken) {
+    if (!sessionToken || order.session.sessionToken !== sessionToken) {
       throw new BusinessException('ORDER_NOT_FOUND', HttpStatus.NOT_FOUND);
     }
 

@@ -1,4 +1,4 @@
-import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, IsUUID, Min } from 'class-validator';
 import { PrepStation } from '../../shared/enums/prep-station.enum';
 
 export class CreateMenuItemDto {
@@ -33,7 +33,7 @@ export class CreateMenuItemDto {
   @IsOptional()
   isAlcohol?: boolean;
 
-  @IsString()
+  @IsUrl({ protocols: ['https', 'http'], require_protocol: true })
   @IsOptional()
   imageUrl?: string;
 
@@ -77,7 +77,7 @@ export class UpdateMenuItemDto {
   @IsOptional()
   isAlcohol?: boolean;
 
-  @IsString()
+  @IsUrl({ protocols: ['https', 'http'], require_protocol: true })
   @IsOptional()
   imageUrl?: string;
 

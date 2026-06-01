@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger, UnauthorizedException } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
@@ -8,6 +8,7 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
+import { JwtService } from '@nestjs/jwt';
 import { Server, Socket } from 'socket.io';
 import { OrderStatus } from '../shared/enums/order-status.enum';
 
@@ -21,6 +22,8 @@ export class OrdersGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   private readonly logger = new Logger(OrdersGateway.name);
 
+  constructor(private readonly jwtService: JwtService) {}
+
   handleConnection(client: Socket) {
     this.logger.log(`Client connected: ${client.id}`);
   }
@@ -29,13 +32,44 @@ export class OrdersGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.logger.log(`Client disconnected: ${client.id}`);
   }
 
+  // Customer subscription — session token is the shared secret (no JWT needed)
   @SubscribeMessage('subscribe-to-session')
-  handleSubscribeSession(@ConnectedSocket() client: Socket, @MessageBody() sessionToken: string) {
+  handleSubscribeSession(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() sessionToken: string,
+  ) {
+    if (!sessionToken || typeof sessionToken !== 'string') {
+      client.disconnect();
+      return;
+    }
     client.join(`session:${sessionToken}`);
   }
 
+  // Staff/kitchen subscription — requires valid JWT whose restaurantId matches the requested room
   @SubscribeMessage('subscribe-to-kitchen')
-  handleSubscribeKitchen(@ConnectedSocket() client: Socket, @MessageBody() restaurantId: string) {
+  handleSubscribeKitchen(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() restaurantId: string,
+  ) {
+    if (!restaurantId || typeof restaurantId !== 'string') {
+      client.disconnect();
+      return;
+    }
+
+    const token =
+      (client.handshake.auth as Record<string, string>)?.token?.replace('Bearer ', '') ?? '';
+
+    try {
+      const payload = this.jwtService.verify<{ restaurantId: string }>(token);
+      if (payload.restaurantId !== restaurantId) {
+        client.disconnect();
+        return;
+      }
+    } catch {
+      client.disconnect();
+      return;
+    }
+
     client.join(`kitchen:${restaurantId}`);
   }
 

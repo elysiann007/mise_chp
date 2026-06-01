@@ -1,0 +1,95 @@
+{
+  "nav": { "menu": "Menú", "about": "Nosotros", "reserve": "Reservar Mesa" },
+  "home": {
+    "badge": "Abierto Esta Noche",
+    "tagline": "Donde la Noche Cobra Vida",
+    "desc": "Un santuario premium de sabores, humo y licores. Piérdete en el momento.",
+    "cta_menu": "Explorar el Menú", "cta_story": "Nuestra Historia", "scroll": "Desplazar",
+    "exp_label": "La Experiencia", "exp_title": "TRES MUNDOS, UNA NOCHE",
+    "p1_tag": "El Arte del Humo", "p1_title": "Hookah",
+    "p1_desc": "Mezclas premium para conocedores. Crea tu mezcla de aromas perfecta con nuestro compositor interactivo.",
+    "p2_tag": "Fusión Mediterránea", "p2_title": "Cocina",
+    "p2_desc": "Platos vibrantes inspirados en costas soleadas y antiguas rutas de especias. Cada plato cuenta una historia.",
+    "p3_tag": "Artesanal & Clásico", "p3_title": "Licores",
+    "p3_desc": "Cócteles de autor, licores finos y mocktails inspirados. Cada sorbo es un placer deliberado.",
+    "explore": "Explorar",
+    "amb_label": "El Ambiente", "amb_t1": "NO SOLO UN LOCAL.", "amb_t2": "UNA EXPERIENCIA.",
+    "amb_desc": "Desde la primera calada de hookah hasta el último sorbo del cóctel — cada detalle está cuidado para quienes aprecian lo extraordinario.",
+    "amb_cta": "Descubre nuestra historia",
+    "s_aromas": "Aromas de Hookah", "s_items": "Platos en Menú", "s_seats": "Asientos", "s_nights": "Noches Memorables",
+    "h_label": "Horario", "h_title": "ESTAMOS ABIERTOS",
+    "h_mon_thu": "Lunes – Jueves", "h_fri_sat": "Viernes – Sábado", "h_sun": "Domingo",
+    "l_label": "Ubicación", "l_title": "ENCUÉNTRANOS",
+    "l_address": "Alsancak, İzmir, Turquía", "l_directions": "Cómo llegar"
+  },
+  "hub": {
+    "label": "Lo Que Ofrecemos", "title": "EL MENÚ", "sub": "Tres experiencias, una noche inolvidable.",
+    "h_tag": "Crea Tu Mezcla", "h_title": "Hookah",
+    "h_desc": "Elige tu modelo, compón tu mezcla de aromas y adéntrate en el mundo del humo curado.",
+    "h_cta": "Abrir el Constructor",
+    "f_tag": "Fusión Mediterránea", "f_title": "Cocina",
+    "f_desc": "Platos vibrantes que celebran la riqueza de la tradición mediterránea.",
+    "f_cta": "Ver el Menú",
+    "d_tag": "Artesanal & Clásico", "d_title": "Licores & Cócteles",
+    "d_desc": "Desde cócteles artesanales hasta una selección de licores finos — cada copa es una declaración.",
+    "d_cta": "Explorar el Bar"
+  },
+  "hookah": {
+    "label": "Menú Hookah", "title": "CREA TU MEZCLA",
+    "desc": "Selecciona un modelo, elige tus aromas y ajusta los porcentajes perfectos. Tu mezcla, tu noche.",
+    "back": "Volver al Menú",
+    "step1": "Selecciona Tu Hookah", "step2": "Elige Tus Aromas", "step3": "Ajusta el Balance",
+    "full": "Mezcla llena — elimina para agregar más",
+    "preview": "Vista Previa", "empty": "Selecciona aromas para ver tu mezcla",
+    "start": "Empieza a agregar aromas", "remaining": "% restante", "complete": "✓ ¡Mezcla perfecta!",
+    "order": "Pedir Esta Mezcla", "reset": "Reiniciar Mezcla",
+    "fruity": "Frutal", "minty": "Mentolado", "floral": "Floral", "exotic": "Exótico", "tobacco": "Clásico",
+    "classic_name": "Clásico", "classic_desc": "Estilo egipcio tradicional",
+    "modern_name": "Moderno", "modern_desc": "Diseño minimalista",
+    "premium_name": "Premium", "premium_desc": "Lujo con acentos dorados"
+  },
+  "food": {
+    "label": "Fusión Mediterránea", "title": "COCINA",
+    "desc": "Platos atrevidos elaborados con intención. Cada plato es una historia de la costa.",
+    "back": "Volver al Menú",
+    "allergen": "Informe al personal sobre alergias o requisitos dietéticos. Precios en Lira Turca con impuestos incluidos.",
+    "starters": "Entrantes", "mains": "Platos Principales", "desserts": "Postres"
+  },
+  "drinks": {
+    "label": "Artesanal & Clásico", "title": "LICORES & CÓCTELES",
+    "desc": "Cócteles artesanales y un bar curado. Cada copa es un placer deliberado.",
+    "back": "Volver al Menú",
+    "disclaimer": "Consume con responsabilidad. 18+ para bebidas alcohólicas. Precios en Lira Turca con impuestos.",
+    "cocktails": "Cócteles de Autor", "spirits": "Licores & Whisky",
+    "mocktails": "Sin Alcohol & Refrescos", "wine": "Vinos & Espumosos"
+  },
+  "about": {
+    "label": "Nuestra Historia", "t1": "NACIDO DE", "t2": "LA PASIÓN.",
+    "intro": "CafeHookahPub nació de una simple creencia — que una noche de salida debe ser una experiencia sensorial completa.",
+    "v_label": "La Visión", "v_title": "MÁS QUE UN BAR DE HOOKAH",
+    "v_p1": "Creamos un espacio donde el arte ancestral del hookah se encuentra con la cocina de clase mundial y los cócteles artesanales.",
+    "v_p2": "Cada elemento — desde las mezclas de aromas hasta los licores seleccionados — se elige con intención. Lo sientes al cruzar la puerta.",
+    "v_p3": "Este es un lugar para quienes saben que una gran velada nunca se apresura y siempre vale la pena saborear.",
+    "s_aromas": "Aromas de Hookah", "s_items": "Platos en Menú", "s_seats": "Asientos", "s_nights": "Noches para Recordar",
+    "pil_label": "Nuestros Pilares", "pil_title": "EN QUÉ CREEMOS",
+    "craft_t": "Artesanía", "craft_d": "Cada mezcla, cada plato, cada cóctel se elabora con cuidado. Nos negamos a conformarnos con lo ordinario.",
+    "atm_t": "Ambiente", "atm_d": "El estado de ánimo importa tanto como el menú. Nos obsesionamos con cada detalle.",
+    "con_t": "Conexión", "con_d": "Las grandes experiencias se comparten. Creamos el espacio donde fluyen las conversaciones.",
+    "cta_label": "¿Listo?", "cta_title": "VEN A VIVIRLO.",
+    "cta_menu": "Explorar el Menú", "cta_hookah": "Crear una Mezcla de Hookah"
+  },
+  "chat": {
+    "title": "CHP AI",
+    "subtitle": "Tu asistente del local",
+    "placeholder": "Pregúntame lo que quieras...",
+    "send": "Enviar",
+    "greeting": "¡Hola! Soy CHP AI, tu guía en Cafe Hookah Pub. Pregúntame sobre nuestros blends de hookah, el menú, los horarios o la ubicación.",
+    "error": "Algo salió mal. Por favor, inténtalo de nuevo."
+  },
+  "footer": {
+    "tagline": "Un santuario premium de sabores, humo y licores.",
+    "explore": "Explorar", "visit": "Visítanos",
+    "address1": "Alsancak", "address2": "İzmir, Turquía",
+    "copy": "© 2026 Cafe Hookah Pub. Todos los derechos reservados.", "city": "İzmir, Turquía"
+  }
+}

@@ -81,6 +81,7 @@ export class AdminService {
   async deleteCategory(id: string, restaurantId: string) {
     await this.assertOwned(this.categoryRepo, id, restaurantId);
     await this.categoryRepo.update(id, { isActive: false });
+    await this.itemRepo.update({ categoryId: id }, { isActive: false });
   }
 
   // ── Menu Items ─────────────────────────────────────────────────────────────

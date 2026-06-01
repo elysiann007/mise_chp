@@ -1,0 +1,100 @@
+{
+  "nav": { "menu": "Menü", "about": "Hakkımızda", "reserve": "Rezervasyon Yap" },
+  "home": {
+    "badge": "Bu Gece Açık",
+    "tagline": "Gecenin Canlandığı Yer",
+    "desc": "Lezzetler, duman ve spiritlerin buluştuğu premium bir sığınak. Anın içinde kaybol.",
+    "cta_menu": "Menüyü Keşfet",
+    "cta_story": "Hikayemiz",
+    "scroll": "Kaydır",
+    "exp_label": "Deneyim",
+    "exp_title": "ÜÇ DÜNYA, BİR GECE",
+    "p1_tag": "Dumanın Sanatı", "p1_title": "Nargile",
+    "p1_desc": "Gerçek nargile severlere özel premium karışımlar. İnteraktif oluşturucumuzla kendi aroma karışımını yarat.",
+    "p2_tag": "Akdeniz Füzyonu", "p2_title": "Mutfak",
+    "p2_desc": "Güneş görmüş kıyılardan ve antik baharat yollarından ilham alan cesur yemekler. Her tabak bir hikaye anlatır.",
+    "p3_tag": "Özel & Klasik", "p3_title": "İçkiler",
+    "p3_desc": "İmza kokteylleri, özel spiritusler ve içkiler. Her yudum bilinçli bir zevktir.",
+    "explore": "Keşfet",
+    "amb_label": "Ambiyans",
+    "amb_t1": "SADECE BİR MEKAN DEĞİL.",
+    "amb_t2": "BİR DENEYİM.",
+    "amb_desc": "İlk nargile çekişinden son kokteyl yudumuna kadar — her detay olağanüstünü takdir edenlere özel tasarlanmıştır.",
+    "amb_cta": "Hikayemizi keşfet",
+    "s_aromas": "Nargile Aroması", "s_items": "Menü Ürünü", "s_seats": "Koltuk", "s_nights": "Unutulmaz Gece",
+    "h_label": "Çalışma Saatleri", "h_title": "AÇIĞIZ",
+    "h_mon_thu": "Pazartesi – Perşembe", "h_fri_sat": "Cuma – Cumartesi", "h_sun": "Pazar",
+    "l_label": "Konum", "l_title": "NEREDEYIZ",
+    "l_address": "Alsancak, İzmir, Türkiye", "l_directions": "Yol tarifi al"
+  },
+  "hub": {
+    "label": "Neler Sunuyoruz", "title": "MENÜ", "sub": "Üç deneyim, unutulmaz bir gece.",
+    "h_tag": "Karışımını Oluştur", "h_title": "Nargile",
+    "h_desc": "Modelini seç, aroma karışımını oluştur ve özel duman dünyasına adım at. İnteraktif oluşturucumuzla gelişinden önce deneyimini tasarla.",
+    "h_cta": "Oluşturucuyu Aç",
+    "f_tag": "Akdeniz Füzyonu", "f_title": "Mutfak",
+    "f_desc": "Akdeniz geleneğinin zenginliğini kutlayan cesur, canlı yemekler — her gece taze hazırlanır.",
+    "f_cta": "Menüyü Gör",
+    "d_tag": "Özel & Klasik", "d_title": "Spiritusler & Kokteyller",
+    "d_desc": "El yapımı imza kokteylerinden özenle seçilmiş spirituslere kadar her kadeh bir ifadedir.",
+    "d_cta": "Barı Keşfet"
+  },
+  "hookah": {
+    "label": "Nargile Menüsü", "title": "KENDİ KARIŞIMINI OLUŞTUR",
+    "desc": "Bir model seç, aromalarını belirle ve mükemmel yüzdeleri ayarla. Senin karışımın, senin gecen.",
+    "back": "Menüye Dön",
+    "step1": "Nargilenizi Seçin", "step2": "Aromalarınızı Seçin", "step3": "Dengeyi Ayarlayın",
+    "full": "Karışım dolu — eklemek için kaldırın",
+    "preview": "Önizleme", "empty": "Karışımınızı önizlemek için aromalar seçin",
+    "start": "Aroma eklemeye başlayın", "remaining": "% kaldı", "complete": "✓ Mükemmel karışım!",
+    "order": "Bu Karışımı Sipariş Et", "reset": "Karışımı Sıfırla",
+    "fruity": "Meyveli", "minty": "Naneli", "floral": "Çiçeksi", "exotic": "Egzotik", "tobacco": "Klasik",
+    "classic_name": "Klasik", "classic_desc": "Geleneksel Mısır tarzı",
+    "modern_name": "Modern", "modern_desc": "Sade minimalist",
+    "premium_name": "Premium", "premium_desc": "Altın aksan lüks"
+  },
+  "food": {
+    "label": "Akdeniz Füzyonu", "title": "MUTFAK",
+    "desc": "Özenle hazırlanmış cesur, canlı yemekler. Her tabak kıyıdan bir hikaye.",
+    "back": "Menüye Dön",
+    "allergen": "Diyet gereksinimlerinizi veya alerjenlerinizi lütfen personelimize bildirin. Tüm fiyatlar Türk Lirası olup vergi dahildir.",
+    "starters": "Başlangıçlar", "mains": "Ana Yemekler", "desserts": "Tatlılar"
+  },
+  "drinks": {
+    "label": "Özel & Klasik", "title": "SPİRİTÜSLER & KOKTEYLLER",
+    "desc": "El yapımı kokteyller ve özenli bar. Her kadeh bilinçli bir zevktir.",
+    "back": "Menüye Dön",
+    "disclaimer": "Lütfen sorumlu içki için. Alkollü içecek siparişi için 18 yaşında olmanız gerekmektedir. Tüm fiyatlar Türk Lirası olup vergi dahildir.",
+    "cocktails": "İmza Kokteyller", "spirits": "Spiritusler & Viski",
+    "mocktails": "Alkolsüz İçecekler", "wine": "Şarap & Köpüklüler"
+  },
+  "about": {
+    "label": "Hikayemiz", "t1": "TUTKUNUN", "t2": "ESERİ.",
+    "intro": "CafeHookahPub basit bir inançla doğdu — bir gece çıkışı yalnızca bir işlem değil, tam bir duyusal deneyim olmalıdır.",
+    "v_label": "Vizyon", "v_title": "SADECE BİR NARGİLE BARI DEĞİL",
+    "v_p1": "Nargile sanatının antik dünyasının dünya standartlarında mutfak ve el yapımı kokteylerle buluştuğu bir mekan yaratmak istedik.",
+    "v_p2": "Her unsur — özenle seçilmiş aroma karışımlarından el yapımı spirituslere kadar — bilerek seçilmiştir. Kapıdan girerken hissedersiniz.",
+    "v_p3": "Bu mekan, harika bir akşamın asla aceleye getirilmediğini, hiçbir zaman sıradan olmadığını ve her zaman tadını çıkarmaya değer olduğunu bilenler içindir.",
+    "s_aromas": "Nargile Aroması", "s_items": "Menü Ürünü", "s_seats": "Koltuk", "s_nights": "Hatırlanacak Gece",
+    "pil_label": "Değerlerimiz", "pil_title": "NE İÇİN DURUYORUZ",
+    "craft_t": "Ustalık", "craft_d": "Her karışım, her yemek, her kokteyl özen ve hassasiyetle hazırlanır. Sıradanla yetinmeyi reddederiz.",
+    "atm_t": "Atmosfer", "atm_d": "Ruh hali menü kadar önemlidir. Aydınlatmadan müziğe kadar her detayda takıntılıyız.",
+    "con_t": "Bağlantı", "con_d": "Harika deneyimler paylaşılır. Konuşmaların aktığı ve anıların yapıldığı alanı yaratırız.",
+    "cta_label": "Hazır mısınız?", "cta_title": "KENDİNİZ DENEYİMLEYİN.",
+    "cta_menu": "Menüyü Keşfet", "cta_hookah": "Nargile Karışımı Yap"
+  },
+  "chat": {
+    "title": "CHP AI",
+    "subtitle": "Mekan asistanınız",
+    "placeholder": "Bir şeyler sorun...",
+    "send": "Gönder",
+    "greeting": "Merhaba! Ben CHP AI, Cafe Hookah Pub'ın dijital asistanı. Hookah blendlerimiz, menümüz, çalışma saatlerimiz veya konumumuz hakkında soru sorabilirsiniz!",
+    "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+  },
+  "footer": {
+    "tagline": "Lezzetler, duman ve spiritlerin premium sığınağı.",
+    "explore": "Keşfet", "visit": "Ziyaret Edin",
+    "address1": "Alsancak", "address2": "İzmir, Türkiye",
+    "copy": "© 2026 Cafe Hookah Pub. Tüm hakları saklıdır.", "city": "İzmir, Türkiye"
+  }
+}

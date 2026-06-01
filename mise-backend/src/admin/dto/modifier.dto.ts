@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import { IsBoolean, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
 
 export class CreateModifierGroupDto {
   @IsString()
@@ -57,6 +57,8 @@ export class CreateModifierDto {
   name: string;
 
   @IsNumber()
+  @Min(-10000)
+  @Max(10000)
   @IsOptional()
   priceDelta?: number;
 
@@ -77,6 +79,8 @@ export class UpdateModifierDto {
   name?: string;
 
   @IsNumber()
+  @Min(-10000)
+  @Max(10000)
   @IsOptional()
   priceDelta?: number;
 

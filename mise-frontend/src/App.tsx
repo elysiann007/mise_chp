@@ -1,50 +1,39 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Toaster } from 'sonner'
-import QRScanner from './pages/customer/QRScanner/QRScanner'
-import Menu from './pages/customer/Menu/Menu'
-import Cart from './pages/customer/Cart/Cart'
-import OrderTracking from './pages/customer/OrderTracking/OrderTracking'
-import Login from './pages/staff/Login/Login'
-import Kitchen from './pages/staff/Kitchen/Kitchen'
-import AdminLayout from './pages/admin/AdminLayout'
-import Dashboard from './pages/admin/Dashboard'
-import MenuManager from './pages/admin/MenuManager'
-import TableManager from './pages/admin/TableManager'
-import ProtectedRoute from './components/ProtectedRoute'
+import { AnimatePresence } from 'framer-motion'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
+import Home from './pages/Home/Home'
+import MenuHub from './pages/Menu/MenuHub'
+import HookahBuilder from './pages/Menu/HookahBuilder/HookahBuilder'
+import FoodMenu from './pages/Menu/FoodMenu/FoodMenu'
+import DrinksMenu from './pages/Menu/DrinksMenu/DrinksMenu'
+import About from './pages/About/About'
+import ChatBot from './components/ChatBot/ChatBot'
+
+function AnimatedRoutes() {
+  const location = useLocation()
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<MenuHub />} />
+        <Route path="/menu/hookah" element={<HookahBuilder />} />
+        <Route path="/menu/food" element={<FoodMenu />} />
+        <Route path="/menu/drinks" element={<DrinksMenu />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </AnimatePresence>
+  )
+}
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Toaster position="top-center" richColors closeButton />
-      <Routes>
-        <Route path="/" element={<QRScanner />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order/:orderId" element={<OrderTracking />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/kitchen"
-          element={
-            <ProtectedRoute roles={['kitchen', 'bar', 'admin']}>
-              <Kitchen />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute roles={['admin']}>
-              <AdminLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="menu" element={<MenuManager />} />
-          <Route path="tables" element={<TableManager />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Navbar />
+      <AnimatedRoutes />
+      <Footer />
+      <ChatBot />
     </BrowserRouter>
   )
 }

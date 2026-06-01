@@ -1,13 +1,15 @@
 import { Type } from 'class-transformer';
-import { ArrayMinSize, IsArray, IsOptional, IsString, IsUUID, IsInt, Min, ValidateNested } from 'class-validator';
+import { ArrayMinSize, IsArray, IsOptional, IsString, Matches, IsInt, Min, ValidateNested } from 'class-validator';
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export class OrderItemModifierDto {
-  @IsUUID()
+  @Matches(UUID_RE)
   modifierId: string;
 }
 
 export class OrderItemDto {
-  @IsUUID()
+  @Matches(UUID_RE)
   menuItemId: string;
 
   @IsInt()

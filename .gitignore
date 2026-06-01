@@ -51,3 +51,7 @@ graphify-out/
 
 # Claude Code internal
 .claude/
+.agents/
+.graphify_detect.json
+.graphify_python
+skills-lock.json

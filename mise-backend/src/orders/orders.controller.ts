@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Param, Post } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { PlaceOrderDto } from './dto/place-order.dto';
 
@@ -17,7 +17,7 @@ export class OrdersController {
   }
 
   @Get('orders/:id')
-  getOrder(@Param('id') id: string, @Query('sessionToken') sessionToken?: string) {
+  getOrder(@Param('id') id: string, @Headers('x-session-token') sessionToken?: string) {
     return this.ordersService.getById(id, sessionToken);
   }
 }
