@@ -169,7 +169,7 @@ export default function Home() {
               <span className="text-amber-400 text-[10px] tracking-[0.3em] uppercase">{t('home.l_label')}</span>
               <h3 className="font-display text-white mt-2 mb-6" style={{ fontSize: '1.8rem', letterSpacing: '0.06em' }}>{t('home.l_title')}</h3>
               <p className="text-zinc-300 text-sm leading-relaxed mb-5">{t('home.l_address')}</p>
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold hover:text-amber-300 transition-colors group">
+              <a href="https://www.google.com/maps/place/CAFE+HOOKAH+PUB+%2F+PREMIUM+HOOKAH+CLUB/@38.4356142,27.1405841,17z" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold hover:text-amber-300 transition-colors group">
                 <span>{t('home.l_directions')}</span>
                 <span className="transform group-hover:translate-x-1 transition-transform">→</span>
               </a>
