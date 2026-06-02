@@ -7,35 +7,36 @@ import { stagger, fadeUp, scaleIn, fadeIn } from '../../../lib/animations'
 
 const AROMAS: Record<string, { id: string; name: string; color: string }[]> = {
   fruity: [
-    { id: 'watermelon', name: 'Watermelon', color: '#f87171' },
-    { id: 'mango', name: 'Mango', color: '#fb923c' },
-    { id: 'blueberry', name: 'Blueberry', color: '#818cf8' },
-    { id: 'lemon', name: 'Lemon', color: '#facc15' },
-    { id: 'strawberry', name: 'Strawberry', color: '#f472b6' },
-    { id: 'grape', name: 'Grape', color: '#c084fc' },
+    { id: 'uzum', name: 'Üzüm', color: '#c084fc' },
+    { id: 'portakal', name: 'Portakal', color: '#f97316' },
+    { id: 'eskimo-karpuz', name: 'Eskimo Karpuz', color: '#f87171' },
+    { id: 'cilek', name: 'Çilek', color: '#ec4899' },
+    { id: 'pismis-seftali', name: 'Pişmiş Şeftali', color: '#fb923c' },
+    { id: 'kiwi-mango', name: 'Kiwi Mango', color: '#4ade80' },
   ],
   minty: [
-    { id: 'peppermint', name: 'Peppermint', color: '#38bdf8' },
-    { id: 'spearmint', name: 'Spearmint', color: '#34d399' },
-    { id: 'apple-mint', name: 'Apple Mint', color: '#6ee7b7' },
-    { id: 'pure-ice', name: 'Pure Ice', color: '#bae6fd' },
+    { id: 'uzum-nane', name: 'Üzüm Nane', color: '#818cf8' },
+    { id: 'cikolata-nane', name: 'Çikolata Nane', color: '#a16207' },
+    { id: 'nane', name: 'Nane', color: '#34d399' },
+    { id: 'eskimo-kola', name: 'Eskimo Kola', color: '#6b7280' },
   ],
   floral: [
-    { id: 'rose', name: 'Rose', color: '#fb7185' },
-    { id: 'jasmine', name: 'Jasmine', color: '#fde68a' },
-    { id: 'lavender', name: 'Lavender', color: '#a78bfa' },
+    { id: 'blueberry-ice-cream', name: 'Blueberry Ice Cream', color: '#818cf8' },
+    { id: 'strawberry-ice-cream', name: 'Strawberry Ice Cream', color: '#f472b6' },
+    { id: 'peach-ice-cream', name: 'Peach Ice Cream', color: '#fb923c' },
+    { id: 'choco-ice-cream', name: 'Chocolate Ice Cream', color: '#78350f' },
   ],
   exotic: [
-    { id: 'coconut', name: 'Coconut', color: '#fef9c3' },
-    { id: 'pineapple', name: 'Pineapple', color: '#fcd34d' },
-    { id: 'passion-fruit', name: 'Passion Fruit', color: '#fb923c' },
-    { id: 'guava', name: 'Guava', color: '#f9a8d4' },
+    { id: 'biskuvi', name: 'Bısküvi', color: '#d4a574' },
+    { id: 'mastic', name: 'Mastic', color: '#fef9c3' },
+    { id: 'choco-nut', name: 'Choco Nut', color: '#92400e' },
+    { id: 'vanilya-melonade', name: 'Vanilya Melonade', color: '#fde68a' },
   ],
   tobacco: [
+    { id: 'love-66', name: 'Love 66', color: '#f43f5e' },
+    { id: 'berlin-night', name: 'Berlin Night', color: '#6366f1' },
+    { id: 'izmir-romantik', name: 'İzmir Romantik', color: '#e879f9' },
     { id: 'double-apple', name: 'Double Apple', color: '#ef4444' },
-    { id: 'vanilla', name: 'Vanilla', color: '#e5e7eb' },
-    { id: 'caramel', name: 'Caramel', color: '#d97706' },
-    { id: 'honey', name: 'Honey Blend', color: '#fbbf24' },
   ],
 }
 
@@ -96,7 +97,7 @@ function HookahVisual({ aromas, model }: { aromas: SelectedAroma[]; model: strin
           boxShadow: hasBlend ? `0 0 30px ${primaryColor}25, inset 0 0 20px ${primaryColor}10` : 'none',
         }}
       >
-        {model === 'premium' && (
+        {model === 'adalya' && (
           <div className="w-8 h-8 rounded-full border border-amber-400/30 flex items-center justify-center">
             <span className="text-amber-400/50 text-xs">✦</span>
           </div>
@@ -122,14 +123,14 @@ function HookahVisual({ aromas, model }: { aromas: SelectedAroma[]; model: strin
 
 export default function HookahBuilder() {
   const { t } = useTranslation()
-  const [model, setModel] = useState('classic')
+  const [model, setModel] = useState('revoshi')
   const [activeCategory, setActiveCategory] = useState<Category>('fruity')
   const [aromas, setAromas] = useState<SelectedAroma[]>([])
 
   const MODELS = [
-    { id: 'classic', name: t('hookah.classic_name'), desc: t('hookah.classic_desc'), icon: '◎' },
-    { id: 'modern', name: t('hookah.modern_name'), desc: t('hookah.modern_desc'), icon: '⬡' },
-    { id: 'premium', name: t('hookah.premium_name'), desc: t('hookah.premium_desc'), icon: '✦' },
+    { id: 'revoshi', name: t('hookah.classic_name'), desc: t('hookah.classic_desc'), icon: '◎' },
+    { id: 'alFakher', name: t('hookah.modern_name'), desc: t('hookah.modern_desc'), icon: '⬡' },
+    { id: 'adalya', name: t('hookah.premium_name'), desc: t('hookah.premium_desc'), icon: '✦' },
   ]
 
   const CATEGORIES = CATEGORY_KEYS.map(key => ({ key, label: t(`hookah.${key}`) }))

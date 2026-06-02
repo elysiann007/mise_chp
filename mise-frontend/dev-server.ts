@@ -20,11 +20,11 @@ const server = Bun.serve({
       return new Response('Not found', { status: 404 })
     }
 
-    const apiKey = process.env.GROQ_API_KEY
+    const apiKey = process.env.GEMINI_API_KEY
     if (!apiKey) {
-      console.error('❌  GROQ_API_KEY not set in .env')
+      console.error('❌  GEMINI_API_KEY not set in .env')
       return new Response(
-        JSON.stringify({ reply: '⚠️ API key not configured. Add GROQ_API_KEY to your .env file.' }),
+        JSON.stringify({ reply: '⚠️ API key not configured. Add GEMINI_API_KEY to your .env file.' }),
         { status: 503, headers: { 'content-type': 'application/json', ...cors } }
       )
     }
@@ -39,33 +39,36 @@ const server = Bun.serve({
       })
     }
 
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'content-type': 'application/json',
+    const contents = messages.map((m: { role: string; content: string }) => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }))
+
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+          generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
+        }),
       },
-      body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
-        max_tokens: 512,
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          ...messages,
-        ],
-      }),
-    })
+    )
 
     if (!res.ok) {
       const err = await res.text()
-      console.error('Groq error:', err)
+      console.error('Gemini error:', err)
       return new Response(JSON.stringify({ reply: 'Something went wrong. Please try again.' }), {
         status: 502, headers: { 'content-type': 'application/json', ...cors },
       })
     }
 
     const data = await res.json()
-    const reply = data.choices?.[0]?.message?.content ?? 'No response received.'
-    console.log('→ CHP AI replied', reply.slice(0, 60) + '...')
+    const parts = data.candidates?.[0]?.content?.parts ?? []
+    const reply = (parts.find((p: { text?: string }) => p.text)?.text) ?? 'No response received.'
+    console.log('→ Gemini replied', reply.slice(0, 60) + '...')
 
     return new Response(JSON.stringify({ reply }), {
       headers: { 'content-type': 'application/json', ...cors },

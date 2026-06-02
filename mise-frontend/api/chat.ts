@@ -10,7 +10,7 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   try {
-    const apiKey = process.env.GROQ_API_KEY?.trim()
+    const apiKey = process.env.GEMINI_API_KEY?.trim()
     if (!apiKey) {
       return new Response(JSON.stringify({ reply: 'Service temporarily unavailable.' }), {
         status: 503,
@@ -29,21 +29,24 @@ export default async function handler(req: Request): Promise<Response> {
       })
     }
 
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'content-type': 'application/json',
+    // Gemini uses 'user' / 'model' roles — map 'assistant' → 'model'
+    const contents = messages.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }))
+
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+          generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
+        }),
       },
-      body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
-        max_tokens: 512,
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          ...messages,
-        ],
-      }),
-    })
+    )
 
     if (!res.ok) {
       return new Response(JSON.stringify({ reply: 'Something went wrong. Please try again.' }), {
@@ -53,7 +56,8 @@ export default async function handler(req: Request): Promise<Response> {
     }
 
     const data = await res.json()
-    const reply = data.choices?.[0]?.message?.content ?? 'No response received.'
+    const parts = data.candidates?.[0]?.content?.parts ?? []
+    const reply = (parts.find((p: { text?: string }) => p.text)?.text) ?? 'No response received.'
 
     return new Response(JSON.stringify({ reply }), {
       headers: { 'content-type': 'application/json' },

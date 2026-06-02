@@ -69,7 +69,7 @@ export default function FoodMenu() {
               <div className="space-y-0">
                 {section.items.map((item, i) => (
                   <motion.div
-                    key={item.name}
+                    key={item.key}
                     variants={fadeUp}
                     className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-zinc-800/60' : ''}`}
                   >
@@ -78,7 +78,7 @@ export default function FoodMenu() {
                         className="font-display text-white group-hover:text-amber-400 transition-colors duration-200"
                         style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', letterSpacing: '0.04em' }}
                       >
-                        {item.name.toUpperCase()}
+                        {`${i + 1}. ${t(`food.items.${item.key}`, item.name)}`.toUpperCase()}
                       </span>
                       <span className="flex-1 border-b border-dotted border-zinc-700 mb-1.5 min-w-[2rem]" />
                       <span className="font-mono text-amber-400 font-semibold text-sm flex-shrink-0">
@@ -86,7 +86,7 @@ export default function FoodMenu() {
                       </span>
                     </div>
                     <p className="text-zinc-500 text-sm mt-1.5 leading-relaxed group-hover:text-zinc-400 transition-colors duration-200">
-                      {item.desc}
+                      {item.desc && t(`food.items.${item.key}_desc`, item.desc)}
                     </p>
                   </motion.div>
                 ))}
