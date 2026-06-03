@@ -141,7 +141,7 @@ export const FOOD_MENU = [
   },
 ]
 
-export const DRINKS_MENU = [
+export const NON_ALCOHOLIC_DRINKS = [
   {
     id: 'herbal_teas',
     category: 'Herbal Teas',
@@ -292,6 +292,9 @@ export const DRINKS_MENU = [
       { key: 'banana_honey_milk', name: 'Muzlu Ballı Süt', desc: '', price: '₺220' },
     ],
   },
+]
+
+export const ALCOHOLIC_DRINKS = [
   {
     id: 'cocktails',
     category: 'Cocktails',
