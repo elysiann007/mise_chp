@@ -85,20 +85,6 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-zinc-400">
               <p>{t('footer.address1')}</p>
               <p>{t('footer.address2')}</p>
-              <div className="pt-3 space-y-1.5">
-                <div className="flex justify-between gap-4">
-                  <span className="text-zinc-500">{t('home.h_mon_thu')}</span>
-                  <span className="text-amber-400/80">5 PM – 2 AM</span>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <span className="text-zinc-500">{t('home.h_fri_sat')}</span>
-                  <span className="text-amber-400">4 PM – 4 AM</span>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <span className="text-zinc-500">{t('home.h_sun')}</span>
-                  <span className="text-amber-400/80">5 PM – 1 AM</span>
-                </div>
-              </div>
               <a
                 href={`tel:${VENUE.phone.replace(/\s/g, '')}`}
                 className="flex items-center gap-2 pt-3 text-zinc-400 hover:text-amber-400 transition-colors duration-200 group"

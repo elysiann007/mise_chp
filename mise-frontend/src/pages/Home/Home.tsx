@@ -145,27 +145,10 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ── Hours + Location ── */}
+        {/* ── Location ── */}
         <section className="py-20 px-5 border-t border-zinc-800/60">
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-14">
-            <motion.div variants={slideLeft}>
-              <span className="text-amber-400 text-[10px] tracking-[0.3em] uppercase">{t('home.h_label')}</span>
-              <h3 className="font-display text-white mt-2 mb-6" style={{ fontSize: '1.8rem', letterSpacing: '0.06em' }}>{t('home.h_title')}</h3>
-              <div className="space-y-4">
-                {[
-                  { key: 'h_mon_thu', hours: '5 PM – 2 AM', hi: false },
-                  { key: 'h_fri_sat', hours: '4 PM – 4 AM', hi: true },
-                  { key: 'h_sun',     hours: '5 PM – 1 AM', hi: false },
-                ].map(row => (
-                  <div key={row.key} className="flex justify-between border-b border-zinc-800/60 pb-4">
-                    <span className="text-zinc-300 text-sm">{t(`home.${row.key}`)}</span>
-                    <span className={`text-sm font-medium ${row.hi ? 'text-amber-400' : 'text-zinc-500'}`}>{row.hours}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeUp}>
+          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} className="max-w-4xl mx-auto">
+            <motion.div variants={fadeUp} className="max-w-sm">
               <span className="text-amber-400 text-[10px] tracking-[0.3em] uppercase">{t('home.l_label')}</span>
               <h3 className="font-display text-white mt-2 mb-6" style={{ fontSize: '1.8rem', letterSpacing: '0.06em' }}>{t('home.l_title')}</h3>
               <p className="text-zinc-300 text-sm leading-relaxed mb-5">{t('home.l_address')}</p>
