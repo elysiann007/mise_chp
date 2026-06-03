@@ -1,34 +1,46 @@
+import { lazy, Suspense } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
-import Home from './pages/Home/Home'
-import MenuHub from './pages/Menu/MenuHub'
-import HookahBuilder from './pages/Menu/HookahBuilder/HookahBuilder'
-import FoodMenu from './pages/Menu/FoodMenu/FoodMenu'
-import DrinksMenu from './pages/Menu/DrinksMenu/DrinksMenu'
-import NonAlcoholicMenu from './pages/Menu/DrinksMenu/NonAlcoholicMenu'
-import AlcoholicMenu from './pages/Menu/DrinksMenu/AlcoholicMenu'
-import About from './pages/About/About'
-import NotFound from './pages/NotFound/NotFound'
-import ChatBot from './components/ChatBot/ChatBot'
+
+const Home             = lazy(() => import('./pages/Home/Home'))
+const MenuHub          = lazy(() => import('./pages/Menu/MenuHub'))
+const HookahBuilder    = lazy(() => import('./pages/Menu/HookahBuilder/HookahBuilder'))
+const FoodMenu         = lazy(() => import('./pages/Menu/FoodMenu/FoodMenu'))
+const DrinksMenu       = lazy(() => import('./pages/Menu/DrinksMenu/DrinksMenu'))
+const NonAlcoholicMenu = lazy(() => import('./pages/Menu/DrinksMenu/NonAlcoholicMenu'))
+const AlcoholicMenu    = lazy(() => import('./pages/Menu/DrinksMenu/AlcoholicMenu'))
+const About            = lazy(() => import('./pages/About/About'))
+const NotFound         = lazy(() => import('./pages/NotFound/NotFound'))
+const ChatBot          = lazy(() => import('./components/ChatBot/ChatBot'))
+
+function PageFallback() {
+  return (
+    <div className="min-h-screen bg-stone-950 flex items-center justify-center">
+      <div className="w-8 h-8 rounded-full border-2 border-amber-400/30 border-t-amber-400 animate-spin" />
+    </div>
+  )
+}
 
 function AnimatedRoutes() {
   const location = useLocation()
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<MenuHub />} />
-        <Route path="/menu/hookah" element={<HookahBuilder />} />
-        <Route path="/menu/food" element={<FoodMenu />} />
-        <Route path="/menu/drinks" element={<DrinksMenu />} />
-        <Route path="/menu/drinks/nonalcoholic" element={<NonAlcoholicMenu />} />
-        <Route path="/menu/drinks/alcoholic" element={<AlcoholicMenu />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
+    <Suspense fallback={<PageFallback />}>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<MenuHub />} />
+          <Route path="/menu/hookah" element={<HookahBuilder />} />
+          <Route path="/menu/food" element={<FoodMenu />} />
+          <Route path="/menu/drinks" element={<DrinksMenu />} />
+          <Route path="/menu/drinks/nonalcoholic" element={<NonAlcoholicMenu />} />
+          <Route path="/menu/drinks/alcoholic" element={<AlcoholicMenu />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
+    </Suspense>
   )
 }
 
@@ -38,7 +50,9 @@ export default function App() {
       <Navbar />
       <AnimatedRoutes />
       <Footer />
-      <ChatBot />
+      <Suspense fallback={null}>
+        <ChatBot />
+      </Suspense>
     </BrowserRouter>
   )
 }
