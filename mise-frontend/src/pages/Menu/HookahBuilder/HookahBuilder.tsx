@@ -11,7 +11,7 @@ const BRANDS = [
     id: 'revoshi',
     name: 'Revoshi',
     desc: 'Premium Tobacco',
-    price: '₺600',
+    price: '₺500',
     icon: '◎',
     aromas: [
       { id: 'r-double-apple',      name: 'Double Apple',       color: '#ef4444' },
@@ -61,7 +61,7 @@ const BRANDS = [
     id: 'al_fakher',
     name: 'Al Fakher',
     desc: 'Classic Blend',
-    price: '₺600',
+    price: '₺500',
     icon: '⬡',
     aromas: [
       { id: 'af-double-apple',   name: 'Double Apple',   color: '#ef4444' },
@@ -84,7 +84,7 @@ const BRANDS = [
     id: 'adalya',
     name: 'Adalya',
     desc: 'Special Edition',
-    price: '₺600',
+    price: '₺500',
     icon: '✦',
     aromas: [
       { id: 'a-love-66',       name: 'Love 66',       color: '#f43f5e' },

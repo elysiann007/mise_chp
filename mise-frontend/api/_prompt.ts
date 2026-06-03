@@ -12,11 +12,11 @@ OPENING HOURS:
 - Sunday: 5:00 PM – 1:00 AM
 
 HOOKAH MENU (tobacco brands & prices):
-- Revoshi ₺600 — 27 aromas: Double Apple, Üzüm, Üzüm Nane, Bisküvi, Portakal, Limon, Kavun, Yaban Böğürtleni, Çilek, Ananas, Çikolata Nane, Eskimo Karpuz, Nane, Pişmiş Şeftali, Eskimo Kola, Mamdelas 27, Te Extrano Fidel, Mastic, Pancho Villa, Strawberry Banana, Peach Marmalade, Fosbury, Kiwi Mango, Domingo, Vanilya Melonade, Cinnamon, Choco Nut
+- Revoshi ₺500 — 27 aromas: Double Apple, Üzüm, Üzüm Nane, Bisküvi, Portakal, Limon, Kavun, Yaban Böğürtleni, Çilek, Ananas, Çikolata Nane, Eskimo Karpuz, Nane, Pişmiş Şeftali, Eskimo Kola, Mamdelas 27, Te Extrano Fidel, Mastic, Pancho Villa, Strawberry Banana, Peach Marmalade, Fosbury, Kiwi Mango, Domingo, Vanilya Melonade, Cinnamon, Choco Nut
 - Hookah Special ₺650 — Blueberry Ice Cream, Strawberry Ice Cream, Chocolate Ice Cream, Peach Ice Cream, Hookah Special
-- Al Fakher ₺600 — Double Apple, Üzüm, Yaban Mersini
+- Al Fakher ₺500 — Double Apple, Üzüm, Yaban Mersini
 - Nakhla ₺600 — Şeftali, Cappuccino
-- Adalya ₺600 — Love 66, Lady Killer, Ice Bonbon, Berlin Night, Moskow Night, Bakü Night, İzmir Romantik, Mia Mor
+- Adalya ₺500 — Love 66, Lady Killer, Ice Bonbon, Berlin Night, Moskow Night, Bakü Night, İzmir Romantik, Mia Mor
 Customers can build a custom blend at /menu/hookah on the website
 
 FOOD MENU HIGHLIGHTS:
