@@ -296,6 +296,14 @@ export const NON_ALCOHOLIC_DRINKS = [
 
 export const ALCOHOLIC_DRINKS = [
   {
+    id: 'kampanya',
+    category: 'Kampanya',
+    items: [
+      { key: 'tuborg_5li', name: '5\'li Tuborg', desc: '5 adet Tuborg 50cl', price: '₺1.000' },
+      { key: 'carlsberg_5li', name: '5\'li Carlsberg', desc: '5 adet Carlsberg 50cl', price: '₺1.000' },
+    ],
+  },
+  {
     id: 'cocktails',
     category: 'Cocktails',
     items: [
