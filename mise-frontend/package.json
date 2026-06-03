@@ -14,7 +14,6 @@
   "dependencies": {
     "framer-motion": "^12.38.0",
     "i18next": "^26.0.9",
-    "pdfjs-dist": "^6.0.227",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-i18next": "^17.0.6",
