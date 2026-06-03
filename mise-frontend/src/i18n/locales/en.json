@@ -40,7 +40,8 @@
     "l_label": "Location",
     "l_title": "FIND US",
     "l_address": "Alsancak, İzmir, Turkey",
-    "l_directions": "Get directions"
+    "l_directions": "Get directions",
+    "l_call_info": "Call for info & reservations"
   },
   "hub": {
     "label": "What We Offer",
@@ -62,9 +63,9 @@
   "hookah": {
     "label": "Hookah Menu",
     "title": "BUILD YOUR BLEND",
-    "desc": "Select a model, choose your aromas, and dial in the perfect percentages. Your blend, your night.",
+    "desc": "Select a tobacco brand, pick your aromas from any brand, and dial in the perfect percentages. Your blend, your night.",
     "back": "Back to Menu",
-    "step1": "Select Your Hookah",
+    "step1": "Select Tobacco Brand",
     "step2": "Choose Your Aromas",
     "step3": "Set the Balance",
     "full": "Blend full — remove to add more",
@@ -73,19 +74,8 @@
     "start": "Start adding aromas",
     "remaining": "% remaining",
     "complete": "✓ Perfect blend!",
-    "order": "Order This Blend",
-    "reset": "Reset Blend",
-    "fruity": "Fruity",
-    "minty": "Minty",
-    "floral": "Ice Cream Special",
-    "exotic": "Exotic",
-    "tobacco": "Adalya Specials",
-    "classic_name": "Revoshi",
-    "classic_desc": "Premium Tobacco · ₺500",
-    "modern_name": "Al Fakher",
-    "modern_desc": "Classic Blend · ₺580",
-    "premium_name": "Adalya",
-    "premium_desc": "Special Blend · ₺500"
+    "order": "Call a waiter to place your order",
+    "reset": "Reset Blend"
   },
   "food": {
     "label": "Mediterranean Fusion",
@@ -447,11 +437,11 @@
     "cta_hookah": "Build a Hookah Blend"
   },
   "chat": {
-    "title": "CHP AI",
+    "title": "Hookah AI",
     "subtitle": "Your venue assistant",
     "placeholder": "Ask me anything...",
     "send": "Send",
-    "greeting": "Hi! I'm CHP AI, your guide to Cafe Hookah Pub. Ask me about our hookah blends, menu, hours, or location!",
+    "greeting": "Hi! I'm Hookah AI, your guide to Cafe Hookah Pub. Ask me about our hookah blends, menu, hours, or location!",
     "error": "Something went wrong. Please try again."
   },
   "footer": {

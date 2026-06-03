@@ -40,7 +40,8 @@
     "l_label": "Konum",
     "l_title": "NEREDEYIZ",
     "l_address": "Alsancak, İzmir, Türkiye",
-    "l_directions": "Yol tarifi al"
+    "l_directions": "Yol tarifi al",
+    "l_call_info": "Bilgi ve rezervasyon için arayın"
   },
   "hub": {
     "label": "Neler Sunuyoruz",
@@ -62,9 +63,9 @@
   "hookah": {
     "label": "Nargile Menüsü",
     "title": "KENDİ KARIŞIMINI OLUŞTUR",
-    "desc": "Bir model seç, aromalarını belirle ve mükemmel yüzdeleri ayarla. Senin karışımın, senin gecen.",
+    "desc": "Tütün markasını seç, herhangi bir markadan aromalarını belirle ve mükemmel yüzdeleri ayarla. Senin karışımın, senin gecen.",
     "back": "Menüye Dön",
-    "step1": "Nargilenizi Seçin",
+    "step1": "Tütün Markasını Seçin",
     "step2": "Aromalarınızı Seçin",
     "step3": "Dengeyi Ayarlayın",
     "full": "Karışım dolu — eklemek için kaldırın",
@@ -73,19 +74,8 @@
     "start": "Aroma eklemeye başlayın",
     "remaining": "% kaldı",
     "complete": "✓ Mükemmel karışım!",
-    "order": "Bu Karışımı Sipariş Et",
-    "reset": "Karışımı Sıfırla",
-    "fruity": "Meyveli",
-    "minty": "Naneli",
-    "floral": "Ice Cream Special",
-    "exotic": "Egzotik",
-    "tobacco": "Adalya Specials",
-    "classic_name": "Revoshi",
-    "classic_desc": "Premium Tütün · ₺500",
-    "modern_name": "Al Fakher",
-    "modern_desc": "Klasik Blend · ₺580",
-    "premium_name": "Adalya",
-    "premium_desc": "Special Blend · ₺500"
+    "order": "Siparişiniz için garson çağırın",
+    "reset": "Karışımı Sıfırla"
   },
   "food": {
     "label": "Akdeniz Füzyonu",
@@ -447,11 +437,11 @@
     "cta_hookah": "Nargile Karışımı Yap"
   },
   "chat": {
-    "title": "CHP AI",
+    "title": "Hookah AI",
     "subtitle": "Mekan asistanınız",
     "placeholder": "Bir şeyler sorun...",
     "send": "Gönder",
-    "greeting": "Merhaba! Ben CHP AI, Cafe Hookah Pub'ın dijital asistanı. Hookah blendlerimiz, menümüz, çalışma saatlerimiz veya konumumuz hakkında soru sorabilirsiniz!",
+    "greeting": "Merhaba! Ben Hookah AI, Cafe Hookah Pub'ın dijital asistanı. Hookah blendlerimiz, menümüz, çalışma saatlerimiz veya konumumuz hakkında soru sorabilirsiniz!",
     "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
   },
   "footer": {

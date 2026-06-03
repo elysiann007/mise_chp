@@ -1,6 +1,6 @@
 export const VENUE = {
   name: 'Cafe Hookah Pub',
-  phone: '+90 000 000 00 00',
+  phone: '+90 506 026 08 75',
   address: 'Alsancak, İzmir, Türkiye',
   lat: 38.4356142,
   lng: 27.1405841,

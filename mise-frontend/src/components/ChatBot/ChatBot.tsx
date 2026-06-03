@@ -64,7 +64,7 @@ export default function ChatBot() {
         className="fixed bottom-6 end-6 z-50 w-14 h-14 bg-amber-400 rounded-full shadow-xl shadow-amber-400/20 flex items-center justify-center hover:bg-amber-300 transition-colors duration-200"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        aria-label={open ? 'Close chat' : 'Open CHP AI chat'}
+        aria-label={open ? 'Close chat' : 'Open Hookah AI chat'}
       >
         <AnimatePresence mode="wait">
           {open ? (
@@ -97,7 +97,7 @@ export default function ChatBot() {
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3.5 bg-zinc-900/80 border-b border-zinc-800 backdrop-blur-sm">
               <div className="w-9 h-9 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
-                <span className="font-display text-stone-950 text-[10px] font-bold tracking-wider">CHP</span>
+                <span className="text-stone-950 text-base leading-none">◎</span>
               </div>
               <div>
                 <p className="text-white text-sm font-semibold leading-none">{t('chat.title')}</p>

@@ -40,7 +40,8 @@
     "l_label": "Ubicación",
     "l_title": "ENCUÉNTRANOS",
     "l_address": "Alsancak, İzmir, Turquía",
-    "l_directions": "Cómo llegar"
+    "l_directions": "Cómo llegar",
+    "l_call_info": "Llama para info y reservas"
   },
   "hub": {
     "label": "Lo Que Ofrecemos",
@@ -62,9 +63,9 @@
   "hookah": {
     "label": "Menú Hookah",
     "title": "CREA TU MEZCLA",
-    "desc": "Selecciona un modelo, elige tus aromas y ajusta los porcentajes perfectos. Tu mezcla, tu noche.",
+    "desc": "Selecciona una marca de tabaco, elige tus aromas de cualquier marca y ajusta los porcentajes perfectos. Tu mezcla, tu noche.",
     "back": "Volver al Menú",
-    "step1": "Selecciona Tu Hookah",
+    "step1": "Selecciona Marca de Tabaco",
     "step2": "Elige Tus Aromas",
     "step3": "Ajusta el Balance",
     "full": "Mezcla llena — elimina para agregar más",
@@ -73,19 +74,8 @@
     "start": "Empieza a agregar aromas",
     "remaining": "% restante",
     "complete": "✓ ¡Mezcla perfecta!",
-    "order": "Pedir Esta Mezcla",
-    "reset": "Reiniciar Mezcla",
-    "fruity": "Frutal",
-    "minty": "Mentolado",
-    "floral": "Floral",
-    "exotic": "Exótico",
-    "tobacco": "Clásico",
-    "classic_name": "Revoshi",
-    "classic_desc": "Premium Tobacco · ₺500",
-    "modern_name": "Al Fakher",
-    "modern_desc": "Classic Blend · ₺580",
-    "premium_name": "Adalya",
-    "premium_desc": "Special Blend · ₺500"
+    "order": "Llama al camarero para hacer tu pedido",
+    "reset": "Reiniciar Mezcla"
   },
   "food": {
     "label": "Fusión Mediterránea",
@@ -447,11 +437,11 @@
     "cta_hookah": "Crear una Mezcla de Hookah"
   },
   "chat": {
-    "title": "CHP AI",
+    "title": "Hookah AI",
     "subtitle": "Tu asistente del local",
     "placeholder": "Pregúntame lo que quieras...",
     "send": "Enviar",
-    "greeting": "¡Hola! Soy CHP AI, tu guía en Cafe Hookah Pub. Pregúntame sobre nuestros blends de hookah, el menú, los horarios o la ubicación.",
+    "greeting": "¡Hola! Soy Hookah AI, tu guía en Cafe Hookah Pub. Pregúntame sobre nuestros blends de hookah, el menú, los horarios o la ubicación.",
     "error": "Algo salió mal. Por favor, inténtalo de nuevo."
   },
   "footer": {

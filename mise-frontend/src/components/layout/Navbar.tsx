@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../LanguageSwitcher'
+import { VENUE } from '../../constants/venue'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,7 +35,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3 group">
             <div className="w-9 h-9 rounded-full border border-amber-400/70 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/10 transition-all duration-300">
-              <span className="font-display font-bold text-amber-400 text-xs tracking-wider">CHP</span>
+              <span className="text-amber-400 text-base">◎</span>
             </div>
             <div className="hidden sm:flex flex-col leading-none">
               <span className="text-white font-display font-semibold text-sm tracking-wider">CAFE HOOKAH</span>
@@ -58,7 +59,7 @@ export default function Navbar() {
             ))}
             <LanguageSwitcher />
             <a
-              href="tel:+90000000000"
+              href={`tel:${VENUE.phone.replace(/\s/g, '')}`}
               className="px-5 py-2.5 bg-amber-400 text-stone-950 text-xs font-bold tracking-[0.15em] uppercase rounded-full hover:bg-amber-300 transition-colors duration-200"
             >
               {t('nav.reserve')}
@@ -101,7 +102,7 @@ export default function Navbar() {
           </Link>
         ))}
         <a
-          href="tel:+90000000000"
+          href={`tel:${VENUE.phone.replace(/\s/g, '')}`}
           className="mt-2 px-10 py-4 border-2 border-amber-400 text-amber-400 font-bold text-sm uppercase tracking-widest rounded-full hover:bg-amber-400 hover:text-stone-950 transition-all duration-300"
         >
           {t('nav.reserve')}

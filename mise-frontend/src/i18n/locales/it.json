@@ -40,7 +40,8 @@
     "l_label": "Posizione",
     "l_title": "TROVACI",
     "l_address": "Alsancak, İzmir, Turchia",
-    "l_directions": "Ottieni indicazioni"
+    "l_directions": "Ottieni indicazioni",
+    "l_call_info": "Chiama per info e prenotazioni"
   },
   "hub": {
     "label": "Cosa Offriamo",
@@ -62,9 +63,9 @@
   "hookah": {
     "label": "Menu Hookah",
     "title": "CREA LA TUA MISCELA",
-    "desc": "Seleziona un modello, scegli gli aromi e imposta le percentuali perfette. La tua miscela, la tua notte.",
+    "desc": "Seleziona un marchio di tabacco, scegli gli aromi da qualsiasi marchio e imposta le percentuali perfette. La tua miscela, la tua notte.",
     "back": "Torna al Menu",
-    "step1": "Seleziona il Tuo Hookah",
+    "step1": "Seleziona il Marchio di Tabacco",
     "step2": "Scegli i Tuoi Aromi",
     "step3": "Imposta il Bilanciamento",
     "full": "Miscela piena — rimuovi per aggiungere altri",
@@ -73,19 +74,8 @@
     "start": "Inizia ad aggiungere aromi",
     "remaining": "% rimanente",
     "complete": "✓ Miscela perfetta!",
-    "order": "Ordina Questa Miscela",
-    "reset": "Azzera Miscela",
-    "fruity": "Fruttato",
-    "minty": "Mentolato",
-    "floral": "Floreale",
-    "exotic": "Esotico",
-    "tobacco": "Classico",
-    "classic_name": "Revoshi",
-    "classic_desc": "Premium Tobacco · ₺500",
-    "modern_name": "Al Fakher",
-    "modern_desc": "Classic Blend · ₺580",
-    "premium_name": "Adalya",
-    "premium_desc": "Special Blend · ₺500"
+    "order": "Chiama il cameriere per ordinare",
+    "reset": "Azzera Miscela"
   },
   "food": {
     "label": "Fusione Mediterranea",
@@ -447,11 +437,11 @@
     "cta_hookah": "Crea una Miscela Hookah"
   },
   "chat": {
-    "title": "CHP AI",
+    "title": "Hookah AI",
     "subtitle": "Il tuo assistente del locale",
     "placeholder": "Chiedimi qualcosa...",
     "send": "Invia",
-    "greeting": "Ciao! Sono CHP AI, la tua guida al Cafe Hookah Pub. Chiedimi dei nostri blend di hookah, del menu, degli orari o dell'ubicazione!",
+    "greeting": "Ciao! Sono Hookah AI, la tua guida al Cafe Hookah Pub. Chiedimi dei nostri blend di hookah, del menu, degli orari o dell'ubicazione!",
     "error": "Qualcosa è andato storto. Riprova."
   },
   "footer": {

@@ -40,7 +40,8 @@
     "l_label": "Lage",
     "l_title": "FINDE UNS",
     "l_address": "Alsancak, İzmir, Türkei",
-    "l_directions": "Route berechnen"
+    "l_directions": "Route berechnen",
+    "l_call_info": "Anrufen für Infos & Reservierungen"
   },
   "hub": {
     "label": "Unser Angebot",
@@ -62,9 +63,9 @@
   "hookah": {
     "label": "Hookah-Menü",
     "title": "KREIERE DEINEN BLEND",
-    "desc": "Wähle ein Modell, such deine Aromen aus und stelle die perfekten Prozentsätze ein. Dein Blend, deine Nacht.",
+    "desc": "Wähle eine Tabakmarke, such deine Aromen aus und stelle die perfekten Prozentsätze ein. Dein Blend, deine Nacht.",
     "back": "Zurück zum Menü",
-    "step1": "Wähle deine Hookah",
+    "step1": "Tabakmarke wählen",
     "step2": "Wähle deine Aromen",
     "step3": "Stelle die Balance ein",
     "full": "Blend voll — entferne Aromen, um weitere hinzuzufügen",
@@ -73,19 +74,8 @@
     "start": "Beginne mit der Auswahl von Aromen",
     "remaining": "% verbleibend",
     "complete": "✓ Perfekter Blend!",
-    "order": "Diesen Blend bestellen",
-    "reset": "Blend zurücksetzen",
-    "fruity": "Fruchtig",
-    "minty": "Minzig",
-    "floral": "Blumig",
-    "exotic": "Exotisch",
-    "tobacco": "Klassisch",
-    "classic_name": "Revoshi",
-    "classic_desc": "Premium Tobacco · ₺500",
-    "modern_name": "Al Fakher",
-    "modern_desc": "Classic Blend · ₺580",
-    "premium_name": "Adalya",
-    "premium_desc": "Special Blend · ₺500"
+    "order": "Bitte das Personal um deine Bestellung",
+    "reset": "Blend zurücksetzen"
   },
   "food": {
     "label": "Mediterrane Fusion",
@@ -447,11 +437,11 @@
     "cta_hookah": "Einen Hookah-Blend kreieren"
   },
   "chat": {
-    "title": "CHP AI",
+    "title": "Hookah AI",
     "subtitle": "Dein Lokal-Assistent",
     "placeholder": "Frag mich alles...",
     "send": "Senden",
-    "greeting": "Hallo! Ich bin CHP AI, dein Assistent für das Cafe Hookah Pub. Frag mich nach unseren Hookah-Blends, dem Menü, den Öffnungszeiten oder unserem Standort!",
+    "greeting": "Hallo! Ich bin Hookah AI, dein Assistent für das Cafe Hookah Pub. Frag mich nach unseren Hookah-Blends, dem Menü, den Öffnungszeiten oder unserem Standort!",
     "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
   },
   "footer": {

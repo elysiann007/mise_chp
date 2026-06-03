@@ -8,7 +8,6 @@ import { WebsocketModule } from './websocket/websocket.module';
 import { AuthModule } from './auth/auth.module';
 import { KitchenModule } from './kitchen/kitchen.module';
 import { AdminModule } from './admin/admin.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
