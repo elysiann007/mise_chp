@@ -44,6 +44,42 @@ export default function CampaignPopup() {
         canvas.style.height = `${scaled.height / dpr}px`
 
         await page.render({ canvasContext: ctx, viewport: scaled, canvas: canvas }).promise
+
+        // Detect and trim white margins
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+        const d = imageData.data
+        const w = canvas.width
+        const h = canvas.height
+
+        const isWhite = (x: number, y: number) => {
+          const i = (y * w + x) * 4
+          return d[i] > 235 && d[i + 1] > 235 && d[i + 2] > 235
+        }
+
+        let left = 0
+        outer1: for (let x = 0; x < w; x++) {
+          for (let y = 0; y < h; y++) { if (!isWhite(x, y)) { left = x; break outer1 } }
+        }
+        let right = w
+        outer2: for (let x = w - 1; x >= 0; x--) {
+          for (let y = 0; y < h; y++) { if (!isWhite(x, y)) { right = x + 1; break outer2 } }
+        }
+
+        if (right - left < w) {
+          const cropped = document.createElement('canvas')
+          const cw = right - left
+          cropped.width = cw
+          cropped.height = h
+          cropped.style.width = `${cw / dpr}px`
+          cropped.style.height = `${h / dpr}px`
+          cropped.getContext('2d')!.putImageData(ctx.getImageData(left, 0, cw, h), 0, 0)
+          canvas.width = cropped.width
+          canvas.height = cropped.height
+          canvas.style.width = cropped.style.width
+          canvas.style.height = cropped.style.height
+          ctx.putImageData(cropped.getContext('2d')!.getImageData(0, 0, cw, h), 0, 0)
+        }
+
         if (!cancelled) setLoaded(true)
       } catch {
         if (!cancelled) setLoaded(true)
