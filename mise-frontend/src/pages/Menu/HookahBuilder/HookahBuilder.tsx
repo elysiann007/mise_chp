@@ -10,7 +10,7 @@ const BRANDS = [
     id: 'revoshi',
     name: 'Revoshi',
     desc: 'Premium Tobacco',
-    price: '₺500',
+    price: '₺600',
     icon: '◎',
     aromas: [
       { id: 'r-double-apple',      name: 'Double Apple',       color: '#ef4444' },
@@ -46,7 +46,7 @@ const BRANDS = [
     id: 'hookah_special',
     name: 'Hookah Special',
     desc: 'Ice Cream Series',
-    price: '₺500',
+    price: '₺650',
     icon: '❋',
     aromas: [
       { id: 'hs-blueberry-ice',   name: 'Blueberry Ice Cream',   color: '#818cf8' },
@@ -60,7 +60,7 @@ const BRANDS = [
     id: 'al_fakher',
     name: 'Al Fakher',
     desc: 'Classic Blend',
-    price: '₺500',
+    price: '₺600',
     icon: '⬡',
     aromas: [
       { id: 'af-double-apple',   name: 'Double Apple',   color: '#ef4444' },
@@ -72,10 +72,9 @@ const BRANDS = [
     id: 'nakhla',
     name: 'Nakhla',
     desc: 'Dark Leaf',
-    price: '₺550',
+    price: '₺600',
     icon: '◆',
     aromas: [
-      { id: 'n-visne',      name: 'Vişne',      color: '#dc2626' },
       { id: 'n-seftali',    name: 'Şeftali',    color: '#fb923c' },
       { id: 'n-cappuccino', name: 'Cappuccino', color: '#92400e' },
     ],
@@ -84,7 +83,7 @@ const BRANDS = [
     id: 'adalya',
     name: 'Adalya',
     desc: 'Special Edition',
-    price: '₺500',
+    price: '₺600',
     icon: '✦',
     aromas: [
       { id: 'a-love-66',       name: 'Love 66',       color: '#f43f5e' },
