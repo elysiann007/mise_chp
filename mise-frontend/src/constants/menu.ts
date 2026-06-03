@@ -20,7 +20,7 @@ export const FOOD_MENU = [
       { key: 'sucuk_toast', name: 'Sucuklu Tost', desc: 'Dana sucuk, mozerella, patates', price: '₺320' },
       { key: 'boritos_wrap', name: 'Boritos', desc: 'Dana sucuk, cheddar peyniri, mozerella, özel sos dürüm hali', price: '₺380' },
       { key: 'salami_toast', name: 'Salamlı Tost', desc: 'Dana salam, mozerella, patates', price: '₺340' },
-      { key: 'kasarli_tost', name: 'Kaşarlı Tost', desc: '', price: '' },
+      { key: 'kasarli_tost', name: 'Kaşarlı Tost', desc: '', price: '₺320' },
       { key: 'hookah_kumru', name: 'Hookah Special Kumru', desc: 'Dana sucuk, dana sosis, dana salam, eritme kaşar peyniri', price: '₺370' },
       { key: 'build_your_toast', name: 'Kendi Tostunu Kendin Yarat', desc: '', price: '' },
     ],
