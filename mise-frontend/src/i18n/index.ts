@@ -9,7 +9,19 @@ import ar from './locales/ar.json'
 import de from './locales/de.json'
 import el from './locales/el.json'
 
-const stored = localStorage.getItem('chp_lang') ?? 'en'
+const supportedLanguages = ['en', 'tr', 'es', 'it', 'ru', 'ar', 'de', 'el']
+
+const getBrowserLanguage = () => {
+  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language]
+  const matchedLanguage = browserLanguages
+    .map(language => language.toLowerCase().split('-')[0])
+    .find(language => supportedLanguages.includes(language))
+
+  return matchedLanguage ?? 'en'
+}
+
+const stored = localStorage.getItem('chp_lang')
+const initialLanguage = stored && supportedLanguages.includes(stored) ? stored : getBrowserLanguage()
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -22,7 +34,7 @@ i18n.use(initReactI18next).init({
     de: { translation: de },
     el: { translation: el },
   },
-  lng: stored,
+  lng: initialLanguage,
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
 })
