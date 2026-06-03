@@ -17,7 +17,7 @@ const getBrowserLanguage = () => {
     .map(language => language.toLowerCase().split('-')[0])
     .find(language => supportedLanguages.includes(language))
 
-  return matchedLanguage ?? 'en'
+  return matchedLanguage ?? 'tr'
 }
 
 const stored = localStorage.getItem('chp_lang')
@@ -38,7 +38,7 @@ i18n.use(initReactI18next).init({
     el: { translation: el },
   },
   lng: initialLanguage,
-  fallbackLng: 'en',
+  fallbackLng: 'tr',
   interpolation: { escapeValue: false },
 })
 
