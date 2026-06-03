@@ -55,10 +55,14 @@
     "f_title": "Cocina",
     "f_desc": "Platos vibrantes que celebran la riqueza de la tradición mediterránea.",
     "f_cta": "Ver el Menú",
-    "d_tag": "Artesanal & Clásico",
-    "d_title": "Licores & Cócteles",
-    "d_desc": "Desde cócteles artesanales hasta una selección de licores finos — cada copa es una declaración.",
-    "d_cta": "Explorar el Bar"
+    "na_tag": "Bebidas Sin Alcohol",
+    "na_title": "Sin Alcohol",
+    "na_desc": "Té, café, zumos frescos, batidos y más — algo para cada gusto.",
+    "na_cta": "Ver Bebidas",
+    "al_tag": "Bebidas Alcohólicas",
+    "al_title": "Alcohólicas",
+    "al_desc": "Cócteles artesanales, aperitivos, vinos, whiskies y una selección de cervezas.",
+    "al_cta": "Ver Bebidas"
   },
   "hookah": {
     "label": "Menú Hookah",

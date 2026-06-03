@@ -55,10 +55,14 @@
     "f_title": "Cucina",
     "f_desc": "Piatti audaci che celebrano la ricchezza della tradizione mediterranea.",
     "f_cta": "Vedi il Menu",
-    "d_tag": "Artigianale & Classico",
-    "d_title": "Spirits & Cocktail",
-    "d_desc": "Dai cocktail artigianali a una selezione di spirits pregiati — ogni bicchiere è una dichiarazione.",
-    "d_cta": "Esplora il Bar"
+    "na_tag": "Bevande Analcoliche",
+    "na_title": "Analcoliche",
+    "na_desc": "Tè, caffè, succhi freschi, frullati e altro — qualcosa per ogni gusto.",
+    "na_cta": "Vedi Bevande",
+    "al_tag": "Bevande Alcoliche",
+    "al_title": "Alcoliche",
+    "al_desc": "Cocktail artigianali, aperitivi, vini, whisky e una selezione di birre.",
+    "al_cta": "Vedi Bevande"
   },
   "hookah": {
     "label": "Menu Hookah",

@@ -44,10 +44,10 @@ export default function DrinksMenu() {
         {/* Full scroll menu */}
         <div className="max-w-3xl mx-auto px-5 py-16 space-y-20">
           {[
-            { label: 'ALKOLSÜZ İÇECEKLER', sections: NON_ALCOHOLIC_DRINKS },
-            { label: 'ALKOLLÜ İÇECEKLER', sections: ALCOHOLIC_DRINKS },
+            { label: 'ALKOLSÜZ İÇECEKLER', sections: NON_ALCOHOLIC_DRINKS, id: 'nonalcoholic' },
+            { label: 'ALKOLLÜ İÇECEKLER', sections: ALCOHOLIC_DRINKS, id: 'alcoholic' },
           ].map((group) => (
-            <div key={group.label} className="space-y-20">
+            <div key={group.label} id={group.id} className="space-y-20 scroll-mt-24">
               {/* Group divider */}
               <motion.div
                 variants={fadeIn}

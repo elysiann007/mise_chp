@@ -55,10 +55,14 @@
     "f_title": "Küche",
     "f_desc": "Kräftige, lebendige Gerichte, die den Reichtum der mediterranen Tradition feiern — frisch zubereitet und wunderschön präsentiert.",
     "f_cta": "Menü ansehen",
-    "d_tag": "Handgemacht & Klassisch",
-    "d_title": "Spirits & Cocktails",
-    "d_desc": "Von handgefertigten Signature-Cocktails bis hin zu einer kuratierten Auswahl edler Spirits und inspirierter Mocktails — jedes Glas ist ein Statement.",
-    "d_cta": "Bar entdecken"
+    "na_tag": "Alkoholfreie Getränke",
+    "na_title": "Alkoholfrei",
+    "na_desc": "Tee, Kaffee, frische Säfte, Smoothies und mehr — für jeden Geschmack etwas.",
+    "na_cta": "Getränke ansehen",
+    "al_tag": "Alkoholische Getränke",
+    "al_title": "Alkoholisch",
+    "al_desc": "Handgefertigte Cocktails, Aperitifs, Weine, Whiskys und eine Auswahl an Bieren.",
+    "al_cta": "Getränke ansehen"
   },
   "hookah": {
     "label": "Hookah-Menü",

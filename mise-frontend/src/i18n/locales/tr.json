@@ -55,10 +55,14 @@
     "f_title": "Mutfak",
     "f_desc": "Akdeniz geleneğinin zenginliğini kutlayan cesur, canlı yemekler — her gece taze hazırlanır.",
     "f_cta": "Menüyü Gör",
-    "d_tag": "Özel & Klasik",
-    "d_title": "Spiritusler & Kokteyller",
-    "d_desc": "El yapımı imza kokteylerinden özenle seçilmiş spirituslere kadar her kadeh bir ifadedir.",
-    "d_cta": "Barı Keşfet"
+    "na_tag": "Alkolsüz İçecekler",
+    "na_title": "Alkolsüz",
+    "na_desc": "Çay, kahve, taze sıkma, smoothie ve daha fazlası — her damağa bir seçenek.",
+    "na_cta": "İçecekleri Gör",
+    "al_tag": "Alkollü İçecekler",
+    "al_title": "Alkollü",
+    "al_desc": "El yapımı kokteyller, aperitifler, şaraplar, viskiler ve bira çeşitleri.",
+    "al_cta": "İçecekleri Gör"
   },
   "hookah": {
     "label": "Nargile Menüsü",

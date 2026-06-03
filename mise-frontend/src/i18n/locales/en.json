@@ -55,10 +55,14 @@
     "f_title": "Cuisine",
     "f_desc": "Bold, vibrant dishes that celebrate the richness of Mediterranean tradition — freshly crafted and beautifully presented for a night at the table.",
     "f_cta": "View the Menu",
-    "d_tag": "Craft & Classic",
-    "d_title": "Spirits & Cocktails",
-    "d_desc": "From handcrafted signature cocktails to a curated selection of fine spirits and inspired mocktails — every glass is a statement.",
-    "d_cta": "Browse the Bar"
+    "na_tag": "Non-Alcoholic Drinks",
+    "na_title": "Non-Alcoholic",
+    "na_desc": "Tea, coffee, fresh juice, smoothies and more — something for every taste.",
+    "na_cta": "View Drinks",
+    "al_tag": "Alcoholic Drinks",
+    "al_title": "Alcoholic",
+    "al_desc": "Handcrafted cocktails, aperitifs, wines, whiskies and a curated selection of beers.",
+    "al_cta": "View Drinks"
   },
   "hookah": {
     "label": "Hookah Menu",
