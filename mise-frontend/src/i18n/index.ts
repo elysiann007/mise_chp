@@ -23,6 +23,9 @@ const getBrowserLanguage = () => {
 const stored = localStorage.getItem('chp_lang')
 const initialLanguage = stored && supportedLanguages.includes(stored) ? stored : getBrowserLanguage()
 
+document.documentElement.lang = initialLanguage
+document.documentElement.dir = initialLanguage === 'ar' ? 'rtl' : 'ltr'
+
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: en },
