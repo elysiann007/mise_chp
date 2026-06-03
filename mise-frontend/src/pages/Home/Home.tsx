@@ -8,7 +8,6 @@ import { VENUE } from '../../constants/venue'
 const STATS_KEYS = [
   { value: '50+', key: 's_aromas' },
   { value: '80+', key: 's_items' },
-  { value: '120', key: 's_seats' },
   { value: '∞',   key: 's_nights' },
 ]
 
