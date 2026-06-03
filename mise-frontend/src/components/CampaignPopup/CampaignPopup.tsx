@@ -30,20 +30,14 @@ export default function CampaignPopup() {
             exit={{ scale: 0.92, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={e => e.stopPropagation()}
-            className="relative rounded-2xl shadow-2xl"
-            style={{ width: '90vw', maxWidth: 440, maxHeight: '85vh', overflow: 'hidden' }}
+            className="relative rounded-2xl overflow-hidden shadow-2xl"
+            style={{ maxWidth: 440, maxHeight: '88vh', width: '90vw' }}
           >
-            <iframe
-              src="/campaign-poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-              className="border-0"
-              style={{
-                display: 'block',
-                width: '118%',
-                marginLeft: '-9%',
-                height: '80vh',
-                maxHeight: 720,
-              }}
-              title="Kampanya"
+            <img
+              src="/campaign-poster.webp"
+              alt="Kampanya"
+              className="block w-full h-auto rounded-2xl"
+              style={{ maxHeight: '88vh', objectFit: 'contain' }}
             />
             <button
               onClick={close}
