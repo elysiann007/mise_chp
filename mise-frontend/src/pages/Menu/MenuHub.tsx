@@ -19,12 +19,12 @@ export default function MenuHub() {
       borderClass: 'border-zinc-700 hover:border-amber-400/50', glowClass: 'hover:shadow-amber-400/10',
     },
     {
-      id: 'nonalcoholic', to: '/menu/drinks#nonalcoholic',
+      id: 'nonalcoholic', to: '/menu/drinks/nonalcoholic',
       number: '03', tag: t('hub.na_tag'), title: t('hub.na_title'), desc: t('hub.na_desc'), cta: t('hub.na_cta'),
       borderClass: 'border-zinc-700 hover:border-amber-400/50', glowClass: 'hover:shadow-amber-400/10',
     },
     {
-      id: 'alcoholic', to: '/menu/drinks#alcoholic',
+      id: 'alcoholic', to: '/menu/drinks/alcoholic',
       number: '04', tag: t('hub.al_tag'), title: t('hub.al_title'), desc: t('hub.al_desc'), cta: t('hub.al_cta'),
       borderClass: 'border-zinc-700 hover:border-amber-400/50', glowClass: 'hover:shadow-amber-400/10',
     },

@@ -7,6 +7,8 @@ import MenuHub from './pages/Menu/MenuHub'
 import HookahBuilder from './pages/Menu/HookahBuilder/HookahBuilder'
 import FoodMenu from './pages/Menu/FoodMenu/FoodMenu'
 import DrinksMenu from './pages/Menu/DrinksMenu/DrinksMenu'
+import NonAlcoholicMenu from './pages/Menu/DrinksMenu/NonAlcoholicMenu'
+import AlcoholicMenu from './pages/Menu/DrinksMenu/AlcoholicMenu'
 import About from './pages/About/About'
 import NotFound from './pages/NotFound/NotFound'
 import ChatBot from './components/ChatBot/ChatBot'
@@ -21,6 +23,8 @@ function AnimatedRoutes() {
         <Route path="/menu/hookah" element={<HookahBuilder />} />
         <Route path="/menu/food" element={<FoodMenu />} />
         <Route path="/menu/drinks" element={<DrinksMenu />} />
+        <Route path="/menu/drinks/nonalcoholic" element={<NonAlcoholicMenu />} />
+        <Route path="/menu/drinks/alcoholic" element={<AlcoholicMenu />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
