@@ -33,14 +33,12 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-full border border-amber-400/70 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/10 transition-all duration-300">
-              <span className="text-amber-400 text-base">◎</span>
-            </div>
-            <div className="hidden sm:flex flex-col leading-none">
-              <span className="text-white font-display font-semibold text-sm tracking-wider">CAFE HOOKAH</span>
-              <span className="text-amber-400 font-display text-[10px] tracking-[0.25em] uppercase">& Pub</span>
-            </div>
+          <Link to="/" className="flex items-center gap-2 group">
+            <img
+              src="/logo.png"
+              alt="Cafe Hookah Pub"
+              className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-6">

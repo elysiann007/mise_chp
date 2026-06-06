@@ -1,22 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="10" fill="#0c0a09"/>
-
-  <!-- Left wing - 3 feather bands sweeping outward -->
-  <path d="M29 25 C22 22 12 21 5 24 C11 24.5 21 26.5 29 29.5Z" fill="#fbbf24"/>
-  <path d="M29 29.5 C19 28.5 9 28 3 31 C9 31.5 20 31.5 29 32Z" fill="#fbbf24"/>
-  <path d="M29 32.5 C20 33.5 10 35 6 38 C12 37 21 35.5 29 34Z" fill="#fbbf24"/>
-
-  <!-- Right wing - 3 feather bands mirrored -->
-  <path d="M35 25 C42 22 52 21 59 24 C53 24.5 43 26.5 35 29.5Z" fill="#fbbf24"/>
-  <path d="M35 29.5 C45 28.5 55 28 61 31 C55 31.5 44 31.5 35 32Z" fill="#fbbf24"/>
-  <path d="M35 32.5 C44 33.5 54 35 58 38 C52 37 43 35.5 35 34Z" fill="#fbbf24"/>
-
-  <!-- Badge outer ring -->
-  <circle cx="32" cy="30" r="13" fill="#fbbf24"/>
-  <!-- Dark gap ring -->
-  <circle cx="32" cy="30" r="11" fill="#0c0a09"/>
-  <!-- Inner amber fill -->
-  <circle cx="32" cy="30" r="8.5" fill="#fbbf24"/>
+  <!-- Left wing -->
+  <path d="M29 22 C22 18 10 17 2 21 C10 22 22 24 29 27Z" fill="#d4922a"/>
+  <path d="M29 27 C20 25 8 24 1 28 C9 29 21 30 29 31Z" fill="#d4922a"/>
+  <path d="M29 31 C20 31 9 32 3 36 C10 35 21 34 29 33Z" fill="#d4922a"/>
+  <!-- Right wing -->
+  <path d="M35 22 C42 18 54 17 62 21 C54 22 42 24 35 27Z" fill="#d4922a"/>
+  <path d="M35 27 C44 25 56 24 63 28 C55 29 43 30 35 31Z" fill="#d4922a"/>
+  <path d="M35 31 C44 31 55 32 61 36 C54 35 43 34 35 33Z" fill="#d4922a"/>
+  <!-- Outer badge ring -->
+  <circle cx="32" cy="29" r="14" fill="#d4922a"/>
+  <!-- Black ring -->
+  <circle cx="32" cy="29" r="12.5" fill="#1a1008"/>
+  <!-- Inner amber -->
+  <circle cx="32" cy="29" r="11" fill="#d4922a"/>
   <!-- Center dark -->
-  <circle cx="32" cy="30" r="4" fill="#0c0a09"/>
+  <circle cx="32" cy="29" r="8" fill="#1a1008"/>
+  <!-- CAFE -->
+  <text x="32" y="26.5" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="4" fill="#d4922a">CAFE</text>
+  <!-- HOOKAH -->
+  <text x="32" y="31" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="4" fill="#d4922a">HOOKAH</text>
+  <!-- PUB -->
+  <text x="32" y="35" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="3.2" fill="#d4922a">PUB</text>
 </svg>
