@@ -1,5 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#0c0a09"/>
-  <circle cx="32" cy="32" r="18" fill="none" stroke="#fbbf24" stroke-width="3.5"/>
-  <circle cx="32" cy="32" r="10" fill="none" stroke="#fbbf24" stroke-width="3.5"/>
+  <rect width="64" height="64" rx="10" fill="#0c0a09"/>
+
+  <!-- Left wing - 3 feather bands sweeping outward -->
+  <path d="M29 25 C22 22 12 21 5 24 C11 24.5 21 26.5 29 29.5Z" fill="#fbbf24"/>
+  <path d="M29 29.5 C19 28.5 9 28 3 31 C9 31.5 20 31.5 29 32Z" fill="#fbbf24"/>
+  <path d="M29 32.5 C20 33.5 10 35 6 38 C12 37 21 35.5 29 34Z" fill="#fbbf24"/>
+
+  <!-- Right wing - 3 feather bands mirrored -->
+  <path d="M35 25 C42 22 52 21 59 24 C53 24.5 43 26.5 35 29.5Z" fill="#fbbf24"/>
+  <path d="M35 29.5 C45 28.5 55 28 61 31 C55 31.5 44 31.5 35 32Z" fill="#fbbf24"/>
+  <path d="M35 32.5 C44 33.5 54 35 58 38 C52 37 43 35.5 35 34Z" fill="#fbbf24"/>
+
+  <!-- Badge outer ring -->
+  <circle cx="32" cy="30" r="13" fill="#fbbf24"/>
+  <!-- Dark gap ring -->
+  <circle cx="32" cy="30" r="11" fill="#0c0a09"/>
+  <!-- Inner amber fill -->
+  <circle cx="32" cy="30" r="8.5" fill="#fbbf24"/>
+  <!-- Center dark -->
+  <circle cx="32" cy="30" r="4" fill="#0c0a09"/>
 </svg>

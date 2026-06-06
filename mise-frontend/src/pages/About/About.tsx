@@ -5,10 +5,10 @@ import PageWrapper from '../../components/layout/PageWrapper'
 import { fadeUp, fadeIn, stagger, scaleIn, slideLeft } from '../../lib/animations'
 
 const STATS = [
+  { value: '2008', key: 's_est' },
   { value: '50+', key: 's_aromas' },
   { value: '80+', key: 's_items' },
   { value: '120', key: 's_seats' },
-  { value: '∞', key: 's_nights' },
 ]
 
 const VALUES = [
