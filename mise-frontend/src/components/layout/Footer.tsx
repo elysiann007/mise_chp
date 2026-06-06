@@ -19,10 +19,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-full border border-amber-400/60 flex items-center justify-center">
-                <span className="text-amber-400 text-sm">◎</span>
-              </div>
-              <span className="font-display font-semibold text-white text-sm tracking-wider">CAFE HOOKAH PUB</span>
+              <img src="/logo.png" alt="Cafe Hookah Pub" className="h-10 w-auto" />
             </div>
             <p className="text-zinc-500 text-sm leading-relaxed max-w-xs mb-5">{t('footer.tagline')}</p>
 

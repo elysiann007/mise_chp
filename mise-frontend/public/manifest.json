@@ -1,7 +1,7 @@
 {
-  "name": "MISE",
-  "short_name": "MISE",
-  "description": "Restoran sipariş sistemi",
+  "name": "Cafe Hookah Pub",
+  "short_name": "CafeHookah",
+  "description": "Alsancak, İzmir — Premium hookah bar",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fafaf8",
