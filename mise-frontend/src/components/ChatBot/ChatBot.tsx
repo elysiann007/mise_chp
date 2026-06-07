@@ -96,8 +96,8 @@ export default function ChatBot() {
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3.5 bg-zinc-900/80 border-b border-zinc-800 backdrop-blur-sm">
-              <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
-                <img src="/logo.png" alt="Hookah AI" className="h-9 w-auto" />
+              <div className="flex items-center justify-center flex-shrink-0">
+                <img src="/logo.png" alt="Hookah AI" className="h-8 w-auto max-w-[72px]" />
               </div>
               <div>
                 <p className="text-white text-sm font-semibold leading-none">{t('chat.title')}</p>
