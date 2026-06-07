@@ -35,7 +35,6 @@
     "s_items": "Menu Items",
     "s_seats": "Seats",
     "s_nights": "Memorable Nights",
-    "s_est": "Est.",
     "h_label": "Opening Hours",
     "h_title": "WE'RE OPEN",
     "h_mon_thu": "Monday – Thursday",
@@ -50,7 +49,7 @@
   "hub": {
     "label": "What We Offer",
     "title": "THE MENU",
-    "sub": "Three experiences, one unforgettable night.",
+    "sub": "Four experiences, one unforgettable night.",
     "h_tag": "Build Your Blend",
     "h_title": "Hookah",
     "h_desc": "Choose your model, compose your aroma blend, and step into a world of curated smoke and flavor. Our interactive builder lets you craft the experience before you arrive.",
@@ -146,6 +145,7 @@
       "boritos_wrap_desc": "Beef sausage, cheddar, mozzarella, special sauce wrap",
       "salami_toast": "Salami Toast",
       "salami_toast_desc": "Beef salami, mozzarella, potato",
+      "kasarli_tost": "Kasseri Toast",
       "hookah_kumru": "Hookah Special Kumru",
       "hookah_kumru_desc": "Beef sausage, hot dog, salami, melted kasseri",
       "build_your_toast": "Build Your Own Toast",
@@ -249,7 +249,7 @@
     "group_nonalcoholic": "NON-ALCOHOLIC DRINKS",
     "group_alcoholic": "ALCOHOLIC DRINKS",
     "non_alcoholic_cocktails": "Non-Alcoholic Cocktails",
-    "kampanya": "Kampanya",
+    "kampanya": "Special Offer",
     "cocktails": "Cocktails",
     "spirits": "Spirits & Whiskey",
     "herbal_teas": "Herbal Teas",
@@ -460,6 +460,7 @@
     "s_items": "Menu Items",
     "s_seats": "Seats",
     "s_nights": "Nights to Remember",
+    "s_est": "Est.",
     "pil_label": "Our Pillars",
     "pil_title": "WHAT WE STAND FOR",
     "craft_t": "Craftsmanship",
@@ -480,6 +481,11 @@
     "send": "Send",
     "greeting": "Hi! I'm Hookah AI, your guide to Cafe Hookah Pub. Ask me about our hookah blends, menu, hours, or location!",
     "error": "Something went wrong. Please try again."
+  },
+  "popup": {
+    "close": "Close",
+    "dismiss": "Click to close",
+    "alt": "Campaign Poster"
   },
   "footer": {
     "tagline": "A premium sanctuary of flavors, smoke, and spirits.",

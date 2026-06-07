@@ -49,7 +49,7 @@
   "hub": {
     "label": "Unser Angebot",
     "title": "DAS MENÜ",
-    "sub": "Drei Erlebnisse, eine unvergessliche Nacht.",
+    "sub": "Vier Erlebnisse, eine unvergessliche Nacht.",
     "h_tag": "Deinen Blend kreieren",
     "h_title": "Hookah",
     "h_desc": "Wähle dein Modell, kreiere deinen Aroma-Blend und tauche ein in eine Welt aus Rauch und Geschmack. Unser interaktiver Builder lässt dich das Erlebnis gestalten, bevor du ankommst.",
@@ -214,6 +214,7 @@
       "sucuk_toast_desc": "Rindersucuk, Mozzarella, Kartoffel",
       "boritos_wrap_desc": "Rindersucuk, Cheddar, Mozzarella, Spezialsoßen-Wrap",
       "salami_toast_desc": "Rindersalami, Mozzarella, Kartoffel",
+      "kasarli_tost": "Kasseri-Toast",
       "chicken_boritos_desc": "120 g speziell zubereitetes Hähnchen, Tomate, Salat, Essiggurke und Spezialsoße, Pommes frites",
       "kofte_boritos_desc": "Spezial-Köfte, Tomate, Salat, Cheddar, Spezialsoße und Pommes frites",
       "triple_mini_burger_desc": "Drei Mini-Burger — Hähnchen, Köfte und Rindfleisch — mit Pommes frites",
@@ -248,7 +249,7 @@
     "group_nonalcoholic": "ALKOHOLFREIE GETRÄNKE",
     "group_alcoholic": "ALKOHOLISCHE GETRÄNKE",
     "non_alcoholic_cocktails": "Alkoholfreie Cocktails",
-    "kampanya": "Kampanya",
+    "kampanya": "Angebot",
     "cocktails": "Cocktails",
     "spirits": "Spirits & Whiskey",
     "herbal_teas": "Kräutertees",
@@ -480,6 +481,11 @@
     "send": "Senden",
     "greeting": "Hallo! Ich bin Hookah AI, dein Assistent für das Cafe Hookah Pub. Frag mich nach unseren Hookah-Blends, dem Menü, den Öffnungszeiten oder unserem Standort!",
     "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+  },
+  "popup": {
+    "close": "Schließen",
+    "dismiss": "Klicken zum Schließen",
+    "alt": "Kampagnen-Poster"
   },
   "footer": {
     "tagline": "Ein erstklassiges Refugium voller Aromen, Rauch und Spirits.",

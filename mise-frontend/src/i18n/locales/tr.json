@@ -49,7 +49,7 @@
   "hub": {
     "label": "Neler Sunuyoruz",
     "title": "MENÜ",
-    "sub": "Üç deneyim, unutulmaz bir gece.",
+    "sub": "Dört deneyim, unutulmaz bir gece.",
     "h_tag": "Karışımını Oluştur",
     "h_title": "Nargile",
     "h_desc": "Modelini seç, aroma karışımını oluştur ve özel duman dünyasına adım at. İnteraktif oluşturucumuzla gelişinden önce deneyimini tasarla.",
@@ -145,6 +145,7 @@
       "boritos_wrap_desc": "Dana sucuk, cheddar peyniri, mozerella, özel sos dürüm hali",
       "salami_toast": "Salamlı Tost",
       "salami_toast_desc": "Dana salam, mozerella, patates",
+      "kasarli_tost": "Kaşarlı Tost",
       "hookah_kumru": "Hookah Special Kumru",
       "hookah_kumru_desc": "Dana sucuk, dana sosis, dana salam, eritme kaşar peyniri",
       "build_your_toast": "Kendi Tostunu Kendin Yarat",
@@ -486,6 +487,11 @@
     "send": "Gönder",
     "greeting": "Merhaba! Ben Hookah AI, Cafe Hookah Pub'ın dijital asistanı. Hookah blendlerimiz, menümüz, çalışma saatlerimiz veya konumumuz hakkında soru sorabilirsiniz!",
     "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+  },
+  "popup": {
+    "close": "Kapat",
+    "dismiss": "Kapatmak için tıklayın",
+    "alt": "Kampanya Afişi"
   },
   "footer": {
     "tagline": "Lezzetler, duman ve spiritlerin premium sığınağı.",

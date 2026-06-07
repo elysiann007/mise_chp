@@ -49,7 +49,7 @@
   "hub": {
     "label": "Cosa Offriamo",
     "title": "IL MENU",
-    "sub": "Tre esperienze, una notte indimenticabile.",
+    "sub": "Quattro esperienze, una notte indimenticabile.",
     "h_tag": "Crea la Tua Miscela",
     "h_title": "Hookah",
     "h_desc": "Scegli il tuo modello, componi la tua miscela di aromi e immergiti nel mondo del fumo curato.",
@@ -214,6 +214,7 @@
       "sucuk_toast_desc": "Sucuk di manzo, mozzarella, patata",
       "boritos_wrap_desc": "Sucuk di manzo, cheddar, mozzarella, wrap con salsa speciale",
       "salami_toast_desc": "Salame di manzo, mozzarella, patata",
+      "kasarli_tost": "Toast Kasseri",
       "chicken_boritos_desc": "120 g di pollo preparato con cura, pomodoro, lattuga, cetriolino e salsa speciale, patatine fritte",
       "kofte_boritos_desc": "Polpette speciali, pomodoro, lattuga, cheddar, salsa speciale e patatine fritte",
       "triple_mini_burger_desc": "Tre mini burger — pollo, polpette e manzo — con patatine fritte",
@@ -248,7 +249,7 @@
     "group_nonalcoholic": "BEVANDE ANALCOLICHE",
     "group_alcoholic": "BEVANDE ALCOLICHE",
     "non_alcoholic_cocktails": "Cocktail Analcolici",
-    "kampanya": "Kampanya",
+    "kampanya": "Offerta Speciale",
     "cocktails": "Cocktail",
     "spirits": "Spirits & Whisky",
     "herbal_teas": "Tisane",
@@ -480,6 +481,11 @@
     "send": "Invia",
     "greeting": "Ciao! Sono Hookah AI, la tua guida al Cafe Hookah Pub. Chiedimi dei nostri blend di hookah, del menu, degli orari o dell'ubicazione!",
     "error": "Qualcosa è andato storto. Riprova."
+  },
+  "popup": {
+    "close": "Chiudi",
+    "dismiss": "Clicca per chiudere",
+    "alt": "Poster della campagna"
   },
   "footer": {
     "tagline": "Un santuario premium di sapori, fumo e spirits.",

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 export default function CampaignPopup() {
+  const { t } = useTranslation()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -35,20 +37,20 @@ export default function CampaignPopup() {
           >
             <img
               src="/campaign-poster.webp"
-              alt="Kampanya"
+              alt={t('popup.alt')}
               className="block w-full h-auto rounded-2xl"
               style={{ maxHeight: '88vh', objectFit: 'contain' }}
             />
             <button
               onClick={close}
               className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-sm hover:bg-black/90 transition-colors"
-              aria-label="Kapat"
+              aria-label={t('popup.close')}
             >
               ✕
             </button>
           </motion.div>
           <p className="absolute bottom-5 text-zinc-400 text-xs tracking-widest">
-            Kapatmak için tıklayın
+            {t('popup.dismiss')}
           </p>
         </motion.div>
       )}
