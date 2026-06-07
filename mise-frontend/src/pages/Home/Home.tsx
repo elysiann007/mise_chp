@@ -26,8 +26,13 @@ export default function Home() {
       borderHover: 'hover:border-amber-400/40', glowHover: 'hover:shadow-amber-400/10',
     },
     {
-      id: 'drinks', to: '/menu/drinks',
+      id: 'nonalcoholic', to: '/menu/drinks/nonalcoholic',
       number: '03', tag: t('home.p3_tag'), title: t('home.p3_title'), desc: t('home.p3_desc'),
+      borderHover: 'hover:border-amber-400/40', glowHover: 'hover:shadow-amber-400/10',
+    },
+    {
+      id: 'alcoholic', to: '/menu/drinks/alcoholic',
+      number: '04', tag: t('home.p4_tag'), title: t('home.p4_title'), desc: t('home.p4_desc'),
       borderHover: 'hover:border-amber-400/40', glowHover: 'hover:shadow-amber-400/10',
     },
   ]
@@ -88,7 +93,7 @@ export default function Home() {
               <h2 className="font-display text-white mt-3" style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', letterSpacing: '0.06em' }}>{t('home.exp_title')}</h2>
             </motion.div>
 
-            <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {PILLARS.map(p => (
                 <motion.div key={p.id} variants={scaleIn}>
                   <Link to={p.to} className={`group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-8 ${p.borderHover} hover:shadow-2xl ${p.glowHover} transition-all duration-500 block`}>
