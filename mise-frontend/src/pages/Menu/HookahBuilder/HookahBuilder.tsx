@@ -15,19 +15,19 @@ const BRANDS = [
     icon: '◎',
     aromas: [
       { id: 'r-double-apple',      name: 'Double Apple',       color: '#ef4444' },
-      { id: 'r-uzum',              name: 'Üzüm',               color: '#a855f7' },
-      { id: 'r-uzum-nane',         name: 'Üzüm Nane',          color: '#818cf8' },
-      { id: 'r-biskuvi',           name: 'Bisküvi',             color: '#d4a574' },
-      { id: 'r-portakal',          name: 'Portakal',            color: '#f97316' },
-      { id: 'r-limon',             name: 'Limon',               color: '#facc15' },
-      { id: 'r-kavun',             name: 'Kavun',               color: '#fbbf24' },
-      { id: 'r-yaban-bogurtleni',  name: 'Yaban Böğürtleni',   color: '#9333ea' },
-      { id: 'r-cilek',             name: 'Çilek',               color: '#ec4899' },
-      { id: 'r-ananas',            name: 'Ananas',              color: '#eab308' },
-      { id: 'r-cikolata-nane',     name: 'Çikolata Nane',       color: '#a16207' },
+      { id: 'r-uzum',              name: 'Üzüm',               color: '#a855f7',  nameKey: 'hookah.aromas.uzum' },
+      { id: 'r-uzum-nane',         name: 'Üzüm Nane',          color: '#818cf8',  nameKey: 'hookah.aromas.uzum_nane' },
+      { id: 'r-biskuvi',           name: 'Bisküvi',             color: '#d4a574',  nameKey: 'hookah.aromas.biskuvi' },
+      { id: 'r-portakal',          name: 'Portakal',            color: '#f97316',  nameKey: 'hookah.aromas.portakal' },
+      { id: 'r-limon',             name: 'Limon',               color: '#facc15',  nameKey: 'hookah.aromas.limon' },
+      { id: 'r-kavun',             name: 'Kavun',               color: '#fbbf24',  nameKey: 'hookah.aromas.kavun' },
+      { id: 'r-yaban-bogurtleni',  name: 'Yaban Böğürtleni',   color: '#9333ea',  nameKey: 'hookah.aromas.yaban_bogurtleni' },
+      { id: 'r-cilek',             name: 'Çilek',               color: '#ec4899',  nameKey: 'hookah.aromas.cilek' },
+      { id: 'r-ananas',            name: 'Ananas',              color: '#eab308',  nameKey: 'hookah.aromas.ananas' },
+      { id: 'r-cikolata-nane',     name: 'Çikolata Nane',       color: '#a16207',  nameKey: 'hookah.aromas.cikolata_nane' },
       { id: 'r-eskimo-karpuz',     name: 'Eskimo Karpuz',       color: '#f87171' },
-      { id: 'r-nane',              name: 'Nane',                color: '#34d399' },
-      { id: 'r-pismis-seftali',    name: 'Pişmiş Şeftali',      color: '#fb923c' },
+      { id: 'r-nane',              name: 'Nane',                color: '#34d399',  nameKey: 'hookah.aromas.nane' },
+      { id: 'r-pismis-seftali',    name: 'Pişmiş Şeftali',      color: '#fb923c',  nameKey: 'hookah.aromas.pismis_seftali' },
       { id: 'r-eskimo-kola',       name: 'Eskimo Kola',         color: '#6b7280' },
       { id: 'r-mamdelas',          name: 'Mamdelas 27',         color: '#84cc16' },
       { id: 'r-te-extrano',        name: 'Te Extrano Fidel',    color: '#22d3ee' },
@@ -38,7 +38,7 @@ const BRANDS = [
       { id: 'r-fosbury',           name: 'Fosbury',             color: '#06b6d4' },
       { id: 'r-kiwi-mango',        name: 'Kiwi Mango',          color: '#4ade80' },
       { id: 'r-domingo',           name: 'Domingo',             color: '#f43f5e' },
-      { id: 'r-vanilya-melonade',  name: 'Vanilya Melonade',    color: '#fde68a' },
+      { id: 'r-vanilya-melonade',  name: 'Vanilya Melonade',    color: '#fde68a',  nameKey: 'hookah.aromas.vanilya_melonade' },
       { id: 'r-cinnamon',          name: 'Cinnamon',            color: '#92400e' },
       { id: 'r-choco-nut',         name: 'Choco Nut',           color: '#78350f' },
     ],
@@ -65,8 +65,8 @@ const BRANDS = [
     icon: '⬡',
     aromas: [
       { id: 'af-double-apple',   name: 'Double Apple',   color: '#ef4444' },
-      { id: 'af-uzum',           name: 'Üzüm',           color: '#a855f7' },
-      { id: 'af-yaban-mersini',  name: 'Yaban Mersini',  color: '#6366f1' },
+      { id: 'af-uzum',           name: 'Üzüm',           color: '#a855f7', nameKey: 'hookah.aromas.uzum' },
+      { id: 'af-yaban-mersini',  name: 'Yaban Mersini',  color: '#6366f1', nameKey: 'hookah.aromas.yaban_mersini' },
     ],
   },
   {
@@ -76,7 +76,7 @@ const BRANDS = [
     price: '₺600',
     icon: '◆',
     aromas: [
-      { id: 'n-seftali',    name: 'Şeftali',    color: '#fb923c' },
+      { id: 'n-seftali',    name: 'Şeftali',    color: '#fb923c', nameKey: 'hookah.aromas.seftali' },
       { id: 'n-cappuccino', name: 'Cappuccino', color: '#92400e' },
     ],
   },
@@ -211,7 +211,7 @@ export default function HookahBuilder() {
                         className="w-3 h-3 rounded-full flex-shrink-0 shadow-sm"
                         style={{ backgroundColor: aroma.color }}
                       />
-                      <span className="text-sm font-medium text-zinc-300">{aroma.name}</span>
+                      <span className="text-sm font-medium text-zinc-300">{aroma.nameKey ? t(aroma.nameKey, aroma.name) : aroma.name}</span>
                     </div>
                   </motion.div>
                 ))}
