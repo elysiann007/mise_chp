@@ -37,7 +37,7 @@ export default function Navbar() {
             <img
               src="/logo.png"
               alt="Cafe Hookah Pub"
-              className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
+              className="h-14 w-auto group-hover:scale-105 transition-transform duration-300"
             />
           </Link>
 
