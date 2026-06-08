@@ -173,9 +173,6 @@
       "fruit_plate": "Фруктовая тарелка",
       "lemon_cheesecake": "Лимонный чизкейк",
       "souffle": "Шоколадное суфле",
-      "chocolate_cake": "Тающий шоколадный торт",
-      "eclair_chocolate": "Французский шоколадный эклер",
-      "eclair_pistachio": "Французский эклер с фисташками",
       "menemen": "Менемен",
       "hookah_kumru": "Hookah Special Кумру",
       "hookah_kumru_desc": "Суджук говяжий, сосиски говяжьи, салями, плавленый сыр кашери",
@@ -236,8 +233,7 @@
       "cheddar_fries_desc": "Картофель фри со специальным соусом чеддер",
       "chicken_curry_penne_desc": "С соусом карри из курицы",
       "lemon_cheesecake_desc": "Основа из печенья, сырный крем, соус из лимонного крема",
-      "souffle_desc": "Шоколадный торт с жидкой начинкой",
-      "chocolate_cake_desc": "Devil's Cake, крем-брюле, кусочки шоколада"
+      "souffle_desc": "Шоколадный торт с жидкой начинкой"
     }
   },
   "drinks": {

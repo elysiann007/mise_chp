@@ -131,11 +131,8 @@ export const FOOD_MENU = [
     items: [
       { key: 'lemon_cheesecake', name: 'Cheesecake Limonlu Mono', desc: 'Cheesecake Bisküvi Tabanı, Cheesecake Peynir Kreması, Limonlu Kremalı Sos', price: '₺320', calories: '410' },
       { key: 'souffle', name: 'Sufle', desc: 'Akışkan Çikolatalı Kek', price: '₺320', calories: '' },
-      { key: 'chocolate_cake', name: 'Akışkan Çikolata Pasta', desc: "Devil's Kek, İngiliz Kreması, Çikolata Parçaları", price: '₺320', calories: '' },
       { key: 'white_cascada', name: 'White Cascada', desc: 'Bitter Çikolatalı, Böğürtlen ve Akışkan Çikolata Soslu, Üzeri Beyaz Çikolata ve Antep Fıstığı Kaplamalı', price: '₺320', calories: '' },
       { key: 'aligo', name: 'Aligo', desc: "Tart Hamuru Tabanlı, İçi Devil's Kek, Karamel Sos, Üzeri Fındık Kaplamalı", price: '₺320', calories: '' },
-      { key: 'eclair_chocolate', name: 'Fransız Ekler Çikolatalı', desc: '', price: '', calories: '' },
-      { key: 'eclair_pistachio', name: 'Fransız Ekler Antep Fıstıklı', desc: '', price: '', calories: '' },
       { key: 'tiramisu', name: 'Tiramisu', desc: 'Kahveli Kakaolu Pandispanya Kek, Peynirli Krema', price: '₺320', calories: '' },
     ],
   },

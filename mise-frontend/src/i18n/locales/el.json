@@ -173,9 +173,6 @@
       "fruit_plate": "Πιατέλα Φρούτων",
       "lemon_cheesecake": "Cheesecake Λεμόνι",
       "souffle": "Σουφλέ Σοκολάτας",
-      "chocolate_cake": "Λιωτή Σοκολατόπιτα",
-      "eclair_chocolate": "Γαλλικό Εκλέρ Σοκολάτας",
-      "eclair_pistachio": "Γαλλικό Εκλέρ Φιστικιού",
       "menemen": "Μενεμέν",
       "hookah_kumru": "Hookah Special Kumru",
       "hookah_kumru_desc": "Σουτζούκ βοδινό, λουκάνικο βοδινό, σαλάμι, λιωμένο τυρί κασέρι",
@@ -236,8 +233,7 @@
       "cheddar_fries_desc": "Τηγανητές πατάτες με ειδική σάλτσα τσένταρ",
       "chicken_curry_penne_desc": "Με σάλτσα κάρι κοτόπουλου",
       "lemon_cheesecake_desc": "Βάση μπισκότου, κρέμα τυρί, σάλτσα κρέμας λεμονιού",
-      "souffle_desc": "Κέικ σοκολάτας με υγρό κέντρο",
-      "chocolate_cake_desc": "Devil's Cake, κρέμα αγγλέζ, κομμάτια σοκολάτας"
+      "souffle_desc": "Κέικ σοκολάτας με υγρό κέντρο"
     }
   },
   "drinks": {

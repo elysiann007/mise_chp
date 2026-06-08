@@ -173,9 +173,6 @@
       "fruit_plate": "Obstteller",
       "lemon_cheesecake": "Zitronen-Cheesecake",
       "souffle": "Schokoladen-Soufflé",
-      "chocolate_cake": "Lava-Schokoladenkuchen",
-      "eclair_chocolate": "Französisches Schokoladen-Éclair",
-      "eclair_pistachio": "Französisches Pistazien-Éclair",
       "menemen": "Menemen",
       "hookah_kumru": "Hookah Special Kumru",
       "hookah_kumru_desc": "Rindersucuk, Rinderwürstchen, Salami, geschmolzener Käse",
@@ -236,8 +233,7 @@
       "cheddar_fries_desc": "Pommes frites mit Spezial-Cheddarsoße",
       "chicken_curry_penne_desc": "Mit Hähnchen-Curry-Soße",
       "lemon_cheesecake_desc": "Cheesecake-Keksboden, Frischkäsefüllung, Zitronencremesoße",
-      "souffle_desc": "Lava-Schokoladenkuchen",
-      "chocolate_cake_desc": "Devil's Cake, Crème anglaise, Schokoladenstücke"
+      "souffle_desc": "Lava-Schokoladenkuchen"
     }
   },
   "drinks": {

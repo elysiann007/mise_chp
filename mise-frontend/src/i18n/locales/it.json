@@ -173,9 +173,6 @@
       "fruit_plate": "Piatto di Frutta",
       "lemon_cheesecake": "Cheesecake al Limone",
       "souffle": "Soufflé al Cioccolato",
-      "chocolate_cake": "Torta al Cioccolato Fondente",
-      "eclair_chocolate": "Éclair al Cioccolato",
-      "eclair_pistachio": "Éclair al Pistacchio",
       "menemen": "Menemen",
       "hookah_kumru": "Kumru Speciale Hookah",
       "hookah_kumru_desc": "Sucuk di manzo, wurstel di manzo, salame, formaggio kasseri fuso",
@@ -236,8 +233,7 @@
       "cheddar_fries_desc": "Patatine fritte con salsa speciale al cheddar",
       "chicken_curry_penne_desc": "Con salsa al curry di pollo",
       "lemon_cheesecake_desc": "Base di biscotto, crema di formaggio, salsa alla crema di limone",
-      "souffle_desc": "Tortino al cioccolato fondente",
-      "chocolate_cake_desc": "Devil's Cake, crema inglese, pezzi di cioccolato"
+      "souffle_desc": "Tortino al cioccolato fondente"
     }
   },
   "drinks": {

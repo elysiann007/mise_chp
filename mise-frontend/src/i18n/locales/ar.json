@@ -173,9 +173,6 @@
       "fruit_plate": "طبق الفواكه",
       "lemon_cheesecake": "تشيز كيك بالليمون",
       "souffle": "سوفليه الشوكولاتة",
-      "chocolate_cake": "كيك الشوكولاتة الذائبة",
-      "eclair_chocolate": "إيكلير شوكولاتة فرنسي",
-      "eclair_pistachio": "إيكلير فستق فرنسي",
       "menemen": "مينيمن",
       "hookah_kumru": "هوكاه سبيشال كومرو",
       "hookah_kumru_desc": "سجق بقري، نقانق بقري، سلامي، جبن قشقاوان مذاب",
@@ -236,8 +233,7 @@
       "cheddar_fries_desc": "بطاطس مقلية بصلصة الشيدر الخاصة",
       "chicken_curry_penne_desc": "مع صلصة الدجاج بالكاري",
       "lemon_cheesecake_desc": "قاعدة بسكويت، كريمة الجبن، صلصة كريمة الليمون",
-      "souffle_desc": "كيك شوكولاتة سائل",
-      "chocolate_cake_desc": "كيك ديفيلز، كريمة إنجليزية، قطع شوكولاتة"
+      "souffle_desc": "كيك شوكولاتة سائل"
     }
   },
   "drinks": {
