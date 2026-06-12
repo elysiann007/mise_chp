@@ -143,10 +143,10 @@ export const NON_ALCOHOLIC_DRINKS = [
     id: 'non_alcoholic_cocktails',
     category: 'Non-Alcoholic Cocktails',
     items: [
-      { key: 'sunrise_sunset', name: 'Sunrise Sunset', desc: 'Karadut püresi, sarı Red Bull, buz', price: '' },
-      { key: 'skys_the_limit', name: "Sky's the Limit", desc: 'Karadut püresi, beyaz Red Bull, buz', price: '' },
-      { key: 'one_in_a_melon', name: 'One in a Melon', desc: 'Çilek püresi, mango püresi, Red Bull Red, buz', price: '' },
-      { key: 'starry_eyed', name: 'Starry Eyed', desc: 'Karadut püresi, karadut şurubu, narenciye şurubu, Red Bull Blue, buz', price: '' },
+      { key: 'sunrise_sunset', name: 'Sunrise Sunset', desc: 'Karadut püresi, sarı Red Bull, buz', price: '₺250' },
+      { key: 'skys_the_limit', name: "Sky's the Limit", desc: 'Karadut püresi, beyaz Red Bull, buz', price: '₺250' },
+      { key: 'one_in_a_melon', name: 'One in a Melon', desc: 'Çilek püresi, mango püresi, Red Bull Red, buz', price: '₺250' },
+      { key: 'starry_eyed', name: 'Starry Eyed', desc: 'Karadut püresi, karadut şurubu, narenciye şurubu, Red Bull Blue, buz', price: '₺250' },
     ],
   },
   {

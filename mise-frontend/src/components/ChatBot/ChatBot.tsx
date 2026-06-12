@@ -8,17 +8,11 @@ export default function ChatBot() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [history, setHistory] = useState<Message[]>([])
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>(() => [{ role: 'assistant', content: t('chat.greeting') }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  // Reset greeting when language changes
-  useEffect(() => {
-    setMessages([{ role: 'assistant', content: t('chat.greeting') }])
-    setHistory([])
-  }, [t])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -46,9 +40,9 @@ export default function ChatBot() {
         body: JSON.stringify({ messages: newHistory }),
       })
       const data = await res.json()
-      const reply: Message = { role: 'assistant', content: data.reply }
+      const reply: Message = { role: 'assistant', content: data.reply ?? t('chat.error') }
       setMessages(prev => [...prev, reply])
-      setHistory(prev => [...prev, reply])
+      if (res.ok) setHistory(prev => [...prev, reply])
     } catch {
       setMessages(prev => [...prev, { role: 'assistant', content: t('chat.error') }])
     } finally {
@@ -58,7 +52,6 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Floating button */}
       <motion.button
         onClick={() => setOpen(o => !o)}
         className="fixed bottom-6 end-6 z-50 w-14 h-14 bg-amber-400 rounded-full shadow-xl shadow-amber-400/20 flex items-center justify-center hover:bg-amber-300 transition-colors duration-200"
@@ -82,8 +75,6 @@ export default function ChatBot() {
           )}
         </AnimatePresence>
       </motion.button>
-
-      {/* Chat window */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -94,7 +85,6 @@ export default function ChatBot() {
             className="fixed bottom-24 end-6 z-50 w-80 sm:w-96 bg-stone-950 border border-zinc-800 rounded-2xl shadow-2xl shadow-black/60 flex flex-col overflow-hidden"
             style={{ maxHeight: '70vh' }}
           >
-            {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3.5 bg-zinc-900/80 border-b border-zinc-800 backdrop-blur-sm">
               <div className="flex items-center justify-center flex-shrink-0">
                 <img src="/logo.png" alt="Hookah AI" className="h-8 w-auto max-w-[72px]" />
@@ -109,7 +99,6 @@ export default function ChatBot() {
               </div>
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-0">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -147,7 +136,6 @@ export default function ChatBot() {
               <div ref={bottomRef} />
             </div>
 
-            {/* Input */}
             <div className="px-3 py-3 border-t border-zinc-800 flex items-center gap-2 bg-stone-950">
               <input
                 ref={inputRef}

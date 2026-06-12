@@ -22,8 +22,6 @@ export default function LanguageSwitcher() {
   const switchLang = (code: string) => {
     i18n.changeLanguage(code)
     localStorage.setItem('chp_lang', code)
-    document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr'
-    document.documentElement.lang = code
     setOpen(false)
   }
 

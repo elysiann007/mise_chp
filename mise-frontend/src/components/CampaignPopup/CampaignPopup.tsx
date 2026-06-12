@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 export default function CampaignPopup() {
   const { t } = useTranslation()
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    if (!sessionStorage.getItem('chp_campaign_seen')) setVisible(true)
-  }, [])
+  const [visible, setVisible] = useState(() => !sessionStorage.getItem('chp_campaign_seen'))
 
   const close = () => {
     sessionStorage.setItem('chp_campaign_seen', '1')

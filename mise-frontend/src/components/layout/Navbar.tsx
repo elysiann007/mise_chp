@@ -16,8 +16,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  useEffect(() => { setOpen(false) }, [location.pathname])
-
   const NAV_LINKS = [
     { to: '/menu', label: t('nav.menu') },
     { to: '/about', label: t('nav.about') },
@@ -46,6 +44,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
+                onClick={() => setOpen(false)}
                 className={`text-xs tracking-[0.2em] uppercase font-medium transition-colors duration-200 ${
                   location.pathname.startsWith(link.to)
                     ? 'text-amber-400'
@@ -93,6 +92,7 @@ export default function Navbar() {
           <Link
             key={link.to}
             to={link.to}
+            onClick={() => setOpen(false)}
             className="font-display text-4xl text-white hover:text-amber-400 transition-colors duration-200"
             style={{ letterSpacing: '0.06em' }}
           >
@@ -101,6 +101,7 @@ export default function Navbar() {
         ))}
         <a
           href={`tel:${VENUE.phone.replace(/\s/g, '')}`}
+          onClick={() => setOpen(false)}
           className="mt-2 px-10 py-4 border-2 border-amber-400 text-amber-400 font-bold text-sm uppercase tracking-widest rounded-full hover:bg-amber-400 hover:text-stone-950 transition-all duration-300"
         >
           {t('nav.reserve')}

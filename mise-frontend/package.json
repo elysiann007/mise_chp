@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -n vite,api -c yellow,cyan \"vite\" \"bun run dev-server.ts\"",
+    "dev:vite": "vite",
     "dev:api": "bun run dev-server.ts",
     "dev:all": "concurrently -n vite,api -c yellow,cyan \"vite\" \"bun run dev-server.ts\"",
     "build": "tsc -b && vite build",
