@@ -32,7 +32,7 @@ export const FOOD_MENU = [
       { key: 'bonfile_boritos', name: 'Bonfile Boritos', desc: '120 gr bonfile, domates, marul, özel sos, cheddar peyniri, patates kızartması', price: '₺510', calories: '620' },
       { key: 'chicken_boritos', name: 'Tavuk Boritos', desc: '120 gr özel hazırlanmış tavuk, domates, marul, turşu ve özel sos, patates kızartması', price: '₺450', calories: '580' },
       { key: 'kofte_boritos', name: 'Köfte Boritos', desc: 'Special köfte, domates, marul, cheddar, özel sos ve patates kızartması', price: '₺480', calories: '640' },
-      { key: 'quesadilla', name: 'Quesadilla', desc: '120 gr soslu tavuk, mozerella, cheddar ve patates kızartması', price: '₺440', calories: '690' },
+      { key: 'quesadilla', name: 'Quesadilla', desc: '120 gr soslu tavuk, mozerella, cheddar ve patates kızartması', price: '₺470', calories: '690' },
     ],
   },
   {
