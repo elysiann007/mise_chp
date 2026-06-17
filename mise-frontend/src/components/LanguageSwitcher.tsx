@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { changeAppLanguage } from '../i18n'
 
 const LANGS = [
   { code: 'en', label: 'EN', name: 'English' },
@@ -22,8 +23,8 @@ export default function LanguageSwitcher() {
   const current = LANGS.find(l => l.code === i18n.language) ?? LANGS[0]
 
   const switchLang = (code: string) => {
-    i18n.changeLanguage(code)
     localStorage.setItem('chp_lang', code)
+    void changeAppLanguage(code)
     setOpen(false)
   }
 
