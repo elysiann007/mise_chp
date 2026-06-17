@@ -14,7 +14,6 @@ const AlcoholicMenu    = lazy(() => import('./pages/Menu/DrinksMenu/AlcoholicMen
 const About            = lazy(() => import('./pages/About/About'))
 const NotFound         = lazy(() => import('./pages/NotFound/NotFound'))
 const ChatBot          = lazy(() => import('./components/ChatBot/ChatBot'))
-const CampaignPopup    = lazy(() => import('./components/CampaignPopup/CampaignPopup'))
 
 function PageFallback() {
   return (
@@ -60,9 +59,6 @@ export default function App() {
       <Footer />
       <Suspense fallback={null}>
         <ChatBot />
-      </Suspense>
-      <Suspense fallback={null}>
-        <CampaignPopup />
       </Suspense>
     </BrowserRouter>
   )
