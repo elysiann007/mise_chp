@@ -48,12 +48,12 @@ export const FOOD_MENU = [
     id: 'burgers',
     category: 'Burgers',
     items: [
-      { key: 'burger_classic', name: 'Hamburger Classic', desc: 'Dana köfte 120 gr, domates, turşu, marul, patates kızartması ile servis edilir', price: '₺450', calories: '780' },
-      { key: 'cheeseburger', name: 'Cheeseburger', desc: 'Dana köfte 120 gr, domates, turşu, marul, cheddar peyniri, patates kızartması ile servis edilir', price: '₺470', calories: '870' },
-      { key: 'triple_mini_burger', name: 'Üçlü Mini Burger', desc: 'Üç adet farklı tavuk, köfte, et köfte ile hazırlanan lezzet minileri, patates kızartması ile servis edilir', price: '₺420', calories: '890' },
-      { key: 'chicken_burger', name: 'Tavuk Burger', desc: 'Çıtır tavuklarımız ile hazırlanan classic burger, patates kızartması ile servis edilir', price: '₺420', calories: '810' },
-      { key: 'bonfile_burger', name: 'Yaprak Bonfile Burger', desc: 'Bonfile dilimlerinin mantar, kırmızı biber ve cheddar peyniri ile buluşması, patates kızartması ile servis edilir', price: '₺520', calories: '840' },
-      { key: 'hookah_pub_burger', name: 'Hookah Pub Burger', desc: '120 gr dana köfte üzerine 120 gr bonfilenin mantar ve kırmızı biberle buluşması, patates kızartması ile servis edilir', price: '₺545', calories: '980' },
+      { key: 'burger_classic', name: 'Hamburger Classic', desc: 'Dana köfte 120 gr, domates, turşu, marul, patates kızartması ile servis edilir', price: '₺480', calories: '780' },
+      { key: 'cheeseburger', name: 'Cheeseburger', desc: 'Dana köfte 120 gr, domates, turşu, marul, cheddar peyniri, patates kızartması ile servis edilir', price: '₺500', calories: '870' },
+      { key: 'triple_mini_burger', name: 'Üçlü Mini Burger', desc: 'Üç adet farklı tavuk, köfte, et köfte ile hazırlanan lezzet minileri, patates kızartması ile servis edilir', price: '₺450', calories: '890' },
+      { key: 'chicken_burger', name: 'Tavuk Burger', desc: 'Çıtır tavuklarımız ile hazırlanan classic burger, patates kızartması ile servis edilir', price: '₺450', calories: '810' },
+      { key: 'bonfile_burger', name: 'Yaprak Bonfile Burger', desc: 'Bonfile dilimlerinin mantar, kırmızı biber ve cheddar peyniri ile buluşması, patates kızartması ile servis edilir', price: '₺550', calories: '840' },
+      { key: 'hookah_pub_burger', name: 'Hookah Pub Burger', desc: '120 gr dana köfte üzerine 120 gr bonfilenin mantar ve kırmızı biberle buluşması, patates kızartması ile servis edilir', price: '₺575', calories: '980' },
     ],
   },
   {
