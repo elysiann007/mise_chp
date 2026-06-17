@@ -131,7 +131,7 @@ const BRANDS = [
 // const circumference = 2 * Math.PI * 34
 
 export default function HookahBuilder() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <PageWrapper>
@@ -211,7 +211,12 @@ export default function HookahBuilder() {
                         className="w-3 h-3 rounded-full flex-shrink-0 shadow-sm"
                         style={{ backgroundColor: aroma.color }}
                       />
-                      <span className="text-sm font-medium text-zinc-300">{aroma.nameKey ? t(aroma.nameKey, aroma.name) : aroma.name}</span>
+                      <div>
+                        <span className="text-sm font-medium text-zinc-300">{aroma.nameKey ? t(aroma.nameKey, aroma.name) : aroma.name}</span>
+                        {i18n.language !== 'tr' && aroma.nameKey && (
+                          <div className="text-xs text-zinc-600 mt-0.5">{aroma.name}</div>
+                        )}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
