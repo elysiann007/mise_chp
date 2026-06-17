@@ -42,8 +42,8 @@ export default function Home() {
       <main>
         {/* ── Hero ── */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-50 dark:bg-stone-950">
-          <div className="absolute top-1/4 right-[-5%] w-[500px] h-[500px] rounded-full bg-amber-400/6 blur-[120px] animate-float pointer-events-none" />
-          <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-amber-600/5 blur-[100px] animate-float-delayed pointer-events-none" />
+          <div className="absolute top-1/4 right-[-5%] w-[500px] h-[500px] rounded-full bg-amber-400/6 blur-[80px] pointer-events-none" />
+          <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-amber-600/5 blur-[80px] pointer-events-none" />
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(251,191,36,0.06) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
 
           <div className="relative z-10 text-center px-5 max-w-5xl mx-auto">
@@ -79,9 +79,9 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.6 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
             <span className="text-stone-400 dark:text-zinc-600 text-[10px] tracking-[0.25em] uppercase">{t('home.scroll')}</span>
-            <div className="w-px h-10 bg-gradient-to-b from-amber-400/40 to-transparent animate-float" />
+            <div className="w-px h-10 bg-gradient-to-b from-amber-400/40 to-transparent" />
           </motion.div>
         </section>
 

@@ -1,15 +1,5 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import en from './locales/en.json'
-import tr from './locales/tr.json'
-import es from './locales/es.json'
-import it from './locales/it.json'
-import ru from './locales/ru.json'
-import ar from './locales/ar.json'
-import de from './locales/de.json'
-import el from './locales/el.json'
-import fa from './locales/fa.json'
-import az from './locales/az.json'
 
 const supportedLanguages = ['en', 'tr', 'es', 'it', 'ru', 'ar', 'de', 'el', 'fa', 'az']
 
@@ -18,7 +8,6 @@ const getBrowserLanguage = () => {
   const matchedLanguage = browserLanguages
     .map(language => language.toLowerCase().split('-')[0])
     .find(language => supportedLanguages.includes(language))
-
   return matchedLanguage ?? 'tr'
 }
 
@@ -28,22 +17,25 @@ const initialLanguage = stored && supportedLanguages.includes(stored) ? stored :
 document.documentElement.lang = initialLanguage
 document.documentElement.dir = ['ar', 'fa'].includes(initialLanguage) ? 'rtl' : 'ltr'
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: en },
-    tr: { translation: tr },
-    es: { translation: es },
-    it: { translation: it },
-    ru: { translation: ru },
-    ar: { translation: ar },
-    de: { translation: de },
-    el: { translation: el },
-    fa: { translation: fa },
-    az: { translation: az },
-  },
-  lng: initialLanguage,
-  fallbackLng: 'tr',
-  interpolation: { escapeValue: false },
+const loadLocale = (lang: string): Promise<Record<string, unknown>> =>
+  import(`./locales/${lang}.json`).then((m) => m.default)
+
+export const i18nReady: Promise<typeof i18n> = loadLocale(initialLanguage).then((translations) => {
+  i18n.use(initReactI18next).init({
+    resources: { [initialLanguage]: { translation: translations } },
+    lng: initialLanguage,
+    fallbackLng: 'tr',
+    interpolation: { escapeValue: false },
+  })
+
+  i18n.on('languageChanged', async (lang) => {
+    if (!i18n.hasResourceBundle(lang, 'translation')) {
+      const mod = await loadLocale(lang)
+      i18n.addResourceBundle(lang, 'translation', mod)
+    }
+  })
+
+  return i18n
 })
 
 export default i18n
