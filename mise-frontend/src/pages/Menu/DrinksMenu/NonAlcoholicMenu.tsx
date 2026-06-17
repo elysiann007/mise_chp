@@ -39,7 +39,7 @@ export default function NonAlcoholicMenu() {
                   {t(`drinks.${section.id}`).toUpperCase()}
                 </h2>
                 <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 to-transparent" />
-                <span className="text-stone-300 dark:text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">0{si + 1}</span>
+                <span className="text-stone-300 dark:text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">{String(si + 1).padStart(2, '0')}</span>
               </motion.div>
               <div className="space-y-0">
                 {section.items.map((item, i) => (

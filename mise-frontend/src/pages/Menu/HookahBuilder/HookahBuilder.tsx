@@ -159,7 +159,7 @@ export default function HookahBuilder() {
                 </div>
                 <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 to-transparent" />
                 <span className="font-mono text-amber-600 dark:text-amber-400 font-semibold text-sm flex-shrink-0">{brand.price}</span>
-                <span className="text-stone-300 dark:text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">0{bi + 1}</span>
+                <span className="text-stone-300 dark:text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">{String(bi + 1).padStart(2, '0')}</span>
               </motion.div>
 
               {/* Aroma grid */}

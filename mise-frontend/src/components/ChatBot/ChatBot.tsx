@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 type Message = { role: 'user' | 'assistant'; content: string }
 
 export default function ChatBot() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [open, setOpen] = useState(false)
   const [history, setHistory] = useState<Message[]>([])
   const [messages, setMessages] = useState<Message[]>(() => [{ role: 'assistant', content: t('chat.greeting') }])
@@ -13,6 +13,16 @@ export default function ChatBot() {
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Keep the initial greeting in sync with the active language, but only while
+  // the conversation hasn't started yet (don't clobber a real chat history).
+  useEffect(() => {
+    setMessages(prev =>
+      prev.length === 1 && prev[0].role === 'assistant'
+        ? [{ role: 'assistant', content: t('chat.greeting') }]
+        : prev,
+    )
+  }, [i18n.language, t])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
