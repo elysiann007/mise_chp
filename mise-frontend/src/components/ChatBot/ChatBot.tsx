@@ -82,20 +82,20 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="fixed bottom-24 end-6 z-50 w-80 sm:w-96 bg-stone-950 border border-zinc-800 rounded-2xl shadow-2xl shadow-black/60 flex flex-col overflow-hidden"
+            className="fixed bottom-24 end-6 z-50 w-80 sm:w-96 bg-white dark:bg-stone-950 border border-stone-200 dark:border-zinc-800 rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/60 flex flex-col overflow-hidden"
             style={{ maxHeight: '70vh' }}
           >
-            <div className="flex items-center gap-3 px-4 py-3.5 bg-zinc-900/80 border-b border-zinc-800 backdrop-blur-sm">
+            <div className="flex items-center gap-3 px-4 py-3.5 bg-stone-100/80 dark:bg-zinc-900/80 border-b border-stone-200 dark:border-zinc-800 backdrop-blur-sm">
               <div className="flex items-center justify-center flex-shrink-0">
                 <img src="/logo.png" alt="Hookah AI" className="h-8 w-auto max-w-[72px]" />
               </div>
               <div>
-                <p className="text-white text-sm font-semibold leading-none">{t('chat.title')}</p>
-                <p className="text-zinc-500 text-[11px] mt-0.5">{t('chat.subtitle')}</p>
+                <p className="text-stone-900 dark:text-white text-sm font-semibold leading-none">{t('chat.title')}</p>
+                <p className="text-stone-500 dark:text-zinc-500 text-[11px] mt-0.5">{t('chat.subtitle')}</p>
               </div>
               <div className="ms-auto flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                <span className="text-zinc-500 text-[10px] tracking-wide">Online</span>
+                <span className="text-stone-400 dark:text-zinc-500 text-[10px] tracking-wide">Online</span>
               </div>
             </div>
 
@@ -104,13 +104,13 @@ export default function ChatBot() {
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   {msg.role === 'assistant' && (
                     <div className="w-6 h-6 rounded-full bg-amber-400/20 border border-amber-400/30 flex items-center justify-center flex-shrink-0 me-2 mt-0.5">
-                      <span className="text-amber-400 text-[8px] font-bold">AI</span>
+                      <span className="text-amber-600 dark:text-amber-400 text-[8px] font-bold">AI</span>
                     </div>
                   )}
                   <div className={`max-w-[75%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                     msg.role === 'user'
                       ? 'bg-amber-400 text-stone-950 font-medium rounded-br-sm'
-                      : 'bg-zinc-800/80 text-zinc-100 rounded-bl-sm'
+                      : 'bg-stone-100 dark:bg-zinc-800/80 text-stone-800 dark:text-zinc-100 rounded-bl-sm'
                   }`}>
                     {msg.content}
                   </div>
@@ -120,13 +120,13 @@ export default function ChatBot() {
               {loading && (
                 <div className="flex justify-start">
                   <div className="w-6 h-6 rounded-full bg-amber-400/20 border border-amber-400/30 flex items-center justify-center flex-shrink-0 me-2 mt-0.5">
-                    <span className="text-amber-400 text-[8px] font-bold">AI</span>
+                    <span className="text-amber-600 dark:text-amber-400 text-[8px] font-bold">AI</span>
                   </div>
-                  <div className="bg-zinc-800/80 rounded-2xl rounded-bl-sm px-4 py-3.5 flex items-center gap-1.5">
+                  <div className="bg-stone-100 dark:bg-zinc-800/80 rounded-2xl rounded-bl-sm px-4 py-3.5 flex items-center gap-1.5">
                     {[0, 1, 2].map(i => (
                       <span
                         key={i}
-                        className="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-bounce"
+                        className="w-1.5 h-1.5 bg-stone-400 dark:bg-zinc-400 rounded-full animate-bounce"
                         style={{ animationDelay: `${i * 0.15}s` }}
                       />
                     ))}
@@ -136,7 +136,7 @@ export default function ChatBot() {
               <div ref={bottomRef} />
             </div>
 
-            <div className="px-3 py-3 border-t border-zinc-800 flex items-center gap-2 bg-stone-950">
+            <div className="px-3 py-3 border-t border-stone-200 dark:border-zinc-800 flex items-center gap-2 bg-white dark:bg-stone-950">
               <input
                 ref={inputRef}
                 value={input}
@@ -144,7 +144,7 @@ export default function ChatBot() {
                 onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
                 placeholder={t('chat.placeholder')}
                 disabled={loading}
-                className="flex-1 bg-zinc-900 border border-zinc-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-400/50 transition-colors duration-200 disabled:opacity-50"
+                className="flex-1 bg-stone-100 dark:bg-zinc-900 border border-stone-300 dark:border-zinc-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white placeholder:text-stone-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 dark:focus:border-amber-400/50 transition-colors duration-200 disabled:opacity-50"
               />
               <button
                 onClick={send}

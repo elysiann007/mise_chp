@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+/* class-based dark mode: add .dark to <html> to activate dark: utilities */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-display: 'Bebas Neue', 'Arial Black', sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -35,9 +38,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fafaf9;
+  color: #1c1917;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.2s ease;
+}
+
+.dark body {
   background: #0c0a09;
   color: #ffffff;
-  overflow-x: hidden;
 }
 
 #root {
@@ -46,14 +55,23 @@ body {
 }
 
 ::selection {
+  background: rgba(217, 119, 6, 0.2);
+  color: #1c1917;
+}
+
+.dark ::selection {
   background: rgba(251, 191, 36, 0.25);
   color: #ffffff;
 }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0c0a09; }
-::-webkit-scrollbar-thumb { background: #92400e; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
+::-webkit-scrollbar-track { background: #fafaf9; }
+::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #d97706; }
+
+.dark ::-webkit-scrollbar-track { background: #0c0a09; }
+.dark ::-webkit-scrollbar-thumb { background: #92400e; border-radius: 2px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
 
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -64,6 +82,13 @@ body {
 .font-display { font-family: var(--font-display); }
 
 .text-gradient-amber {
+  background: linear-gradient(135deg, #b45309, #d97706, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient-amber {
   background: linear-gradient(135deg, #fde68a, #fbbf24, #f59e0b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -3,12 +3,31 @@ import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../LanguageSwitcher'
 import { VENUE } from '../../constants/venue'
+import { useTheme } from '../../context/ThemeContext'
+
+function SunIcon() {
+  return (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <circle cx="12" cy="12" r="4" />
+      <path strokeLinecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  )
+}
+
+function MoonIcon() {
+  return (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+    </svg>
+  )
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const { t } = useTranslation()
+  const { theme, toggle } = useTheme()
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 50)
@@ -26,7 +45,7 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled || open
-            ? 'bg-stone-950/90 backdrop-blur-xl border-b border-amber-500/10 py-3'
+            ? 'bg-white/90 dark:bg-stone-950/90 backdrop-blur-xl border-b border-amber-500/15 dark:border-amber-500/10 py-3'
             : 'bg-transparent py-5'
         }`}
       >
@@ -47,14 +66,21 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className={`text-xs tracking-[0.2em] uppercase font-medium transition-colors duration-200 ${
                   location.pathname.startsWith(link.to)
-                    ? 'text-amber-400'
-                    : 'text-zinc-400 hover:text-white'
+                    ? 'text-amber-600 dark:text-amber-400'
+                    : 'text-stone-600 dark:text-zinc-400 hover:text-stone-900 dark:hover:text-white'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
             <LanguageSwitcher />
+            <button
+              onClick={toggle}
+              className="w-8 h-8 flex items-center justify-center text-stone-500 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
             <a
               href={`tel:${VENUE.phone.replace(/\s/g, '')}`}
               className="px-5 py-2.5 bg-amber-400 text-stone-950 text-xs font-bold tracking-[0.15em] uppercase rounded-full hover:bg-amber-300 transition-colors duration-200"
@@ -64,23 +90,30 @@ export default function Navbar() {
           </div>
 
           <div className="md:hidden flex items-center gap-3">
+            <button
+              onClick={toggle}
+              className="w-8 h-8 flex items-center justify-center text-stone-500 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
             <LanguageSwitcher />
-          <button
-            onClick={() => setOpen(o => !o)}
-            className="flex flex-col gap-1.5 p-1.5 relative z-50"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-          >
-            <span className={`block w-6 h-[2px] bg-amber-400 transition-all duration-300 origin-center ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
-            <span className={`block w-6 h-[2px] bg-amber-400 transition-all duration-300 ${open ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-6 h-[2px] bg-amber-400 transition-all duration-300 origin-center ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
-          </button>
+            <button
+              onClick={() => setOpen(o => !o)}
+              className="flex flex-col gap-1.5 p-1.5 relative z-50"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+            >
+              <span className={`block w-6 h-[2px] bg-amber-500 dark:bg-amber-400 transition-all duration-300 origin-center ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
+              <span className={`block w-6 h-[2px] bg-amber-500 dark:bg-amber-400 transition-all duration-300 ${open ? 'opacity-0 scale-x-0' : ''}`} />
+              <span className={`block w-6 h-[2px] bg-amber-500 dark:bg-amber-400 transition-all duration-300 origin-center ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+            </button>
           </div>
         </div>
       </nav>
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-stone-950 flex flex-col items-center justify-center gap-8 transition-all duration-500 md:hidden ${
+        className={`fixed inset-0 z-40 bg-stone-50 dark:bg-stone-950 flex flex-col items-center justify-center gap-8 transition-all duration-500 md:hidden ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -93,7 +126,7 @@ export default function Navbar() {
             key={link.to}
             to={link.to}
             onClick={() => setOpen(false)}
-            className="font-display text-4xl text-white hover:text-amber-400 transition-colors duration-200"
+            className="font-display text-4xl text-stone-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
             style={{ letterSpacing: '0.06em' }}
           >
             {link.label.toUpperCase()}
@@ -102,7 +135,7 @@ export default function Navbar() {
         <a
           href={`tel:${VENUE.phone.replace(/\s/g, '')}`}
           onClick={() => setOpen(false)}
-          className="mt-2 px-10 py-4 border-2 border-amber-400 text-amber-400 font-bold text-sm uppercase tracking-widest rounded-full hover:bg-amber-400 hover:text-stone-950 transition-all duration-300"
+          className="mt-2 px-10 py-4 border-2 border-amber-500 dark:border-amber-400 text-amber-600 dark:text-amber-400 font-bold text-sm uppercase tracking-widest rounded-full hover:bg-amber-500 dark:hover:bg-amber-400 hover:text-white dark:hover:text-stone-950 transition-all duration-300"
         >
           {t('nav.reserve')}
         </a>

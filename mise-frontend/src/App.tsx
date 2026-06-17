@@ -17,8 +17,8 @@ const ChatBot          = lazy(() => import('./components/ChatBot/ChatBot'))
 
 function PageFallback() {
   return (
-    <div className="min-h-screen bg-stone-950 flex items-center justify-center">
-      <div className="w-8 h-8 rounded-full border-2 border-amber-400/30 border-t-amber-400 animate-spin" />
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 flex items-center justify-center">
+      <div className="w-8 h-8 rounded-full border-2 border-amber-500/30 dark:border-amber-400/30 border-t-amber-500 dark:border-t-amber-400 animate-spin" />
     </div>
   )
 }

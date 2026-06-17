@@ -10,9 +10,9 @@ export default function FoodMenu() {
 
   return (
     <PageWrapper>
-      <main className="min-h-screen bg-stone-950 pt-20">
+      <main className="min-h-screen bg-stone-50 dark:bg-stone-950 pt-20">
         {/* Header */}
-        <div className="relative py-20 px-5 border-b border-zinc-800/60 overflow-hidden">
+        <div className="relative py-20 px-5 border-b border-stone-200 dark:border-zinc-800/60 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/4 rounded-full blur-[100px] pointer-events-none" />
           <motion.div
             variants={stagger}
@@ -21,21 +21,21 @@ export default function FoodMenu() {
             className="max-w-3xl mx-auto relative z-10"
           >
             <motion.div variants={fadeIn}>
-              <Link to="/menu" className="inline-flex items-center gap-1.5 text-zinc-500 text-sm hover:text-amber-400 transition-colors mb-6">
+              <Link to="/menu" className="inline-flex items-center gap-1.5 text-stone-500 dark:text-zinc-500 text-sm hover:text-amber-600 dark:hover:text-amber-400 transition-colors mb-6">
                 ← {t('food.back')}
               </Link>
             </motion.div>
-            <motion.span variants={fadeUp} className="block text-amber-400 text-[10px] tracking-[0.35em] uppercase mb-2">
+            <motion.span variants={fadeUp} className="block text-amber-600 dark:text-amber-400 text-[10px] tracking-[0.35em] uppercase mb-2">
               {t('food.label')}
             </motion.span>
             <motion.h1
               variants={fadeUp}
-              className="font-display text-white"
+              className="font-display text-stone-900 dark:text-white"
               style={{ fontSize: 'clamp(3rem, 10vw, 7rem)', letterSpacing: '0.04em' }}
             >
               {t('food.title')}
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-zinc-500 mt-3 max-w-md text-sm leading-relaxed">
+            <motion.p variants={fadeUp} className="text-stone-500 dark:text-zinc-500 mt-3 max-w-md text-sm leading-relaxed">
               {t('food.desc')}
             </motion.p>
           </motion.div>
@@ -54,13 +54,13 @@ export default function FoodMenu() {
               {/* Section header */}
               <motion.div variants={slideLeft} className="flex items-center gap-5 mb-10">
                 <h2
-                  className="font-display text-amber-400 flex-shrink-0"
+                  className="font-display text-amber-600 dark:text-amber-400 flex-shrink-0"
                   style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)', letterSpacing: '0.1em' }}
                 >
                   {t(`food.${section.id}`).toUpperCase()}
                 </h2>
                 <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 to-transparent" />
-                <span className="text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">
+                <span className="text-stone-300 dark:text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">
                   0{si + 1}
                 </span>
               </motion.div>
@@ -71,31 +71,31 @@ export default function FoodMenu() {
                   <motion.div
                     key={item.key}
                     variants={fadeUp}
-                    className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-zinc-800/60' : ''}`}
+                    className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-stone-200 dark:border-zinc-800/60' : ''}`}
                   >
                     <div className="flex items-baseline gap-3">
                       <div>
                         <span
-                          className="font-display text-white group-hover:text-amber-400 transition-colors duration-200"
+                          className="font-display text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200"
                           style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', letterSpacing: '0.04em' }}
                         >
                           {`${i + 1}. ${t(`food.items.${item.key}`, item.name)}`.toUpperCase()}
                         </span>
                         {i18n.language !== 'tr' && (
-                          <div className="text-xs text-zinc-500 mt-1">
+                          <div className="text-xs text-stone-400 dark:text-zinc-500 mt-1">
                             {i18n.getFixedT('tr')(`food.items.${item.key}`)}
                           </div>
                         )}
                       </div>
-                      <span className="flex-1 border-b border-dotted border-zinc-700 mb-1.5 min-w-[2rem]" />
+                      <span className="flex-1 border-b border-dotted border-stone-300 dark:border-zinc-700 mb-1.5 min-w-[2rem]" />
                       <div className="flex flex-col items-end flex-shrink-0">
-                        <span className="font-mono text-amber-400 font-semibold text-sm">{item.price}</span>
+                        <span className="font-mono text-amber-600 dark:text-amber-400 font-semibold text-sm">{item.price}</span>
                         {item.calories && (
-                          <span className="text-zinc-600 text-[10px] mt-0.5">{item.calories} kcal</span>
+                          <span className="text-stone-400 dark:text-zinc-600 text-[10px] mt-0.5">{item.calories} kcal</span>
                         )}
                       </div>
                     </div>
-                    <p className="text-zinc-500 text-sm mt-1.5 leading-relaxed group-hover:text-zinc-400 transition-colors duration-200">
+                    <p className="text-stone-500 dark:text-zinc-500 text-sm mt-1.5 leading-relaxed group-hover:text-stone-600 dark:group-hover:text-zinc-400 transition-colors duration-200">
                       {item.desc && t(`food.items.${item.key}_desc`, item.desc)}
                     </p>
                   </motion.div>
@@ -109,9 +109,9 @@ export default function FoodMenu() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="border-t border-zinc-800/60 pt-8 text-center"
+            className="border-t border-stone-200 dark:border-zinc-800/60 pt-8 text-center"
           >
-            <p className="text-zinc-700 text-xs leading-relaxed">
+            <p className="text-stone-300 dark:text-zinc-700 text-xs leading-relaxed">
               {t('food.allergen')}
             </p>
           </motion.div>
