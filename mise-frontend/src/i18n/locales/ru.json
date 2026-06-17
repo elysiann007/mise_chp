@@ -439,7 +439,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl Жесть"
+      "guinness_44": "Guinness 44cl Жесть",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -477,11 +480,6 @@
     "send": "Отправить",
     "greeting": "Привет! Я Hookah AI, ваш гид по Cafe Hookah Pub. Спросите меня о наших кальянных блендах, меню, часах работы или местоположении!",
     "error": "Что-то пошло не так. Пожалуйста, попробуйте снова."
-  },
-  "popup": {
-    "close": "Закрыть",
-    "dismiss": "Нажмите, чтобы закрыть",
-    "alt": "Рекламный постер"
   },
   "footer": {
     "tagline": "Премиальное убежище вкусов, дыма и напитков.",

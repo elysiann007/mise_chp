@@ -439,7 +439,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl"
+      "guinness_44": "Guinness 44cl",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -477,11 +480,6 @@
     "send": "إرسال",
     "greeting": "مرحبًا! أنا Hookah AI، دليلك في كافيه هوكا بوب. اسألني عن خلطات الشيشة أو القائمة أو أوقات العمل أو الموقع!",
     "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
-  },
-  "popup": {
-    "close": "إغلاق",
-    "dismiss": "انقر للإغلاق",
-    "alt": "ملصق العرض"
   },
   "footer": {
     "tagline": "ملاذ راقٍ من النكهات والدخان والمشروبات.",

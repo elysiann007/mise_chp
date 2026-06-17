@@ -445,7 +445,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl Kutu"
+      "guinness_44": "Guinness 44cl Kutu",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -483,11 +486,6 @@
     "send": "Göndər",
     "greeting": "Salam! Mən Cafe Hookah Pub-un rəqəmsal köməkçisiyəm. Qəlyan qarışıqları, menyu, iş saatları və ya məkan haqqında soruşa bilərsiniz!",
     "error": "Nəsə səhv oldu. Lütfən yenidən cəhd edin."
-  },
-  "popup": {
-    "close": "Bağla",
-    "dismiss": "Bağlamaq üçün klikləyin",
-    "alt": "Kampaniya posteri"
   },
   "footer": {
     "tagline": "Dadların, tüstünün və içkilərin premium məkanı.",

@@ -439,7 +439,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl Dose"
+      "guinness_44": "Guinness 44cl Dose",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -477,11 +480,6 @@
     "send": "Senden",
     "greeting": "Hallo! Ich bin Hookah AI, dein Assistent für das Cafe Hookah Pub. Frag mich nach unseren Hookah-Blends, dem Menü, den Öffnungszeiten oder unserem Standort!",
     "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
-  },
-  "popup": {
-    "close": "Schließen",
-    "dismiss": "Klicken zum Schließen",
-    "alt": "Kampagnen-Poster"
   },
   "footer": {
     "tagline": "Ein erstklassiges Refugium voller Aromen, Rauch und Spirits.",

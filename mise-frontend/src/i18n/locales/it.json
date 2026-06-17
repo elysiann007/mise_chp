@@ -439,7 +439,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl Lattina"
+      "guinness_44": "Guinness 44cl Lattina",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -477,11 +480,6 @@
     "send": "Invia",
     "greeting": "Ciao! Sono Hookah AI, la tua guida al Cafe Hookah Pub. Chiedimi dei nostri blend di hookah, del menu, degli orari o dell'ubicazione!",
     "error": "Qualcosa è andato storto. Riprova."
-  },
-  "popup": {
-    "close": "Chiudi",
-    "dismiss": "Clicca per chiudere",
-    "alt": "Poster della campagna"
   },
   "footer": {
     "tagline": "Un santuario premium di sapori, fumo e spirits.",

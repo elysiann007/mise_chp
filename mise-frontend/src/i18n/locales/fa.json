@@ -445,7 +445,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl قوطی"
+      "guinness_44": "Guinness 44cl قوطی",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -483,11 +486,6 @@
     "send": "ارسال",
     "greeting": "سلام! من دستیار دیجیتال Cafe Hookah Pub هستم. می‌توانید درباره ترکیب‌های قلیان، منو، ساعات کاری یا مکان بپرسید!",
     "error": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
-  },
-  "popup": {
-    "close": "بستن",
-    "dismiss": "برای بستن کلیک کنید",
-    "alt": "پوستر کمپین"
   },
   "footer": {
     "tagline": "مکان ممتاز طعم‌ها، دود و نوشیدنی‌ها.",

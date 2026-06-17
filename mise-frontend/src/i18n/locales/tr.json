@@ -487,11 +487,6 @@
     "greeting": "Merhaba! Ben Hookah AI, Cafe Hookah Pub'ın dijital asistanı. Hookah blendlerimiz, menümüz, çalışma saatlerimiz veya konumumuz hakkında soru sorabilirsiniz!",
     "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
   },
-  "popup": {
-    "close": "Kapat",
-    "dismiss": "Kapatmak için tıklayın",
-    "alt": "Kampanya Afişi"
-  },
   "footer": {
     "tagline": "Lezzetler, duman ve spiritlerin premium sığınağı.",
     "explore": "Keşfet",

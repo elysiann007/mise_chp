@@ -5,24 +5,18 @@ import { useTranslation } from 'react-i18next'
 type Message = { role: 'user' | 'assistant'; content: string }
 
 export default function ChatBot() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [history, setHistory] = useState<Message[]>([])
-  const [messages, setMessages] = useState<Message[]>(() => [{ role: 'assistant', content: t('chat.greeting') }])
+  const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Keep the initial greeting in sync with the active language, but only while
-  // the conversation hasn't started yet (don't clobber a real chat history).
-  useEffect(() => {
-    setMessages(prev =>
-      prev.length === 1 && prev[0].role === 'assistant'
-        ? [{ role: 'assistant', content: t('chat.greeting') }]
-        : prev,
-    )
-  }, [i18n.language, t])
+  // The greeting is derived (not stored in state) so it always reflects the
+  // active language. The real conversation lives in `messages`.
+  const displayMessages: Message[] = [{ role: 'assistant', content: t('chat.greeting') }, ...messages]
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -110,7 +104,7 @@ export default function ChatBot() {
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-0">
-              {messages.map((msg, i) => (
+              {displayMessages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   {msg.role === 'assistant' && (
                     <div className="w-6 h-6 rounded-full bg-amber-400/20 border border-amber-400/30 flex items-center justify-center flex-shrink-0 me-2 mt-0.5">

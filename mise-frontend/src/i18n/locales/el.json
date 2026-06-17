@@ -439,7 +439,10 @@
       "desperados_33": "Desperados 33cl",
       "weihenstephan_33": "Weihenstephan Hefeweissbier 33cl",
       "weihenstephan_vitus": "Weihenstephan Vitus 33cl",
-      "guinness_44": "Guinness 44cl Κουτί"
+      "guinness_44": "Guinness 44cl Κουτί",
+      "tuborg_5li": "5x Tuborg",
+      "carlsberg_5li": "5x Carlsberg",
+      "tekila_kampanya": "Tequila"
     }
   },
   "about": {
@@ -477,11 +480,6 @@
     "send": "Αποστολή",
     "greeting": "Γεια! Είμαι το Hookah AI, ο βοηθός σου στο Cafe Hookah Pub. Ρώτα με για τα blends ναργιλέ, το μενού, τις ώρες λειτουργίας ή την τοποθεσία μας!",
     "error": "Κάτι πήγε στραβά. Παρακαλώ δοκίμασε ξανά."
-  },
-  "popup": {
-    "close": "Κλείσιμο",
-    "dismiss": "Κλικ για κλείσιμο",
-    "alt": "Αφίσα καμπάνιας"
   },
   "footer": {
     "tagline": "Ένα premium καταφύγιο γεύσεων, καπνού και spirits.",
