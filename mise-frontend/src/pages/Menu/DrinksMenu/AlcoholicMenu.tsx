@@ -56,7 +56,12 @@ export default function AlcoholicMenu() {
                         )}
                       </div>
                       <span className="flex-1 border-b border-dotted border-zinc-700 mb-1.5 min-w-[2rem]" />
-                      <span className="font-mono text-amber-400 font-semibold text-sm flex-shrink-0">{item.price}</span>
+                      <div className="flex flex-col items-end flex-shrink-0">
+                        <span className="font-mono text-amber-400 font-semibold text-sm">{item.price}</span>
+                        {item.calories && (
+                          <span className="text-zinc-600 text-[10px] mt-0.5">{item.calories} kcal</span>
+                        )}
+                      </div>
                     </div>
                     <p className="text-zinc-500 text-sm mt-1.5 leading-relaxed group-hover:text-zinc-400 transition-colors duration-200">
                       {item.desc && t(`drinks.items.${item.key}_desc`, item.desc)}
