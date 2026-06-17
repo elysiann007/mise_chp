@@ -6,7 +6,7 @@ import { fadeUp, fadeIn, stagger, slideLeft } from '../../../lib/animations'
 import { FOOD_MENU } from '../../../constants/menu'
 
 export default function FoodMenu() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <PageWrapper>
@@ -74,12 +74,19 @@ export default function FoodMenu() {
                     className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-zinc-800/60' : ''}`}
                   >
                     <div className="flex items-baseline gap-3">
-                      <span
-                        className="font-display text-white group-hover:text-amber-400 transition-colors duration-200"
-                        style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', letterSpacing: '0.04em' }}
-                      >
-                        {`${i + 1}. ${t(`food.items.${item.key}`, item.name)}`.toUpperCase()}
-                      </span>
+                      <div>
+                        <span
+                          className="font-display text-white group-hover:text-amber-400 transition-colors duration-200"
+                          style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', letterSpacing: '0.04em' }}
+                        >
+                          {`${i + 1}. ${t(`food.items.${item.key}`, item.name)}`.toUpperCase()}
+                        </span>
+                        {i18n.language !== 'tr' && (
+                          <div className="text-xs text-zinc-500 mt-1">
+                            {i18n.getFixedT('tr')(`food.items.${item.key}`)}
+                          </div>
+                        )}
+                      </div>
                       <span className="flex-1 border-b border-dotted border-zinc-700 mb-1.5 min-w-[2rem]" />
                       <div className="flex flex-col items-end flex-shrink-0">
                         <span className="font-mono text-amber-400 font-semibold text-sm">{item.price}</span>

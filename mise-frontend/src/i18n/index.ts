@@ -8,8 +8,10 @@ import ru from './locales/ru.json'
 import ar from './locales/ar.json'
 import de from './locales/de.json'
 import el from './locales/el.json'
+import fa from './locales/fa.json'
+import az from './locales/az.json'
 
-const supportedLanguages = ['en', 'tr', 'es', 'it', 'ru', 'ar', 'de', 'el']
+const supportedLanguages = ['en', 'tr', 'es', 'it', 'ru', 'ar', 'de', 'el', 'fa', 'az']
 
 const getBrowserLanguage = () => {
   const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language]
@@ -24,7 +26,7 @@ const stored = localStorage.getItem('chp_lang')
 const initialLanguage = stored && supportedLanguages.includes(stored) ? stored : getBrowserLanguage()
 
 document.documentElement.lang = initialLanguage
-document.documentElement.dir = initialLanguage === 'ar' ? 'rtl' : 'ltr'
+document.documentElement.dir = ['ar', 'fa'].includes(initialLanguage) ? 'rtl' : 'ltr'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -36,6 +38,8 @@ i18n.use(initReactI18next).init({
     ar: { translation: ar },
     de: { translation: de },
     el: { translation: el },
+    fa: { translation: fa },
+    az: { translation: az },
   },
   lng: initialLanguage,
   fallbackLng: 'tr',

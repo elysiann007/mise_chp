@@ -10,6 +10,8 @@ const LANGS = [
   { code: 'ar', label: 'AR', name: 'العربية' },
   { code: 'de', label: 'DE', name: 'Deutsch' },
   { code: 'el', label: 'EL', name: 'Ελληνικά' },
+  { code: 'fa', label: 'FA', name: 'فارسی' },
+  { code: 'az', label: 'AZ', name: 'Azərbaycanca' },
 ]
 
 export default function LanguageSwitcher() {
@@ -26,7 +28,7 @@ export default function LanguageSwitcher() {
   }
 
   useEffect(() => {
-    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr'
+    document.documentElement.dir = ['ar', 'fa'].includes(i18n.language) ? 'rtl' : 'ltr'
     document.documentElement.lang = i18n.language
   }, [i18n.language])
 
