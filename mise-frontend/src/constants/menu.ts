@@ -100,7 +100,7 @@ export const FOOD_MENU = [
       { key: 'crispy_chicken_basket', name: 'Çıtır Tavuk Sepeti', desc: 'Özel soslu çıtır tavuk, patates kızartması', price: '₺400', calories: '650' },
       { key: 'sausage_basket', name: 'Sosis Tava Sepeti', desc: 'Dana sosis, patates kızartması', price: '₺400', calories: '620' },
       { key: 'mixed_hot_basket', name: 'Karışık Sıcak Sepeti', desc: 'Patates, paçanga böreği, soğan halkası, sigara böreği, çıtır tavuk, sosis', price: '₺480', calories: '780' },
-      { key: 'cheddar_fries', name: 'Cheddarlı Patates', desc: 'Özel cheddar soslu patates kızartması', price: '₺330', calories: '540' },
+      { key: 'cheddar_fries', name: 'Cheddarlı Patates', desc: 'Özel cheddar soslu patates kızartması', price: '₺380', calories: '540' },
     ],
   },
   {
