@@ -17,7 +17,7 @@ export const FOOD_MENU = [
     category: 'Toasts',
     items: [
       { key: 'mixed_toast', name: 'Karışık Tost', desc: 'Dana sucuk, dana salam, dana sosis, mozerella, patates', price: '₺350', calories: '520' },
-      { key: 'sucuk_toast', name: 'Sucuklu Tost', desc: 'Dana sucuk, mozerella, patates', price: '₺320', calories: '460' },
+      { key: 'sucuk_toast', name: 'Sucuk Kaşar Tost', desc: 'Dana sucuk, kaşar peyniri, patates', price: '₺340', calories: '460' },
       { key: 'boritos_wrap', name: 'Boritos', desc: 'Dana sucuk, cheddar peyniri, mozerella, özel sos dürüm hali', price: '₺380', calories: '580' },
       { key: 'salami_toast', name: 'Salamlı Tost', desc: 'Dana salam, mozerella, patates', price: '₺340', calories: '430' },
       { key: 'kasarli_tost', name: 'Kaşarlı Tost', desc: '', price: '₺320', calories: '' },
@@ -186,7 +186,7 @@ export const NON_ALCOHOLIC_DRINKS = [
     id: 'cold_drinks',
     category: 'Cold Drinks',
     items: [
-      { key: 'lemonade', name: 'Limonata', desc: '', price: '₺190', calories: '120' },
+      { key: 'lemonade', name: 'Limonata', desc: '', price: '₺180', calories: '120' },
       { key: 'ice_tea', name: 'Ice Tea', desc: '', price: '₺130', calories: '90' },
       { key: 'cola', name: 'Cola', desc: '', price: '₺120', calories: '140' },
       { key: 'cola_zero', name: 'Cola Zero', desc: '', price: '₺120', calories: '2' },
