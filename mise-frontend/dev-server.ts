@@ -45,14 +45,19 @@ const server = Bun.serve({
     }))
 
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
           contents,
-          generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
+          generationConfig: {
+            maxOutputTokens: 1536,
+            temperature: 0.7,
+            topP: 0.95,
+            thinkingConfig: { thinkingBudget: 512 },
+          },
         }),
       },
     )
@@ -67,7 +72,8 @@ const server = Bun.serve({
 
     const data = await res.json()
     const parts = data.candidates?.[0]?.content?.parts ?? []
-    const reply = (parts.find((p: { text?: string }) => p.text)?.text) ?? 'No response received.'
+    // Skip "thought" parts so we only return the visible answer text.
+    const reply = (parts.find((p: { text?: string; thought?: boolean }) => p.text && !p.thought)?.text) ?? 'No response received.'
     console.log('→ Gemini replied', reply.slice(0, 60) + '...')
 
     return new Response(JSON.stringify({ reply }), {
