@@ -67,11 +67,11 @@ export default function PdfPopup() {
           >
             {/* Canvas poster */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-black/70 border border-zinc-700/40">
-              {/* Close button — only after render */}
+              {/* Close button — only after render, inside poster */}
               {rendered && (
                 <button
                   onClick={close}
-                  className="absolute -top-3 -right-3 z-10 w-8 h-8 rounded-full bg-stone-900 border border-zinc-600 flex items-center justify-center text-zinc-300 hover:text-white hover:bg-zinc-700 transition-colors duration-200 shadow-lg"
+                  className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-colors duration-200"
                   aria-label="Kapat"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
