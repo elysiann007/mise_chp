@@ -4,6 +4,34 @@ import { useTranslation } from 'react-i18next'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
+// The AI may return light Markdown (**bold**, * bullets). The chat bubble is
+// plain text, so raw asterisks would show up as literal "stars". This renders
+// **bold** as real bold and normalises `*`/`-` bullets to a clean • — no stray
+// asterisks, no HTML injection (everything is built as React nodes).
+function renderRichText(text: string) {
+  const lines = text.split('\n')
+  return lines.map((rawLine, li) => {
+    const bulletMatch = rawLine.match(/^\s*[*\-•]\s+(.*)$/)
+    const isBullet = Boolean(bulletMatch)
+    const line = isBullet ? bulletMatch![1] : rawLine
+
+    // Split on **bold** segments and render the bold parts as <strong>.
+    const segments = line.split(/(\*\*[^*]+\*\*)/g).filter(Boolean)
+    const nodes = segments.map((seg, si) =>
+      seg.startsWith('**') && seg.endsWith('**')
+        ? <strong key={si} className="font-semibold">{seg.slice(2, -2)}</strong>
+        : <span key={si}>{seg}</span>,
+    )
+
+    return (
+      <div key={li} className={isBullet ? 'flex gap-1.5' : undefined}>
+        {isBullet && <span className="text-amber-500 dark:text-amber-400 flex-shrink-0">•</span>}
+        <span>{nodes}</span>
+      </div>
+    )
+  })
+}
+
 export default function ChatBot() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
@@ -111,12 +139,12 @@ export default function ChatBot() {
                       <span className="text-amber-600 dark:text-amber-400 text-[8px] font-bold">AI</span>
                     </div>
                   )}
-                  <div className={`max-w-[75%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
+                  <div className={`max-w-[75%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                     msg.role === 'user'
-                      ? 'bg-amber-400 text-stone-950 font-medium rounded-br-sm'
-                      : 'bg-stone-100 dark:bg-zinc-800/80 text-stone-800 dark:text-zinc-100 rounded-bl-sm'
+                      ? 'bg-amber-400 text-stone-950 font-medium rounded-br-sm whitespace-pre-wrap'
+                      : 'bg-stone-100 dark:bg-zinc-800/80 text-stone-800 dark:text-zinc-100 rounded-bl-sm space-y-1'
                   }`}>
-                    {msg.content}
+                    {msg.role === 'assistant' ? renderRichText(msg.content) : msg.content}
                   </div>
                 </div>
               ))}
