@@ -22,7 +22,7 @@ export default function PdfPopup() {
     let cancelled = false
 
     async function renderPage() {
-      const pdf = await pdfjsLib.getDocument({ url: '/chp_pizza_sarap_temiz_1.pdf' }).promise
+      const pdf = await pdfjsLib.getDocument({ url: '/pizza-makarna-poster.pdf' }).promise
       if (cancelled) return
       const page = await pdf.getPage(1)
       if (cancelled || !canvasRef.current) return
