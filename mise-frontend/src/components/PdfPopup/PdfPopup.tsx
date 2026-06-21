@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const STORAGE_KEY = 'chp_pdf_popup_seen'
-
 export default function PdfPopup() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const seen = sessionStorage.getItem(STORAGE_KEY)
-    if (!seen) {
-      const timer = setTimeout(() => setOpen(true), 900)
-      return () => clearTimeout(timer)
-    }
+    const timer = setTimeout(() => setOpen(true), 900)
+    return () => clearTimeout(timer)
   }, [])
 
   function close() {
-    sessionStorage.setItem(STORAGE_KEY, '1')
     setOpen(false)
   }
 
