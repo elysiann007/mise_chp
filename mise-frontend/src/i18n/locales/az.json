@@ -487,7 +487,9 @@
     "placeholder": "Bir şey soruşun...",
     "send": "Göndər",
     "greeting": "Salam! Mən Cafe Hookah Pub-un rəqəmsal köməkçisiyəm. Qəlyan qarışıqları, menyu, iş saatları və ya məkan haqqında soruşa bilərsiniz!",
-    "error": "Nəsə səhv oldu. Lütfən yenidən cəhd edin."
+    "error": "Nəsə səhv oldu. Lütfən yenidən cəhd edin.",
+    "clear": "Söhbəti təmizlə",
+    "suggestions": ["Mənə bir nargile məsləhət gör", "Hansı vegetarian yeməkləriniz var?", "Ən populyar kokteyliniz hansıdır?", "İş saatlarınız necədir?"]
   },
   "footer": {
     "tagline": "Dadların, tüstünün və içkilərin premium məkanı.",

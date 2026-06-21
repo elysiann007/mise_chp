@@ -487,7 +487,9 @@
     "placeholder": "Bir şeyler sorun...",
     "send": "Gönder",
     "greeting": "Merhaba! Ben Hookah AI, Cafe Hookah Pub'ın dijital asistanı. Hookah blendlerimiz, menümüz, çalışma saatlerimiz veya konumumuz hakkında soru sorabilirsiniz!",
-    "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+    "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+    "clear": "Sohbeti temizle",
+    "suggestions": ["Bana bir nargile öner", "Vejetaryen yemekler neler?", "En popüler kokteyl hangisi?", "Çalışma saatleriniz nedir?"]
   },
   "footer": {
     "tagline": "Lezzetler, duman ve spiritlerin premium sığınağı.",

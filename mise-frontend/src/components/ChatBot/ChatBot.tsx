@@ -4,6 +4,34 @@ import { useTranslation } from 'react-i18next'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
+const STORAGE_KEY = 'chp_chat_history'
+const MAX_STORED = 30
+
+// Conversation survives reloads via localStorage. We persist `history` (the
+// clean successful-turn context) so failed-turn error bubbles never come back
+// or re-feed as model context.
+function loadHistory(): Message[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    if (!Array.isArray(parsed)) return []
+    return parsed.filter(
+      (m): m is Message =>
+        m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string',
+    )
+  } catch {
+    return []
+  }
+}
+
+const FALLBACK_SUGGESTIONS = [
+  'Bana bir nargile öner',
+  'Vejetaryen yemekler neler?',
+  'En popüler kokteyl hangisi?',
+  'Çalışma saatleriniz nedir?',
+]
+
 // The AI may return light Markdown (**bold**, * bullets). The chat bubble is
 // plain text, so raw asterisks would show up as literal "stars". This renders
 // **bold** as real bold and normalises `*`/`-` bullets to a clean • — no stray
@@ -35,8 +63,8 @@ function renderRichText(text: string) {
 export default function ChatBot() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
-  const [history, setHistory] = useState<Message[]>([])
-  const [messages, setMessages] = useState<Message[]>([])
+  const [history, setHistory] = useState<Message[]>(loadHistory)
+  const [messages, setMessages] = useState<Message[]>(loadHistory)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -46,6 +74,10 @@ export default function ChatBot() {
   // active language. The real conversation lives in `messages`.
   const displayMessages: Message[] = [{ role: 'assistant', content: t('chat.greeting') }, ...messages]
 
+  // Localized starter prompts; falls back to TR if the key is missing.
+  const rawSuggestions = t('chat.suggestions', { returnObjects: true }) as unknown
+  const suggestions: string[] = Array.isArray(rawSuggestions) ? (rawSuggestions as string[]) : FALLBACK_SUGGESTIONS
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
@@ -54,8 +86,27 @@ export default function ChatBot() {
     if (open) setTimeout(() => inputRef.current?.focus(), 200)
   }, [open])
 
-  const send = async () => {
-    const text = input.trim()
+  // Persist the clean conversation context across reloads (capped).
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-MAX_STORED)))
+    } catch {
+      /* ignore quota / privacy-mode errors */
+    }
+  }, [history])
+
+  const clearChat = () => {
+    setMessages([])
+    setHistory([])
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      /* ignore */
+    }
+  }
+
+  const send = async (textArg?: string) => {
+    const text = (textArg ?? input).trim()
     if (!text || loading) return
 
     const userMsg: Message = { role: 'user', content: text }
@@ -125,9 +176,23 @@ export default function ChatBot() {
                 <p className="text-stone-900 dark:text-white text-sm font-semibold leading-none">{t('chat.title')}</p>
                 <p className="text-stone-500 dark:text-zinc-500 text-[11px] mt-0.5">{t('chat.subtitle')}</p>
               </div>
-              <div className="ms-auto flex items-center gap-1.5">
-                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                <span className="text-stone-400 dark:text-zinc-500 text-[10px] tracking-wide">Online</span>
+              <div className="ms-auto flex items-center gap-2.5">
+                {messages.length > 0 && (
+                  <button
+                    onClick={clearChat}
+                    aria-label={t('chat.clear')}
+                    title={t('chat.clear')}
+                    className="text-stone-400 dark:text-zinc-500 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                )}
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  <span className="text-stone-400 dark:text-zinc-500 text-[10px] tracking-wide">Online</span>
+                </div>
               </div>
             </div>
 
@@ -168,6 +233,20 @@ export default function ChatBot() {
               <div ref={bottomRef} />
             </div>
 
+            {messages.length === 0 && !loading && (
+              <div className="px-3 pb-1 flex flex-wrap gap-1.5">
+                {suggestions.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => send(s)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-amber-500/30 dark:border-amber-400/30 text-amber-700 dark:text-amber-300 bg-amber-400/5 hover:bg-amber-400/15 transition-colors duration-200"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="px-3 py-3 border-t border-stone-200 dark:border-zinc-800 flex items-center gap-2 bg-white dark:bg-stone-950">
               <input
                 ref={inputRef}
@@ -179,7 +258,7 @@ export default function ChatBot() {
                 className="flex-1 bg-stone-100 dark:bg-zinc-900 border border-stone-300 dark:border-zinc-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white placeholder:text-stone-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 dark:focus:border-amber-400/50 transition-colors duration-200 disabled:opacity-50"
               />
               <button
-                onClick={send}
+                onClick={() => send()}
                 disabled={!input.trim() || loading}
                 className="w-9 h-9 bg-amber-400 text-stone-950 rounded-xl flex items-center justify-center hover:bg-amber-300 transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
                 aria-label={t('chat.send')}

@@ -481,7 +481,9 @@
     "placeholder": "Chiedimi qualcosa...",
     "send": "Invia",
     "greeting": "Ciao! Sono Hookah AI, la tua guida al Cafe Hookah Pub. Chiedimi dei nostri blend di hookah, del menu, degli orari o dell'ubicazione!",
-    "error": "Qualcosa è andato storto. Riprova."
+    "error": "Qualcosa è andato storto. Riprova.",
+    "clear": "Cancella conversazione",
+    "suggestions": ["Consigliami un narghilè", "Quali piatti vegetariani avete?", "Qual è il vostro cocktail più popolare?", "Quali sono i vostri orari?"]
   },
   "footer": {
     "tagline": "Un santuario premium di sapori, fumo e spirits.",

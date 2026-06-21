@@ -481,7 +481,9 @@
     "placeholder": "Frag mich alles...",
     "send": "Senden",
     "greeting": "Hallo! Ich bin Hookah AI, dein Assistent für das Cafe Hookah Pub. Frag mich nach unseren Hookah-Blends, dem Menü, den Öffnungszeiten oder unserem Standort!",
-    "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "clear": "Unterhaltung löschen",
+    "suggestions": ["Empfiehl mir eine Shisha", "Welche vegetarischen Gerichte habt ihr?", "Was ist euer beliebtester Cocktail?", "Wie sind eure Öffnungszeiten?"]
   },
   "footer": {
     "tagline": "Ein erstklassiges Refugium voller Aromen, Rauch und Spirits.",

@@ -481,7 +481,9 @@
     "placeholder": "Pregúntame lo que quieras...",
     "send": "Enviar",
     "greeting": "¡Hola! Soy Hookah AI, tu guía en Cafe Hookah Pub. Pregúntame sobre nuestros blends de hookah, el menú, los horarios o la ubicación.",
-    "error": "Algo salió mal. Por favor, inténtalo de nuevo."
+    "error": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "clear": "Borrar conversación",
+    "suggestions": ["Recomiéndame una shisha", "¿Qué platos vegetarianos tenéis?", "¿Cuál es vuestro cóctel más popular?", "¿Cuál es vuestro horario?"]
   },
   "footer": {
     "tagline": "Un santuario premium de sabores, humo y licores.",
