@@ -184,8 +184,8 @@ mise-frontend/
 
 ## i18n Rules
 
-- 8 locales: `en tr de ar el es it ru`
-- All keys must exist in all 8 files
+- 10 locales: `en tr de ar el es it ru az fa`
+- All keys must exist in all 10 files
 - `hookah.order` = static waiter-call text (not a button), translated in all 8
 - Arabic (ar) uses RTL — `end-*` / `start-*` / `ms-*` / `me-*` Tailwind logical props
 - Brand names (Revoshi, Al Fakher, etc.) are NOT translated — hardcoded in component
@@ -209,6 +209,12 @@ mise-frontend/
 - `import type` for all type-only imports (`verbatimModuleSyntax` enabled).
 - Prefer `type` over `interface` for API shapes; `interface` for things that extend.
 - `as any` only for known library type-gap workarounds.
+
+---
+
+## Future TODOs
+
+- **CMS / Owner Admin Panel:** Owner currently edits `menu.ts` or GitHub directly. Future option: integrate Sanity (headless CMS) so owner can manage menu items, prices, and categories from a clean web dashboard with no coding. Short-term workaround: teach owner GitHub editor (edit file → commit → Vercel auto-deploys in 60s).
 
 ---
 

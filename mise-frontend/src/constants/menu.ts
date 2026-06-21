@@ -329,6 +329,7 @@ export const ALCOHOLIC_DRINKS = [
       { key: 'sex_on_beach', name: 'Sex on the Beach', desc: 'Vodka, archers, portakal suyu, nar şurubu', price: '₺560', calories: '235' },
       { key: 'kingpin', name: 'Kingpin', desc: 'Vodka, archers, limonata, nar şurubu', price: '₺560', calories: '225' },
       { key: 'jager_boom', name: 'Jager Boom', desc: 'Jagermeister, redbull', price: '₺530', calories: '235' },
+      { key: 'kuzu_kulagi', name: 'Kuzu Kulağı', desc: '', price: '₺550', calories: '' },
     ],
   },
   {
