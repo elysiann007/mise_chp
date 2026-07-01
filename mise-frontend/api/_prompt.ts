@@ -53,9 +53,7 @@ VENUE INFORMATION:
 - Atmosphere: Dark, premium lounge — sophisticated yet welcoming
 
 OPENING HOURS:
-- Monday–Thursday: 5:00 PM – 2:00 AM
-- Friday–Saturday: 4:00 PM – 4:00 AM
-- Sunday: 5:00 PM – 1:00 AM
+- Every day: Open from 09:00 (no closing time)
 
 ╔══════════════════════════════════════════════════════════════╗
 ║  CRITICAL — THE MENU BELOW IS THE COMPLETE AND ONLY SOURCE    ║
