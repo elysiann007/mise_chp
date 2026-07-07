@@ -13,7 +13,14 @@ import { WebsocketModule } from '../websocket/websocket.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Order, OrderItem, OrderItemModifier, OrderEvent, MenuItem, Modifier]),
+    TypeOrmModule.forFeature([
+      Order,
+      OrderItem,
+      OrderItemModifier,
+      OrderEvent,
+      MenuItem,
+      Modifier,
+    ]),
     SessionsModule,
     WebsocketModule,
   ],

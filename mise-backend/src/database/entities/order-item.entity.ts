@@ -1,4 +1,12 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Order } from './order.entity';
 import { MenuItem } from './menu-item.entity';
 import { OrderItemModifier } from './order-item-modifier.entity';
@@ -43,7 +51,11 @@ export class OrderItem {
   @Column({ type: 'enum', enum: PrepStation, default: PrepStation.KITCHEN })
   prepStation: PrepStation;
 
-  @Column({ type: 'enum', enum: OrderItemStatus, default: OrderItemStatus.PENDING })
+  @Column({
+    type: 'enum',
+    enum: OrderItemStatus,
+    default: OrderItemStatus.PENDING,
+  })
   status: OrderItemStatus;
 
   @Column({ nullable: true })

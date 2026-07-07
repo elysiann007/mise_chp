@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
+import { Repository, type FindOptionsWhere } from 'typeorm';
 import { Restaurant } from '../database/entities/restaurant.entity';
 import { Table } from '../database/entities/table.entity';
 import { TableSession } from '../database/entities/table-session.entity';
@@ -14,19 +14,27 @@ import { BusinessException } from '../common/exceptions/business.exception';
 import { SessionStatus } from '../shared/enums/session-status.enum';
 import type { CreateCategoryDto, UpdateCategoryDto } from './dto/category.dto';
 import type { CreateMenuItemDto, UpdateMenuItemDto } from './dto/menu-item.dto';
-import type { CreateModifierGroupDto, UpdateModifierGroupDto, CreateModifierDto, UpdateModifierDto } from './dto/modifier.dto';
+import type {
+  CreateModifierGroupDto,
+  UpdateModifierGroupDto,
+  CreateModifierDto,
+  UpdateModifierDto,
+} from './dto/modifier.dto';
 import type { CreateTableDto, UpdateTableDto } from './dto/table.dto';
-import type { JwtPayload } from '../auth/types/jwt-payload.type';
 
 @Injectable()
 export class AdminService {
   constructor(
-    @InjectRepository(Restaurant) private restaurantRepo: Repository<Restaurant>,
+    @InjectRepository(Restaurant)
+    private restaurantRepo: Repository<Restaurant>,
     @InjectRepository(Table) private tableRepo: Repository<Table>,
-    @InjectRepository(TableSession) private sessionRepo: Repository<TableSession>,
-    @InjectRepository(MenuCategory) private categoryRepo: Repository<MenuCategory>,
+    @InjectRepository(TableSession)
+    private sessionRepo: Repository<TableSession>,
+    @InjectRepository(MenuCategory)
+    private categoryRepo: Repository<MenuCategory>,
     @InjectRepository(MenuItem) private itemRepo: Repository<MenuItem>,
-    @InjectRepository(ModifierGroup) private groupRepo: Repository<ModifierGroup>,
+    @InjectRepository(ModifierGroup)
+    private groupRepo: Repository<ModifierGroup>,
     @InjectRepository(Modifier) private modifierRepo: Repository<Modifier>,
     @InjectRepository(Order) private orderRepo: Repository<Order>,
   ) {}
@@ -68,11 +76,19 @@ export class AdminService {
 
   async createCategory(restaurantId: string, dto: CreateCategoryDto) {
     return this.categoryRepo.save(
-      this.categoryRepo.create({ ...dto, restaurantId, sortOrder: dto.sortOrder ?? 0 }),
+      this.categoryRepo.create({
+        ...dto,
+        restaurantId,
+        sortOrder: dto.sortOrder ?? 0,
+      }),
     );
   }
 
-  async updateCategory(id: string, restaurantId: string, dto: UpdateCategoryDto) {
+  async updateCategory(
+    id: string,
+    restaurantId: string,
+    dto: UpdateCategoryDto,
+  ) {
     await this.assertOwned(this.categoryRepo, id, restaurantId);
     await this.categoryRepo.update(id, dto);
     return this.categoryRepo.findOneBy({ id });
@@ -107,11 +123,19 @@ export class AdminService {
     );
   }
 
-  async updateMenuItem(id: string, restaurantId: string, dto: UpdateMenuItemDto) {
+  async updateMenuItem(
+    id: string,
+    restaurantId: string,
+    dto: UpdateMenuItemDto,
+  ) {
     await this.assertOwned(this.itemRepo, id, restaurantId);
-    if (dto.categoryId) await this.assertOwned(this.categoryRepo, dto.categoryId, restaurantId);
+    if (dto.categoryId)
+      await this.assertOwned(this.categoryRepo, dto.categoryId, restaurantId);
     await this.itemRepo.update(id, dto);
-    return this.itemRepo.findOne({ where: { id }, relations: ['modifierGroups', 'modifierGroups.modifiers'] });
+    return this.itemRepo.findOne({
+      where: { id },
+      relations: ['modifierGroups', 'modifierGroups.modifiers'],
+    });
   }
 
   async deleteMenuItem(id: string, restaurantId: string) {
@@ -121,14 +145,27 @@ export class AdminService {
 
   // ── Modifier Groups ────────────────────────────────────────────────────────
 
-  async createModifierGroup(menuItemId: string, restaurantId: string, dto: CreateModifierGroupDto) {
+  async createModifierGroup(
+    menuItemId: string,
+    restaurantId: string,
+    dto: CreateModifierGroupDto,
+  ) {
     await this.assertOwned(this.itemRepo, menuItemId, restaurantId);
     return this.groupRepo.save(
-      this.groupRepo.create({ ...dto, menuItemId, minSelect: dto.minSelect ?? 0, maxSelect: dto.maxSelect ?? 1 }),
+      this.groupRepo.create({
+        ...dto,
+        menuItemId,
+        minSelect: dto.minSelect ?? 0,
+        maxSelect: dto.maxSelect ?? 1,
+      }),
     );
   }
 
-  async updateModifierGroup(id: string, restaurantId: string, dto: UpdateModifierGroupDto) {
+  async updateModifierGroup(
+    id: string,
+    restaurantId: string,
+    dto: UpdateModifierGroupDto,
+  ) {
     await this.assertGroupOwned(id, restaurantId);
     await this.groupRepo.update(id, dto);
     return this.groupRepo.findOne({ where: { id }, relations: ['modifiers'] });
@@ -141,14 +178,26 @@ export class AdminService {
 
   // ── Modifiers ──────────────────────────────────────────────────────────────
 
-  async createModifier(groupId: string, restaurantId: string, dto: CreateModifierDto) {
+  async createModifier(
+    groupId: string,
+    restaurantId: string,
+    dto: CreateModifierDto,
+  ) {
     await this.assertGroupOwned(groupId, restaurantId);
     return this.modifierRepo.save(
-      this.modifierRepo.create({ ...dto, groupId, priceDelta: dto.priceDelta ?? 0 }),
+      this.modifierRepo.create({
+        ...dto,
+        groupId,
+        priceDelta: dto.priceDelta ?? 0,
+      }),
     );
   }
 
-  async updateModifier(id: string, restaurantId: string, dto: UpdateModifierDto) {
+  async updateModifier(
+    id: string,
+    restaurantId: string,
+    dto: UpdateModifierDto,
+  ) {
     await this.assertModifierOwned(id, restaurantId);
     await this.modifierRepo.update(id, dto);
     return this.modifierRepo.findOneBy({ id });
@@ -162,12 +211,15 @@ export class AdminService {
   // ── Tables ─────────────────────────────────────────────────────────────────
 
   getTables(restaurantId: string) {
-    return this.tableRepo.find({ where: { restaurantId }, order: { label: 'ASC' } });
+    return this.tableRepo.find({
+      where: { restaurantId },
+      order: { label: 'ASC' },
+    });
   }
 
   createTable(restaurantId: string, dto: CreateTableDto) {
     return this.tableRepo.save(
-      this.tableRepo.create({ ...dto, restaurantId, qrToken: uuidv4() }),
+      this.tableRepo.create({ ...dto, restaurantId, qrToken: randomUUID() }),
     );
   }
 
@@ -184,8 +236,12 @@ export class AdminService {
 
   // ── Ownership guards ───────────────────────────────────────────────────────
 
-  private async assertOwned(repo: Repository<any>, id: string, restaurantId: string) {
-    const entity = await repo.findOneBy({ id });
+  private async assertOwned<T extends { id: string; restaurantId: string }>(
+    repo: Repository<T>,
+    id: string,
+    restaurantId: string,
+  ) {
+    const entity = await repo.findOneBy({ id } as FindOptionsWhere<T>);
     if (!entity || entity.restaurantId !== restaurantId) {
       throw new BusinessException('NOT_FOUND', HttpStatus.NOT_FOUND);
     }

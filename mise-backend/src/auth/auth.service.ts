@@ -15,13 +15,18 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(dto: LoginDto): Promise<{ accessToken: string; role: string; restaurantId: string }> {
+  async login(
+    dto: LoginDto,
+  ): Promise<{ accessToken: string; role: string; restaurantId: string }> {
     const user = await this.userRepo.findOne({
       where: { email: dto.email, isActive: true },
     });
 
     if (!user || !(await compare(dto.password, user.passwordHash))) {
-      throw new BusinessException('INVALID_CREDENTIALS', HttpStatus.UNAUTHORIZED);
+      throw new BusinessException(
+        'INVALID_CREDENTIALS',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
     const payload: JwtPayload = {

@@ -8,7 +8,10 @@ import { OrderEvent } from '../database/entities/order-event.entity';
 import { WebsocketModule } from '../websocket/websocket.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order, OrderItem, OrderEvent]), WebsocketModule],
+  imports: [
+    TypeOrmModule.forFeature([Order, OrderItem, OrderEvent]),
+    WebsocketModule,
+  ],
   controllers: [KitchenController],
   providers: [KitchenService],
 })

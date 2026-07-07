@@ -27,4 +27,4 @@ async function bootstrap() {
   console.log(`MISE backend running on http://localhost:${port}`);
 }
 
-bootstrap();
+void bootstrap();

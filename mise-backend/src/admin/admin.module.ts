@@ -14,8 +14,13 @@ import { Order } from '../database/entities/order.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Restaurant, Table, TableSession,
-      MenuCategory, MenuItem, ModifierGroup, Modifier,
+      Restaurant,
+      Table,
+      TableSession,
+      MenuCategory,
+      MenuItem,
+      ModifierGroup,
+      Modifier,
       Order,
     ]),
   ],

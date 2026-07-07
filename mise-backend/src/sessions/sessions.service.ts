@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { randomUUID } from 'crypto';
 import { Repository } from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
 import { Table } from '../database/entities/table.entity';
 import { TableSession } from '../database/entities/table-session.entity';
 import { MenuCategory } from '../database/entities/menu-category.entity';
@@ -28,7 +28,11 @@ export class SessionsService {
     });
 
     if (!table) {
-      throw new BusinessException('INVALID_QR_TOKEN', HttpStatus.NOT_FOUND, 'QR kodu geçersiz veya devre dışı.');
+      throw new BusinessException(
+        'INVALID_QR_TOKEN',
+        HttpStatus.NOT_FOUND,
+        'QR kodu geçersiz veya devre dışı.',
+      );
     }
 
     // Reuse existing active session for this table if one exists
@@ -50,7 +54,7 @@ export class SessionsService {
 
     const session = this.sessionRepo.create({
       tableId: table.id,
-      sessionToken: uuidv4(),
+      sessionToken: randomUUID(),
       status: SessionStatus.ACTIVE,
     });
 
@@ -63,7 +67,13 @@ export class SessionsService {
   async getByToken(sessionToken: string) {
     const session = await this.sessionRepo.findOne({
       where: { sessionToken },
-      relations: ['table', 'table.restaurant', 'orders', 'orders.items', 'orders.items.modifiers'],
+      relations: [
+        'table',
+        'table.restaurant',
+        'orders',
+        'orders.items',
+        'orders.items.modifiers',
+      ],
     });
 
     if (!session) {
@@ -71,7 +81,11 @@ export class SessionsService {
     }
 
     if (this.isSessionExpired(session)) {
-      throw new BusinessException('SESSION_EXPIRED', HttpStatus.GONE, 'Oturumunuz sona erdi, lütfen tekrar QR okutun.');
+      throw new BusinessException(
+        'SESSION_EXPIRED',
+        HttpStatus.GONE,
+        'Oturumunuz sona erdi, lütfen tekrar QR okutun.',
+      );
     }
 
     return session;
@@ -101,10 +115,16 @@ export class SessionsService {
   private async getMenu(restaurantId: string) {
     return this.categoryRepo
       .createQueryBuilder('cat')
-      .leftJoinAndSelect('cat.items', 'item', 'item.isActive = true AND item.restaurantId = cat.restaurantId')
+      .leftJoinAndSelect(
+        'cat.items',
+        'item',
+        'item.isActive = true AND item.restaurantId = cat.restaurantId',
+      )
       .leftJoinAndSelect('item.modifierGroups', 'mg')
       .leftJoinAndSelect('mg.modifiers', 'mod')
-      .where('cat.restaurantId = :restaurantId AND cat.isActive = true', { restaurantId })
+      .where('cat.restaurantId = :restaurantId AND cat.isActive = true', {
+        restaurantId,
+      })
       .orderBy('cat.sortOrder', 'ASC')
       .getMany();
   }

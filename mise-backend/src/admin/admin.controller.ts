@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../common/guards/roles.guard';
@@ -7,7 +18,12 @@ import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { UserRole } from '../shared/enums/user-role.enum';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto/category.dto';
 import { CreateMenuItemDto, UpdateMenuItemDto } from './dto/menu-item.dto';
-import { CreateModifierGroupDto, UpdateModifierGroupDto, CreateModifierDto, UpdateModifierDto } from './dto/modifier.dto';
+import {
+  CreateModifierGroupDto,
+  UpdateModifierGroupDto,
+  CreateModifierDto,
+  UpdateModifierDto,
+} from './dto/modifier.dto';
 import { CreateTableDto, UpdateTableDto } from './dto/table.dto';
 import type { JwtPayload } from '../auth/types/jwt-payload.type';
 
@@ -30,12 +46,19 @@ export class AdminController {
   }
 
   @Post('categories')
-  createCategory(@CurrentUser() user: JwtPayload, @Body() dto: CreateCategoryDto) {
+  createCategory(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: CreateCategoryDto,
+  ) {
     return this.adminService.createCategory(user.restaurantId, dto);
   }
 
   @Patch('categories/:id')
-  updateCategory(@Param('id') id: string, @CurrentUser() user: JwtPayload, @Body() dto: UpdateCategoryDto) {
+  updateCategory(
+    @Param('id') id: string,
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateCategoryDto,
+  ) {
     return this.adminService.updateCategory(id, user.restaurantId, dto);
   }
 
@@ -52,12 +75,19 @@ export class AdminController {
   }
 
   @Post('menu-items')
-  createMenuItem(@CurrentUser() user: JwtPayload, @Body() dto: CreateMenuItemDto) {
+  createMenuItem(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: CreateMenuItemDto,
+  ) {
     return this.adminService.createMenuItem(user.restaurantId, dto);
   }
 
   @Patch('menu-items/:id')
-  updateMenuItem(@Param('id') id: string, @CurrentUser() user: JwtPayload, @Body() dto: UpdateMenuItemDto) {
+  updateMenuItem(
+    @Param('id') id: string,
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateMenuItemDto,
+  ) {
     return this.adminService.updateMenuItem(id, user.restaurantId, dto);
   }
 
@@ -74,17 +104,28 @@ export class AdminController {
     @CurrentUser() user: JwtPayload,
     @Body() dto: CreateModifierGroupDto,
   ) {
-    return this.adminService.createModifierGroup(itemId, user.restaurantId, dto);
+    return this.adminService.createModifierGroup(
+      itemId,
+      user.restaurantId,
+      dto,
+    );
   }
 
   @Patch('modifier-groups/:id')
-  updateModifierGroup(@Param('id') id: string, @CurrentUser() user: JwtPayload, @Body() dto: UpdateModifierGroupDto) {
+  updateModifierGroup(
+    @Param('id') id: string,
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateModifierGroupDto,
+  ) {
     return this.adminService.updateModifierGroup(id, user.restaurantId, dto);
   }
 
   @Delete('modifier-groups/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  deleteModifierGroup(@Param('id') id: string, @CurrentUser() user: JwtPayload) {
+  deleteModifierGroup(
+    @Param('id') id: string,
+    @CurrentUser() user: JwtPayload,
+  ) {
     return this.adminService.deleteModifierGroup(id, user.restaurantId);
   }
 
@@ -99,7 +140,11 @@ export class AdminController {
   }
 
   @Patch('modifiers/:id')
-  updateModifier(@Param('id') id: string, @CurrentUser() user: JwtPayload, @Body() dto: UpdateModifierDto) {
+  updateModifier(
+    @Param('id') id: string,
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateModifierDto,
+  ) {
     return this.adminService.updateModifier(id, user.restaurantId, dto);
   }
 
@@ -121,7 +166,11 @@ export class AdminController {
   }
 
   @Patch('tables/:id')
-  updateTable(@Param('id') id: string, @CurrentUser() user: JwtPayload, @Body() dto: UpdateTableDto) {
+  updateTable(
+    @Param('id') id: string,
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateTableDto,
+  ) {
     return this.adminService.updateTable(id, user.restaurantId, dto);
   }
 

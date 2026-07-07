@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { KitchenService } from './kitchen.service';
 import { UpdateItemStatusDto } from './dto/update-item-status.dto';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
@@ -11,7 +19,13 @@ import type { JwtPayload } from '../auth/types/jwt-payload.type';
 
 @Controller('api/v1/kitchen')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(UserRole.ADMIN, UserRole.MANAGER, UserRole.KITCHEN, UserRole.BAR, UserRole.WAITER)
+@Roles(
+  UserRole.ADMIN,
+  UserRole.MANAGER,
+  UserRole.KITCHEN,
+  UserRole.BAR,
+  UserRole.WAITER,
+)
 export class KitchenController {
   constructor(private kitchenService: KitchenService) {}
 

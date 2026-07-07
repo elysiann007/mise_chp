@@ -11,7 +11,10 @@ import { Modifier } from '../database/entities/modifier.entity';
 import { SessionsService } from '../sessions/sessions.service';
 import { BusinessException } from '../common/exceptions/business.exception';
 import { OrderStatus } from '../shared/enums/order-status.enum';
-import { ALCOHOL_BLOCK_END_HOUR, ALCOHOL_BLOCK_START_HOUR } from '../shared/constants/tax-rates.constant';
+import {
+  ALCOHOL_BLOCK_END_HOUR,
+  ALCOHOL_BLOCK_START_HOUR,
+} from '../shared/constants/tax-rates.constant';
 import { PlaceOrderDto } from './dto/place-order.dto';
 import { OrdersGateway } from '../websocket/orders.gateway';
 
@@ -47,17 +50,27 @@ export class OrdersService {
     for (const item of dto.items) {
       const menuItem = menuItemMap.get(item.menuItemId);
       if (!menuItem) {
-        throw new BusinessException('MENU_ITEM_NOT_FOUND', HttpStatus.NOT_FOUND, `Ürün bulunamadı: ${item.menuItemId}`);
+        throw new BusinessException(
+          'MENU_ITEM_NOT_FOUND',
+          HttpStatus.NOT_FOUND,
+          `Ürün bulunamadı: ${item.menuItemId}`,
+        );
       }
       if (!menuItem.isActive) {
-        throw new BusinessException('MENU_ITEM_UNAVAILABLE', HttpStatus.UNPROCESSABLE_ENTITY, `Ürün şu an mevcut değil: ${menuItem.name}`);
+        throw new BusinessException(
+          'MENU_ITEM_UNAVAILABLE',
+          HttpStatus.UNPROCESSABLE_ENTITY,
+          `Ürün şu an mevcut değil: ${menuItem.name}`,
+        );
       }
     }
 
     this.checkAlcoholRestriction(menuItemMap, dto);
     this.validateModifiers(menuItemMap, dto);
 
-    const orderCount = await this.orderRepo.count({ where: { sessionId: session.id } });
+    const orderCount = await this.orderRepo.count({
+      where: { sessionId: session.id },
+    });
 
     const order = this.orderRepo.create({
       sessionId: session.id,
@@ -68,14 +81,18 @@ export class OrdersService {
 
     await this.orderRepo.save(order);
 
-    const allModifierIds = dto.items.flatMap((i) => i.modifiers?.map((m) => m.modifierId) ?? []);
+    const allModifierIds = dto.items.flatMap(
+      (i) => i.modifiers?.map((m) => m.modifierId) ?? [],
+    );
     const allModifiers = allModifierIds.length
       ? await this.modifierRepo
           .createQueryBuilder('mod')
           .innerJoin('mod.group', 'grp')
           .innerJoin('grp.menuItem', 'item')
           .where('mod.id IN (:...ids)', { ids: allModifierIds })
-          .andWhere('item.restaurantId = :restaurantId', { restaurantId: session.table.restaurantId })
+          .andWhere('item.restaurantId = :restaurantId', {
+            restaurantId: session.table.restaurantId,
+          })
           .getMany()
       : [];
     const modifierMap = new Map(allModifiers.map((m) => [m.id, m]));
@@ -101,12 +118,14 @@ export class OrdersService {
       (dto.items[i].modifiers ?? []).flatMap((modDto) => {
         const mod = modifierMap.get(modDto.modifierId);
         if (!mod) return [];
-        return [this.orderItemModifierRepo.create({
-          orderItemId: savedItem.id,
-          modifierId: mod.id,
-          nameSnapshot: mod.name,
-          priceDeltaSnapshot: Number(mod.priceDelta),
-        })];
+        return [
+          this.orderItemModifierRepo.create({
+            orderItemId: savedItem.id,
+            modifierId: mod.id,
+            nameSnapshot: mod.name,
+            priceDeltaSnapshot: Number(mod.priceDelta),
+          }),
+        ];
       }),
     );
 
@@ -149,7 +168,10 @@ export class OrdersService {
     });
   }
 
-  private validateModifiers(menuItemMap: Map<string, MenuItem>, dto: PlaceOrderDto) {
+  private validateModifiers(
+    menuItemMap: Map<string, MenuItem>,
+    dto: PlaceOrderDto,
+  ) {
     for (const itemDto of dto.items) {
       const menuItem = menuItemMap.get(itemDto.menuItemId)!;
       const submittedModIds = itemDto.modifiers?.map((m) => m.modifierId) ?? [];
@@ -163,7 +185,11 @@ export class OrdersService {
 
       for (const modId of submittedModIds) {
         if (!groupByModId.has(modId)) {
-          throw new BusinessException('MODIFIER_NOT_FOUND', HttpStatus.UNPROCESSABLE_ENTITY, 'Geçersiz seçenek.');
+          throw new BusinessException(
+            'MODIFIER_NOT_FOUND',
+            HttpStatus.UNPROCESSABLE_ENTITY,
+            'Geçersiz seçenek.',
+          );
         }
       }
 
@@ -176,25 +202,43 @@ export class OrdersService {
       for (const group of menuItem.modifierGroups) {
         const count = countsByGroup.get(group.id) ?? 0;
         if (group.isRequired && count === 0) {
-          throw new BusinessException('MODIFIER_REQUIRED', HttpStatus.UNPROCESSABLE_ENTITY, `"${group.name}" seçimi zorunludur.`);
+          throw new BusinessException(
+            'MODIFIER_REQUIRED',
+            HttpStatus.UNPROCESSABLE_ENTITY,
+            `"${group.name}" seçimi zorunludur.`,
+          );
         }
         if (count < group.minSelect) {
-          throw new BusinessException('MODIFIER_MIN_SELECT', HttpStatus.UNPROCESSABLE_ENTITY, `"${group.name}" için en az ${group.minSelect} seçim gereklidir.`);
+          throw new BusinessException(
+            'MODIFIER_MIN_SELECT',
+            HttpStatus.UNPROCESSABLE_ENTITY,
+            `"${group.name}" için en az ${group.minSelect} seçim gereklidir.`,
+          );
         }
         if (count > group.maxSelect) {
-          throw new BusinessException('MODIFIER_MAX_SELECT', HttpStatus.UNPROCESSABLE_ENTITY, `"${group.name}" için en fazla ${group.maxSelect} seçim yapılabilir.`);
+          throw new BusinessException(
+            'MODIFIER_MAX_SELECT',
+            HttpStatus.UNPROCESSABLE_ENTITY,
+            `"${group.name}" için en fazla ${group.maxSelect} seçim yapılabilir.`,
+          );
         }
       }
     }
   }
 
-  private checkAlcoholRestriction(menuItemMap: Map<string, MenuItem>, dto: PlaceOrderDto) {
-    const hasAlcohol = dto.items.some((itemDto) => menuItemMap.get(itemDto.menuItemId)?.isAlcohol);
+  private checkAlcoholRestriction(
+    menuItemMap: Map<string, MenuItem>,
+    dto: PlaceOrderDto,
+  ) {
+    const hasAlcohol = dto.items.some(
+      (itemDto) => menuItemMap.get(itemDto.menuItemId)?.isAlcohol,
+    );
 
     if (!hasAlcohol) return;
 
     const hour = new Date().getHours();
-    const isBlocked = hour >= ALCOHOL_BLOCK_START_HOUR || hour < ALCOHOL_BLOCK_END_HOUR;
+    const isBlocked =
+      hour >= ALCOHOL_BLOCK_START_HOUR || hour < ALCOHOL_BLOCK_END_HOUR;
 
     if (isBlocked) {
       throw new BusinessException(

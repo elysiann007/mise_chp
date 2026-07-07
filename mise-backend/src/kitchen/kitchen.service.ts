@@ -1,18 +1,24 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Order } from '../database/entities/order.entity';
 import { OrderItem } from '../database/entities/order-item.entity';
 import { OrderEvent } from '../database/entities/order-event.entity';
 import { BusinessException } from '../common/exceptions/business.exception';
-import { OrderStatus, OrderItemStatus } from '../shared/enums/order-status.enum';
+import {
+  OrderStatus,
+  OrderItemStatus,
+} from '../shared/enums/order-status.enum';
 import { PrepStation } from '../shared/enums/prep-station.enum';
 import { OrdersGateway } from '../websocket/orders.gateway';
 import type { UpdateItemStatusDto } from './dto/update-item-status.dto';
 import type { JwtPayload } from '../auth/types/jwt-payload.type';
 
 const ACTIVE_ORDER_STATUSES = [OrderStatus.PLACED, OrderStatus.PREPARING];
-const ACTIVE_ITEM_STATUSES = [OrderItemStatus.PENDING, OrderItemStatus.PREPARING];
+const ACTIVE_ITEM_STATUSES = [
+  OrderItemStatus.PENDING,
+  OrderItemStatus.PREPARING,
+];
 
 @Injectable()
 export class KitchenService {
@@ -31,8 +37,12 @@ export class KitchenService {
       .innerJoinAndSelect('order.items', 'item')
       .leftJoinAndSelect('item.modifiers', 'modifier')
       .where('table.restaurant_id = :restaurantId', { restaurantId })
-      .andWhere('order.status IN (:...statuses)', { statuses: ACTIVE_ORDER_STATUSES })
-      .andWhere('item.status IN (:...itemStatuses)', { itemStatuses: ACTIVE_ITEM_STATUSES })
+      .andWhere('order.status IN (:...statuses)', {
+        statuses: ACTIVE_ORDER_STATUSES,
+      })
+      .andWhere('item.status IN (:...itemStatuses)', {
+        itemStatuses: ACTIVE_ITEM_STATUSES,
+      })
       .orderBy('order.placed_at', 'ASC');
 
     if (station) {
@@ -42,10 +52,19 @@ export class KitchenService {
     return qb.getMany();
   }
 
-  async updateItemStatus(itemId: string, dto: UpdateItemStatusDto, actor: JwtPayload) {
+  async updateItemStatus(
+    itemId: string,
+    dto: UpdateItemStatusDto,
+    actor: JwtPayload,
+  ) {
     const item = await this.itemRepo.findOne({
       where: { id: itemId },
-      relations: ['order', 'order.session', 'order.session.table', 'order.items'],
+      relations: [
+        'order',
+        'order.session',
+        'order.session.table',
+        'order.items',
+      ],
     });
 
     if (!item || item.order.session.table.restaurantId !== actor.restaurantId) {
@@ -66,7 +85,11 @@ export class KitchenService {
 
     const updatedOrder = await this.syncOrderStatus(item.order);
     const sessionToken = item.order.session.sessionToken;
-    this.gateway.notifyOrderStatusChanged(actor.restaurantId, sessionToken, updatedOrder);
+    this.gateway.notifyOrderStatusChanged(
+      actor.restaurantId,
+      sessionToken,
+      updatedOrder,
+    );
 
     return item;
   }
@@ -78,11 +101,16 @@ export class KitchenService {
     const allReadyOrServed = items.every((i) =>
       [OrderItemStatus.READY, OrderItemStatus.SERVED].includes(i.status),
     );
-    const anyPreparing = items.some((i) => i.status === OrderItemStatus.PREPARING);
-    const allCancelled = items.every((i) => i.status === OrderItemStatus.CANCELLED);
+    const anyPreparing = items.some(
+      (i) => i.status === OrderItemStatus.PREPARING,
+    );
+    const allCancelled = items.every(
+      (i) => i.status === OrderItemStatus.CANCELLED,
+    );
 
     let newStatus = order.status;
-    if (allServed || allCancelled) newStatus = allCancelled ? OrderStatus.CANCELLED : OrderStatus.SERVED;
+    if (allServed || allCancelled)
+      newStatus = allCancelled ? OrderStatus.CANCELLED : OrderStatus.SERVED;
     else if (allReadyOrServed) newStatus = OrderStatus.READY;
     else if (anyPreparing) newStatus = OrderStatus.PREPARING;
 

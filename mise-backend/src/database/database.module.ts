@@ -41,7 +41,10 @@ export const ENTITIES = [
         synchronize: false,
         logging: config.get<string>('NODE_ENV') === 'development',
         namingStrategy: new SnakeNamingStrategy(),
-        ssl: config.get<string>('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+        ssl:
+          config.get<string>('NODE_ENV') === 'production'
+            ? { rejectUnauthorized: false }
+            : false,
       }),
       inject: [ConfigService],
     }),

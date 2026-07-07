@@ -1,4 +1,4 @@
-import { Logger, UnauthorizedException } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
@@ -11,6 +11,13 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { Server, Socket } from 'socket.io';
 import { OrderStatus } from '../shared/enums/order-status.enum';
+
+type OrderNotification = {
+  status?: OrderStatus;
+  session?: {
+    sessionToken?: string;
+  };
+};
 
 @WebSocketGateway({
   namespace: '/orders',
@@ -42,7 +49,7 @@ export class OrdersGateway implements OnGatewayConnection, OnGatewayDisconnect {
       client.disconnect();
       return;
     }
-    client.join(`session:${sessionToken}`);
+    void client.join(`session:${sessionToken}`);
   }
 
   // Staff/kitchen subscription — requires valid JWT whose restaurantId matches the requested room
@@ -57,7 +64,10 @@ export class OrdersGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
 
     const token =
-      (client.handshake.auth as Record<string, string>)?.token?.replace('Bearer ', '') ?? '';
+      (client.handshake.auth as Record<string, string>)?.token?.replace(
+        'Bearer ',
+        '',
+      ) ?? '';
 
     try {
       const payload = this.jwtService.verify<{ restaurantId: string }>(token);
@@ -70,17 +80,28 @@ export class OrdersGateway implements OnGatewayConnection, OnGatewayDisconnect {
       return;
     }
 
-    client.join(`kitchen:${restaurantId}`);
+    void client.join(`kitchen:${restaurantId}`);
   }
 
-  notifyOrderPlaced(restaurantId: string, order: any) {
+  notifyOrderPlaced(restaurantId: string, order: OrderNotification) {
     this.server.to(`kitchen:${restaurantId}`).emit('order:placed', order);
-    this.server.to(`session:${order.session?.sessionToken}`).emit('order:placed', order);
+    const sessionToken = order.session?.sessionToken;
+    if (sessionToken) {
+      this.server.to(`session:${sessionToken}`).emit('order:placed', order);
+    }
   }
 
-  notifyOrderStatusChanged(restaurantId: string, sessionToken: string, order: any) {
-    this.server.to(`kitchen:${restaurantId}`).emit('order:status-changed', order);
-    this.server.to(`session:${sessionToken}`).emit('order:status-changed', order);
+  notifyOrderStatusChanged(
+    restaurantId: string,
+    sessionToken: string,
+    order: OrderNotification,
+  ) {
+    this.server
+      .to(`kitchen:${restaurantId}`)
+      .emit('order:status-changed', order);
+    this.server
+      .to(`session:${sessionToken}`)
+      .emit('order:status-changed', order);
 
     if (order.status === OrderStatus.READY) {
       this.server.to(`session:${sessionToken}`).emit('order:ready', order);

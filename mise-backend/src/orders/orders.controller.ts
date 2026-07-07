@@ -17,7 +17,10 @@ export class OrdersController {
   }
 
   @Get('orders/:id')
-  getOrder(@Param('id') id: string, @Headers('x-session-token') sessionToken?: string) {
+  getOrder(
+    @Param('id') id: string,
+    @Headers('x-session-token') sessionToken?: string,
+  ) {
     return this.ordersService.getById(id, sessionToken);
   }
 }
