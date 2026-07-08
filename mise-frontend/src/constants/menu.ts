@@ -217,7 +217,7 @@ export const NON_ALCOHOLIC_DRINKS = [
       { key: 'espresso', name: 'Espresso', desc: '', price: '₺170', calories: '5' },
       { key: 'double_espresso', name: 'Double Espresso', desc: '', price: '₺200', calories: '10' },
       { key: 'americano', name: 'Americano', desc: '', price: '₺200', calories: '10' },
-      { key: 'filter_coffee', name: 'Filtre Kahve', desc: '', price: '₺200', calories: '10' },
+      { key: 'filter_coffee', name: 'Filtre Kahve', desc: '', price: '₺200', calories: '5' },
       { key: 'latte_macchiato', name: 'Latte Macchiato', desc: '', price: '₺200', calories: '180' },
       { key: 'milk_nescafe', name: 'Sütlü Nescafe', desc: '', price: '₺200', calories: '120' },
       { key: 'plain_nescafe', name: 'Sade Nescafe', desc: '', price: '₺200', calories: '10' },
