@@ -187,7 +187,7 @@ export const NON_ALCOHOLIC_DRINKS = [
     category: 'Cold Drinks',
     items: [
       { key: 'lemonade', name: 'Limonata', desc: '', price: '₺190', calories: '120' },
-      { key: 'ice_tea', name: 'Ice Tea', desc: '', price: '₺140', calories: '90' },
+      { key: 'ice_tea', name: 'Ice Tea', desc: '', price: '₺150', calories: '90' },
       { key: 'cola', name: 'Cola', desc: '', price: '₺150', calories: '140' },
       { key: 'cola_zero', name: 'Cola Zero', desc: '', price: '₺150', calories: '2' },
       { key: 'fanta', name: 'Fanta', desc: '', price: '₺150', calories: '155' },
