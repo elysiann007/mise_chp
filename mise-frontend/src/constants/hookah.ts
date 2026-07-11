@@ -24,7 +24,7 @@ export const HOOKAH_BRANDS: HookahBrand[] = [
       { id: 'r-nane',              name: 'Nane',                color: '#34d399',  nameKey: 'hookah.aromas.nane' },
       { id: 'r-pismis-seftali',    name: 'Pişmiş Şeftali',      color: '#fb923c',  nameKey: 'hookah.aromas.pismis_seftali' },
       { id: 'r-eskimo-kola',       name: 'Eskimo Kola',         color: '#6b7280' },
-      { id: 'r-mamdelas',          name: 'Mamdelas 27',         color: '#84cc16' },
+      { id: 'r-mandelas',          name: 'Mandelas 27',         color: '#84cc16' },
       { id: 'r-te-extrano',        name: 'Te Extrano Fidel',    color: '#22d3ee' },
       { id: 'r-mastic',            name: 'Mastic',              color: '#fef9c3' },
       { id: 'r-pancho-villa',      name: 'Pancho Villa',        color: '#f59e0b' },
