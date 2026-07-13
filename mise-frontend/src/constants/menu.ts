@@ -122,6 +122,7 @@ export const FOOD_MENU = [
       { key: 'nuts_plate', name: 'Çerez Tabağı', desc: '', price: '₺270', calories: '580' },
       { key: 'pistachios', name: 'Antep Fıstığı', desc: '', price: '', calories: '' },
       { key: 'peanuts', name: 'Fıstık', desc: '', price: '₺170', calories: '560' },
+      { key: 'peynir', name: 'Peynir', desc: '', price: '₺200', calories: '' },
       { key: 'fruit_plate', name: 'Meyve Tabağı', desc: '', price: '₺400', calories: '220' },
     ],
   },
