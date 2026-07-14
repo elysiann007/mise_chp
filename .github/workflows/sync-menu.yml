@@ -1,0 +1,48 @@
+name: Sync menu from Google Sheet
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-menu
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        working-directory: mise-frontend
+        run: bun install --frozen-lockfile
+
+      - name: Run menu sync
+        working-directory: mise-frontend
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SHEET_FOOD_CSV_URL: ${{ secrets.SHEET_FOOD_CSV_URL }}
+          SHEET_NONALCOHOLIC_CSV_URL: ${{ secrets.SHEET_NONALCOHOLIC_CSV_URL }}
+          SHEET_ALCOHOLIC_CSV_URL: ${{ secrets.SHEET_ALCOHOLIC_CSV_URL }}
+        run: bun run sync-menu
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "menu-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add mise-frontend/src/constants/menu.ts mise-frontend/src/i18n/locales/*.json
+          if git diff --cached --quiet; then
+            echo "No menu changes detected."
+          else
+            git commit -m "Sync menu from Google Sheet"
+            git push origin HEAD:main
+          fi
