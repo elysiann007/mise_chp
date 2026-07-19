@@ -10,12 +10,12 @@
     "dev:all": "concurrently -n vite,api -c yellow,cyan \"vite\" \"bun run dev-server.ts\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync-menu": "bun run scripts/sync-menu.ts"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
     "i18next": "^26.0.9",
-    "pdfjs-dist": "^6.0.227",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-i18next": "^17.0.6",

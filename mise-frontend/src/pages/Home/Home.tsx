@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import PageWrapper from '../../components/layout/PageWrapper'
 import { fadeUp, fadeIn, stagger, scaleIn, slideLeft } from '../../lib/animations'
 import { VENUE } from '../../constants/venue'
-import PdfPopup from '../../components/PdfPopup/PdfPopup'
 
 const STATS_KEYS = [
   { value: '50+', key: 's_aromas' },
@@ -40,7 +39,6 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <PdfPopup />
       <main>
         {/* ── Hero ── */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-50 dark:bg-stone-950">

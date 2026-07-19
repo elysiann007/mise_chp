@@ -106,10 +106,9 @@ src/
 
 ## Menu Data
 
-- `FOOD_MENU` in `constants/menu.ts`: starters / mains / desserts, all ₺ prices
-- `DRINKS_MENU`: cocktails / spirits / mocktails / wine
-- Category `id` maps directly to i18n key: `t('food.starters')`, `t('drinks.cocktails')`, etc.
-- Menu items (name, desc, price) are hardcoded in English — ready to be replaced with real data
+- `constants/menu.ts` (`FOOD_MENU`, `NON_ALCOHOLIC_DRINKS`, `ALCOHOLIC_DRINKS`) is **auto-generated** — do not hand-edit. It's regenerated from a Google Sheet by `scripts/sync-menu.ts` via the `sync-menu` GitHub Action (~every 20 min). See `/docs/menu-sync-setup.md` at the repo root for the Sheet template and setup.
+- Category `id` maps directly to i18n key: `t('food.breakfast')`, `t('drinks.cocktails')`, etc. New category ids get their heading translated automatically by the sync.
+- Item names/descs live under `food.items.<key>` / `drinks.items.<key>` in every `src/i18n/locales/*.json` file, also synced automatically.
 
 ## Build
 
