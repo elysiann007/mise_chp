@@ -41,9 +41,9 @@ export default function NonAlcoholicMenu() {
                 <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 to-transparent" />
                 <span className="text-stone-300 dark:text-zinc-700 font-display text-sm tracking-widest flex-shrink-0">{String(si + 1).padStart(2, '0')}</span>
               </motion.div>
-              <div className="space-y-0">
+              <motion.div variants={fadeUp} className="space-y-0">
                 {section.items.map((item, i) => (
-                  <motion.div key={item.key} variants={fadeUp} className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-stone-200 dark:border-zinc-800/60' : ''}`}>
+                  <div key={item.key} className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-stone-200 dark:border-zinc-800/60' : ''}`}>
                     <div className="flex items-baseline gap-3">
                       <div>
                         <span className="font-display text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', letterSpacing: '0.04em' }}>
@@ -66,9 +66,9 @@ export default function NonAlcoholicMenu() {
                     <p className="text-stone-500 dark:text-zinc-500 text-sm mt-1.5 leading-relaxed group-hover:text-stone-600 dark:group-hover:text-zinc-400 transition-colors duration-200">
                       {item.desc && t(`drinks.items.${item.key}_desc`, item.desc)}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
-              </div>
+              </motion.div>
             </motion.section>
           ))}
         </div>

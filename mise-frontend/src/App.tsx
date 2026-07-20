@@ -4,16 +4,36 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 
+const importMenuHub          = () => import('./pages/Menu/MenuHub')
+const importHookahBuilder    = () => import('./pages/Menu/HookahBuilder/HookahBuilder')
+const importFoodMenu         = () => import('./pages/Menu/FoodMenu/FoodMenu')
+const importDrinksMenu       = () => import('./pages/Menu/DrinksMenu/DrinksMenu')
+const importNonAlcoholicMenu = () => import('./pages/Menu/DrinksMenu/NonAlcoholicMenu')
+const importAlcoholicMenu    = () => import('./pages/Menu/DrinksMenu/AlcoholicMenu')
+const importAbout            = () => import('./pages/About/About')
+
 const Home             = lazy(() => import('./pages/Home/Home'))
-const MenuHub          = lazy(() => import('./pages/Menu/MenuHub'))
-const HookahBuilder    = lazy(() => import('./pages/Menu/HookahBuilder/HookahBuilder'))
-const FoodMenu         = lazy(() => import('./pages/Menu/FoodMenu/FoodMenu'))
-const DrinksMenu       = lazy(() => import('./pages/Menu/DrinksMenu/DrinksMenu'))
-const NonAlcoholicMenu = lazy(() => import('./pages/Menu/DrinksMenu/NonAlcoholicMenu'))
-const AlcoholicMenu    = lazy(() => import('./pages/Menu/DrinksMenu/AlcoholicMenu'))
-const About            = lazy(() => import('./pages/About/About'))
+const MenuHub          = lazy(importMenuHub)
+const HookahBuilder    = lazy(importHookahBuilder)
+const FoodMenu         = lazy(importFoodMenu)
+const DrinksMenu       = lazy(importDrinksMenu)
+const NonAlcoholicMenu = lazy(importNonAlcoholicMenu)
+const AlcoholicMenu    = lazy(importAlcoholicMenu)
+const About            = lazy(importAbout)
 const NotFound         = lazy(() => import('./pages/NotFound/NotFound'))
 const ChatBot          = lazy(() => import('./components/ChatBot/ChatBot'))
+
+function useRoutePrefetch() {
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1))
+    const id = idle(() => {
+      for (const importFn of [importMenuHub, importHookahBuilder, importFoodMenu, importDrinksMenu, importNonAlcoholicMenu, importAlcoholicMenu, importAbout]) {
+        importFn()
+      }
+    })
+    return () => (window.cancelIdleCallback ?? clearTimeout)(id)
+  }, [])
+}
 
 function PageFallback() {
   return (
@@ -51,6 +71,7 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
+  useRoutePrefetch()
   return (
     <BrowserRouter>
       <ScrollToTop />

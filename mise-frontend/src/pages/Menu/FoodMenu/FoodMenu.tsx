@@ -66,11 +66,10 @@ export default function FoodMenu() {
               </motion.div>
 
               {/* Items */}
-              <div className="space-y-0">
+              <motion.div variants={fadeUp} className="space-y-0">
                 {section.items.map((item, i) => (
-                  <motion.div
+                  <div
                     key={item.key}
-                    variants={fadeUp}
                     className={`group py-6 ${i < section.items.length - 1 ? 'border-b border-stone-200 dark:border-zinc-800/60' : ''}`}
                   >
                     <div className="flex items-baseline gap-3">
@@ -98,9 +97,9 @@ export default function FoodMenu() {
                     <p className="text-stone-500 dark:text-zinc-500 text-sm mt-1.5 leading-relaxed group-hover:text-stone-600 dark:group-hover:text-zinc-400 transition-colors duration-200">
                       {item.desc && t(`food.items.${item.key}_desc`, item.desc)}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
-              </div>
+              </motion.div>
             </motion.section>
           ))}
 
