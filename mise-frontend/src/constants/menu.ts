@@ -310,6 +310,7 @@ export const ALCOHOLIC_DRINKS = [
       { key: 'tuborg_5li', name: '5\'li Tuborg', desc: '5 adet Tuborg 50cl', price: '₺1.100', calories: '' },
       { key: 'carlsberg_5li', name: '5\'li Carlsberg', desc: '5 adet Carlsberg 50cl', price: '₺1.150', calories: '' },
       { key: 'tekila_kampanya', name: 'Tekila', desc: 'Olmeca Tequila', price: '₺950', calories: '' },
+      { key: 'fici_carlsberg_1_1', name: '1+1 Fıçı Carlsberg', desc: 'Fıçı Carlsberg draft bira, 1 alana 1 hediye', price: '₺380', calories: '' },
     ],
   },
   {
