@@ -410,6 +410,8 @@ export const ALCOHOLIC_DRINKS = [
       { key: 'carlsberg_50', name: 'Carlsberg 50cl', desc: '', price: '₺250', calories: '210' },
       { key: 'carlsberg_luna_50', name: 'Carlsberg Luna 50cl', desc: '', price: '₺250', calories: '215' },
       { key: 'carlsberg_elephant', name: 'Carlsberg Elephant', desc: '', price: '₺300', calories: '210' },
+      { key: 'carlsberg_fici_50', name: 'Carlsberg Fıçı 50cl', desc: '', price: '₺200', calories: '' },
+      { key: 'carlsberg_fici_33', name: 'Carlsberg Fıçı 33cl', desc: '', price: '₺170', calories: '' },
       { key: 'blanc_33', name: 'Blanc 33cl', desc: '', price: '₺245', calories: '130' },
       { key: 'frederik_ipa', name: 'Frederik India Pale Ale 35cl', desc: '', price: '₺285', calories: '165' },
       { key: 'frederik_yakima', name: 'Frederik Yakima IPA 35cl', desc: '', price: '₺285', calories: '170' },
