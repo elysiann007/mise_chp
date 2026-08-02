@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import PageWrapper from '../../components/layout/PageWrapper'
-import PosterPopup from '../../components/PosterPopup/PosterPopup'
 import { fadeUp, fadeIn, stagger, scaleIn, slideLeft } from '../../lib/animations'
 import { VENUE } from '../../constants/venue'
 
@@ -40,7 +39,6 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <PosterPopup />
       <main>
         {/* ── Hero ── */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-50 dark:bg-stone-950">
