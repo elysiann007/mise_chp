@@ -8,7 +8,7 @@ export const FOOD_MENU = [
       { key: 'sucuk_eggs', name: 'Sucuklu Yumurta', desc: '', price: '₺280', calories: '390' },
       { key: 'menemen', name: 'Menemen', desc: '', price: '₺280', calories: '180' },
       { key: 'omelet', name: 'Omlet', desc: '', price: '₺290', calories: '190' },
-      { key: 'cheese_plate', name: 'Peynir Tabağı', desc: '', price: '₺290', calories: '340' },
+      { key: 'cheese_plate', name: 'Peynir Tabağı', desc: '', price: '₺400', calories: '340' },
       { key: 'soup_of_day', name: 'Günün Çorbası', desc: '', price: '₺260', calories: '130-160' },
     ],
   },
