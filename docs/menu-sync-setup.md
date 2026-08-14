@@ -1,3 +1,19 @@
+> **RETIRED — 14 August 2026.** The menu is no longer edited in a Google Sheet.
+>
+> It is now managed in the MISE POS admin under **Menü Yönetimi**, which stores
+> items, prices, calories and all ten locales in Postgres and serves them to this
+> site over the public catalog endpoint. New or renamed items are translated
+> automatically; translations can also be corrected by hand in the admin.
+>
+> The workflow in `.github/workflows/sync-menu.yml` is guarded with `if: false`
+> and will not rewrite `src/constants/menu.ts` or the locale bundles again. Those
+> bundled files remain as the offline fallback the site shows when the POS is
+> unreachable, so they are still worth keeping accurate.
+>
+> Full design: `docs/MENU_SYNC.md` in the POS repository.
+>
+> Everything below describes the retired pipeline and is kept for reference only.
+
 # Menu Sync Setup (Google Sheet → Website)
 
 The menu (prices, item names, descriptions, categories) is edited in a Google

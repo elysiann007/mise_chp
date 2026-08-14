@@ -1,13 +1,23 @@
-name: Sync menu from Google Sheet
+# RETIRED — 14 August 2026.
+#
+# The menu is no longer edited in a Google Sheet. It is now managed in the MISE
+# POS admin ("Menü Yönetimi"), which stores items, prices, calories and all ten
+# locales in Postgres and serves them to the customer menu over the public
+# catalog endpoint. See docs/menu-sync-setup.md and, in the POS repo,
+# docs/MENU_SYNC.md.
+#
+# This workflow is kept rather than deleted so the pipeline it describes — and
+# the reason it was replaced — stay readable in history. The job below is
+# guarded with `if: false`, so a manual run is accepted and then skipped; it
+# will never rewrite src/constants/menu.ts or the locale bundles again.
+#
+# To revive it: drop the `if: false` guard, restore the schedule, and re-add the
+# SHEET_*_CSV_URL / GEMINI_API_KEY secrets. Be aware that doing so gives the
+# menu two writers — the Sheet and the POS — with no rule for which one wins.
+
+name: Sync menu from Google Sheet (retired)
 
 on:
-  # Scheduled runs are paused until the Google Sheet is published and the
-  # SHEET_*_CSV_URL / GEMINI_API_KEY repo secrets are set (see
-  # docs/menu-sync-setup.md) — until then every scheduled run fails
-  # immediately with a missing-env-var error. Re-enable the schedule below
-  # once setup is complete.
-  # schedule:
-  #   - cron: '*/20 * * * *'
   workflow_dispatch: {}
 
 permissions:
@@ -19,6 +29,7 @@ concurrency:
 
 jobs:
   sync:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
