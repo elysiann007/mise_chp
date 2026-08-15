@@ -452,6 +452,8 @@
       "carlsberg_elephant": "Carlsberg Elephant",
       "carlsberg_fici_50": "Carlsberg Fıçı 50cl",
       "carlsberg_fici_33": "Carlsberg Fıçı 33cl",
+      "tuborg_fici_50": "Tuborg Fıçı 50cl",
+      "tuborg_fici_33": "Tuborg Fıçı 33cl",
       "blanc_33": "Blanc 33cl",
       "frederik_ipa": "Frederik India Pale Ale 35cl",
       "frederik_yakima": "Frederik Yakima IPA 35cl",
@@ -466,7 +468,8 @@
       "tuborg_5li": "5'li Tuborg",
       "carlsberg_5li": "5'li Carlsberg",
       "tekila_kampanya": "Tekila",
-      "fici_carlsberg_1_1": "1+1 Fıçı Carlsberg"
+      "fici_carlsberg_1_1": "1+1 Fıçı Carlsberg",
+      "fici_tuborg_1_1": "1+1 Fıçı Tuborg"
     }
   },
   "about": {

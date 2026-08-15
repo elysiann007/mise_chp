@@ -311,6 +311,7 @@ export const ALCOHOLIC_DRINKS = [
       { key: 'carlsberg_5li', name: '5\'li Carlsberg', desc: '5 adet Carlsberg 50cl', price: '₺1.250', calories: '' },
       { key: 'tekila_kampanya', name: 'Tekila', desc: 'Olmeca Tequila', price: '₺950', calories: '' },
       { key: 'fici_carlsberg_1_1', name: '1+1 Fıçı Carlsberg', desc: 'Fıçı Carlsberg draft bira, 1 alana 1 hediye', price: '₺400', calories: '' },
+      { key: 'fici_tuborg_1_1', name: '1+1 Fıçı Tuborg', desc: 'Fıçı Tuborg draft bira, 1 alana 1 hediye', price: '₺390', calories: '' },
     ],
   },
   {
@@ -420,6 +421,8 @@ export const ALCOHOLIC_DRINKS = [
       { key: 'carlsberg_elephant', name: 'Carlsberg Elephant', desc: '', price: '₺300', calories: '210' },
       { key: 'carlsberg_fici_50', name: 'Carlsberg Fıçı 50cl', desc: '', price: '₺220', calories: '' },
       { key: 'carlsberg_fici_33', name: 'Carlsberg Fıçı 33cl', desc: '', price: '₺200', calories: '' },
+      { key: 'tuborg_fici_50', name: 'Tuborg Fıçı 50cl', desc: '', price: '₺210', calories: '' },
+      { key: 'tuborg_fici_33', name: 'Tuborg Fıçı 33cl', desc: '', price: '₺199', calories: '' },
       { key: 'blanc_33', name: 'Blanc 33cl', desc: '', price: '₺245', calories: '130' },
       { key: 'frederik_ipa', name: 'Frederik India Pale Ale 35cl', desc: '', price: '₺285', calories: '165' },
       { key: 'frederik_yakima', name: 'Frederik Yakima IPA 35cl', desc: '', price: '₺285', calories: '170' },
