@@ -51,8 +51,8 @@ export default function PosterPopup() {
                 </svg>
               </button>
               <img
-                src="/carlsberg-fici-poster.jpg"
-                alt="1+1 Carlsberg Fıçı Bira Kampanyası"
+                src="/mac-yayin-posteri.jpg"
+                alt="Yeni Sezon Yeni Heyecan — Lig Maçları Yayını Cafe Hookah Pub'da"
                 className="block max-h-[88vh] max-w-[92vw] w-auto h-auto"
               />
             </div>
