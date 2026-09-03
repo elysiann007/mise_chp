@@ -414,7 +414,7 @@ export const ALCOHOLIC_DRINKS = [
       { key: 'tuborg_50', name: 'Tuborg 50cl', desc: '', price: '₺275', calories: '215' },
       { key: 'tuborg_filtresiz_50', name: 'Tuborg Filtresiz 50cl', desc: '', price: '₺285', calories: '220' },
       { key: 'tuborg_amber_50', name: 'Tuborg Amber 50cl', desc: '', price: '₺345', calories: '225' },
-      { key: 'tuborg_special_50', name: 'Tuborg Special 50cl Kutu', desc: '', price: '₺295', calories: '235' },
+      { key: 'tuborg_special_50', name: 'Tuborg Special 50cl Kutu', desc: '', price: '₺350', calories: '235' },
       { key: 'tuborg_ice', name: 'Tuborg Ice', desc: '', price: '₺320', calories: '' },
       { key: 'carlsberg_33', name: 'Carlsberg 33cl', desc: '', price: '₺265', calories: '135' },
       { key: 'carlsberg_50', name: 'Carlsberg 50cl', desc: '', price: '₺285', calories: '210' },
