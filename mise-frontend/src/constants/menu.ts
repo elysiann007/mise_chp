@@ -67,6 +67,8 @@ export const FOOD_MENU = [
       { key: 'sosis_pizza', name: 'Dana Sosis Pizza', desc: 'Dana sosis, mozerella, siyah zeytin, yeşil biber', price: '₺550', calories: '860' },
       { key: 'sucuk_sosis_pizza', name: 'Dana Sucuk Sosis Pizza', desc: 'Dana sucuk, dana sosis, mozerella, siyah zeytin, yeşil biber', price: '₺550', calories: '940' },
       { key: 'vegetarian_pizza', name: 'Vejeteryan Pizza', desc: 'Mozerella, mantar, domates, yeşil zeytin, siyah zeytin, roka', price: '₺500', calories: '690' },
+      { key: 'dana_jambon_pizza', name: 'Dana Jambon Pizza', desc: 'Dana jambon, mozerella, siyah zeytin, yeşil biber', price: '₺700', calories: '870' },
+      { key: 'hindi_jambon_pizza', name: 'Hindi Jambon Pizza', desc: 'Hindi jambon, mozerella, siyah zeytin, yeşil biber', price: '₺700', calories: '820' },
     ],
   },
   {
