@@ -6,7 +6,7 @@ export const HOOKAH_BRANDS: HookahBrand[] = [
     id: 'revoshi',
     name: 'Revoshi',
     desc: 'Premium Tobacco',
-    price: '₺500',
+    price: '₺550',
     icon: '◎',
     aromas: [
       { id: 'r-double-apple',      name: 'Double Apple',       color: '#ef4444' },
@@ -42,7 +42,7 @@ export const HOOKAH_BRANDS: HookahBrand[] = [
     id: 'hookah_special',
     name: 'Hookah Special',
     desc: 'Ice Cream Series',
-    price: '₺650',
+    price: '₺700',
     icon: '❋',
     aromas: [
       { id: 'hs-blueberry-ice',   name: 'Blueberry Ice Cream',   color: '#818cf8' },
@@ -56,7 +56,7 @@ export const HOOKAH_BRANDS: HookahBrand[] = [
     id: 'al_fakher',
     name: 'Al Fakher',
     desc: 'Classic Blend',
-    price: '₺500',
+    price: '₺550',
     icon: '⬡',
     aromas: [
       { id: 'af-double-apple',   name: 'Double Apple',   color: '#ef4444' },
@@ -68,7 +68,7 @@ export const HOOKAH_BRANDS: HookahBrand[] = [
     id: 'nakhla',
     name: 'Nakhla',
     desc: 'Dark Leaf',
-    price: '₺600',
+    price: '₺650',
     icon: '◆',
     aromas: [
       { id: 'n-seftali',    name: 'Şeftali',    color: '#fb923c', nameKey: 'hookah.aromas.seftali' },
@@ -79,7 +79,7 @@ export const HOOKAH_BRANDS: HookahBrand[] = [
     id: 'adalya',
     name: 'Adalya',
     desc: 'Special Edition',
-    price: '₺500',
+    price: '₺550',
     icon: '✦',
     aromas: [
       { id: 'a-love-66',       name: 'Love 66',       color: '#f43f5e' },
